@@ -1,0 +1,82 @@
+{
+ "id": "inst_001",
+ "set": "generated",
+ "n_locations": 3,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "16:55",
+  "duration_limit_min": null,
+  "budget": 82,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "acm",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "maxwell",
+    "after": "east_coast_lagoon"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "maxwell",
+    "start": 600,
+    "end": 645
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "start": 680,
+    "end": 740
+   },
+   {
+    "location_id": "acm",
+    "start": 773,
+    "end": 893
+   }
+  ],
+  "total_cost": 48,
+  "optimal": true
+ },
+ "request_template": "I'm free from 10:00 to 16:55. My budget is S$82. I definitely need to see East Coast Lagoon Food Village, Maxwell Food Centre and Asian Civilisations Museum. I want to do Maxwell Food Centre before East Coast Lagoon Food Village.",
+ "request_text": "I'm free from 10:00 to 16:55. My budget is S$82. I definitely need to see East Coast Lagoon Food Village, Maxwell Food Centre and Asian Civilisations Museum. I want to do Maxwell Food Centre before East Coast Lagoon Food Village.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

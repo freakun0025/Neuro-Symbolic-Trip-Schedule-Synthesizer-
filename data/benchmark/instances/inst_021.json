@@ -1,0 +1,114 @@
+{
+ "id": "inst_021",
+ "set": "generated",
+ "n_locations": 7,
+ "budget_tightness": "tight",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "14:05",
+  "duration_limit_min": null,
+  "budget": 89,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "maxwell",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "08:30",
+    "latest_end": "10:45"
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "jewel_changi",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_wonders",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "night_safari",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "maxwell",
+    "after": "cable_car"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "maxwell",
+    "start": 540,
+    "end": 585
+   },
+   {
+    "location_id": "river_wonders",
+    "start": 632,
+    "end": 752
+   },
+   {
+    "location_id": "cable_car",
+    "start": 799,
+    "end": 844
+   }
+  ],
+  "total_cost": 86,
+  "optimal": true
+ },
+ "request_template": "I'm free from 09:00 to 14:05. I can spend at most S$89. I want to visit Singapore Cable Car. Optionally, Maxwell Food Centre, National Gallery Singapore, Singapore River Cruise, Jewel Changi Airport Rain Vortex, River Wonders and Night Safari. I want to do Maxwell Food Centre before Singapore Cable Car. I want to be at Maxwell Food Centre no earlier than 08:30 and done there by 10:45.",
+ "request_text": "Hey, I’ve got some free time from 09:00 to 14:05 and a budget of S$89. I’m definitely looking to check out Singapore Cable Car, but I need to make sure I hit Maxwell Food Centre before that. Just a heads up, I need to be at Maxwell Food Centre no earlier than 08:30 and finished up by 10:45. If there's extra time, I'd love to squeeze in National Gallery Singapore, Singapore River Cruise, Jewel Changi Airport Rain Vortex, River Wonders, or Night Safari too!",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

@@ -1,0 +1,107 @@
+{
+ "id": "inst_054",
+ "set": "generated",
+ "n_locations": 8,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "two_conflicts",
+ "seeded_conflict": null,
+ "seeded_conflicts": [
+  [
+   "horizon",
+   "must_visit:lau_pa_sat",
+   "must_visit:singapore_flyer"
+  ],
+  [
+   "must_visit:singapore_flyer",
+   "window:singapore_flyer"
+  ]
+ ],
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "12:15",
+  "duration_limit_min": null,
+  "budget": 59,
+  "start_location": "national_museum",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "wings_of_time",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "garden_rhapsody",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "lau_pa_sat",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "11:15",
+    "latest_end": "11:45"
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 11:00 until 12:15. I'm starting from National Museum of Singapore. My budget is S$59. I want to visit Lau Pa Sat and Singapore Flyer. If there's time, I'd also like National Museum of Singapore, Wings of Time, Buddha Tooth Relic Temple, Garden Rhapsody, Adventure Cove Waterpark and East Coast Lagoon Food Village. I want to be at Singapore Flyer no earlier than 11:15 and done there by 11:45.",
+ "request_text": "My day out runs from 11:00 until 12:15. I'm starting from National Museum of Singapore. My budget is S$59. I want to visit Lau Pa Sat and Singapore Flyer. If there's time, I'd also like National Museum of Singapore, Wings of Time, Buddha Tooth Relic Temple, Garden Rhapsody, Adventure Cove Waterpark and East Coast Lagoon Food Village. I want to be at Singapore Flyer no earlier than 11:15 and done there by 11:45.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

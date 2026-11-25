@@ -1,0 +1,136 @@
+{
+ "id": "inst_043",
+ "set": "generated",
+ "n_locations": 11,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": null,
+  "duration_limit_min": 270,
+  "budget": 32,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "tekka_centre",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "jewel_changi",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "oceanarium",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": false,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "merlion_park",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "merlion_park",
+    "start": 540,
+    "end": 570
+   },
+   {
+    "location_id": "maxwell",
+    "start": 584,
+    "end": 629
+   }
+  ],
+  "total_cost": 8,
+  "optimal": true
+ },
+ "request_template": "I have 4 hours and 30 minutes starting at 09:00. I can spend at most S$32. I definitely need to see Maxwell Food Centre and Merlion Park. Optionally, Chinatown Complex Food Centre, ArtScience Museum, Singapore Cable Car, Tekka Centre, Universal Studios Singapore, Jewel Changi Airport Rain Vortex, Singapore Oceanarium, Singapore Botanic Gardens and National Orchid Garden. I'd like to spend 30 minutes at Jewel Changi Airport Rain Vortex. I'd like to spend 90 minutes at Singapore Botanic Gardens.",
+ "request_text": "Hey, I’ve got 4 hours and 30 minutes free from 09:00 and a S$32 budget. I really need to hit up Maxwell Food Centre and Merlion Park. If there's time, I'd love to check out Chinatown Complex Food Centre, ArtScience Museum, Singapore Cable Car, Tekka Centre, Universal Studios Singapore, Jewel Changi Airport Rain Vortex, Singapore Oceanarium, Singapore Botanic Gardens, or National Orchid Garden. Just a heads up, I want to spend 30 minutes at Jewel Changi Airport Rain Vortex and 90 minutes at Singapore Botanic Gardens.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

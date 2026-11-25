@@ -1,0 +1,131 @@
+{
+ "id": "inst_045",
+ "set": "generated",
+ "n_locations": 11,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "showtime_clash",
+ "seeded_conflict": [
+  "must_visit:chinatown_complex",
+  "must_visit:wings_of_time",
+  "showtime:wings_of_time",
+  "window:chinatown_complex"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "16:00",
+  "day_end": "23:55",
+  "duration_limit_min": null,
+  "budget": 45,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "bird_paradise",
+    "must_visit": false,
+    "duration_min": 210,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": false,
+    "duration_min": 180,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "clarke_quay",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "wings_of_time",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": true,
+    "duration_min": 70,
+    "cost": null,
+    "earliest_start": "19:35",
+    "latest_end": "20:45"
+   }
+  ],
+  "precedences": [
+   {
+    "before": "artscience",
+    "after": "east_coast_lagoon"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "I'm free from 16:00 to 23:55. My budget is S$45. I want to visit Singapore Botanic Gardens, Wings of Time and Chinatown Complex Food Centre. Optionally, Bird Paradise, Supertree Grove, Adventure Cove Waterpark, National Gallery Singapore, National Orchid Garden, Clarke Quay, ArtScience Museum and East Coast Lagoon Food Village. I want to do ArtScience Museum before East Coast Lagoon Food Village. I'd like to spend 210 minutes at Bird Paradise. I'd like to spend 180 minutes at National Gallery Singapore. I'd like to spend 30 minutes at National Orchid Garden. I'd like to spend 90 minutes at East Coast Lagoon Food Village. I'd like to spend 70 minutes at Chinatown Complex Food Centre. I want to be at Chinatown Complex Food Centre no earlier than 19:35 and done there by 20:45.",
+ "request_text": "Hey, I’ve got some free time from 16:00 to 23:55 and a budget of S$45. Really hoping to hit up Singapore Botanic Gardens, Wings of Time, and Chinatown Complex Food Centre. \n\nIf there’s still time, I’d love to check out Bird Paradise, Supertree Grove, Adventure Cove Waterpark, National Gallery Singapore, National Orchid Garden, Clarke Quay, ArtScience Museum, and East Coast Lagoon Food Village. Just a heads up, I need to do the ArtScience Museum before East Coast Lagoon Food Village.\n\nFor the timings, here’s what I’m looking at: 210 minutes at Bird Paradise, 180 minutes at National Gallery Singapore, 30 minutes at National Orchid Garden, 90 minutes at East Coast Lagoon Food Village, and 70 minutes at Chinatown Complex Food Centre. Also, I need to be at Chinatown Complex Food Centre no earlier than 19:35 and finished there by 20:45.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

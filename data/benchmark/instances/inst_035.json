@@ -1,0 +1,108 @@
+{
+ "id": "inst_035",
+ "set": "generated",
+ "n_locations": 9,
+ "budget_tightness": "none",
+ "expected_status": "UNSAT",
+ "conflict_type": "horizon",
+ "seeded_conflict": [
+  "horizon",
+  "must_visit:national_gallery"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "13:00",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": "merlion_park",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "merlion_park",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_wonders",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "14:25",
+    "latest_end": "18:00"
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 11:00 until 13:00. I'm starting from Merlion Park. Money is not a concern. I want to visit National Gallery Singapore. If there's time, I'd also like Singapore Botanic Gardens, Singapore River Cruise, Adventure Cove Waterpark, SkyHelix Sentosa, East Coast Lagoon Food Village, Merlion Park, River Wonders and Universal Studios Singapore. I want to be at National Gallery Singapore no earlier than 14:25 and done there by 18:00.",
+ "request_text": "Hey, I'm planning a day out starting at Merlion Park from 11:00 until 13:00. Money is not a concern for this trip. I definitely need to visit National Gallery Singapore, but I need to be there no earlier than 14:25 and finished by 18:00. If there's any time left over, I’d also love to fit in Singapore Botanic Gardens, Singapore River Cruise, Adventure Cove Waterpark, SkyHelix Sentosa, East Coast Lagoon Food Village, Merlion Park, River Wonders and Universal Studios Singapore.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

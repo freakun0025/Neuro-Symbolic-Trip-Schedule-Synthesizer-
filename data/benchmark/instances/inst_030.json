@@ -1,0 +1,102 @@
+{
+ "id": "inst_030",
+ "set": "generated",
+ "n_locations": 8,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "showtime_clash",
+ "seeded_conflict": [
+  "must_visit:maxwell",
+  "must_visit:wings_of_time",
+  "showtime:wings_of_time",
+  "window:maxwell"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "16:00",
+  "day_end": "23:55",
+  "duration_limit_min": null,
+  "budget": 35,
+  "start_location": "maxwell",
+  "return_to_start": true,
+  "activities": [
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_zoo",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": false,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "wings_of_time",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": true,
+    "duration_min": 70,
+    "cost": null,
+    "earliest_start": "19:35",
+    "latest_end": "20:45"
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 16:00 until 23:55. I'm starting from Maxwell Food Centre and need to be back there by the end. I can spend at most S$35. I want to visit Fort Canning Park, Wings of Time and Maxwell Food Centre. If there's time, I'd also like Peranakan Museum, Singapore Zoo, ArtScience Museum, Marina Bay Sands SkyPark Observation Deck and Singapore Cable Car. I'd like to spend 90 minutes at Marina Bay Sands SkyPark Observation Deck. I'd like to spend 70 minutes at Maxwell Food Centre. I want to be at Maxwell Food Centre no earlier than 19:35 and done there by 20:45.",
+ "request_text": "My day out runs from 16:00 until 23:55. I'm starting from Maxwell Food Centre and need to be back there by the end. I can spend at most S$35. I want to visit Fort Canning Park, Wings of Time and Maxwell Food Centre. If there's time, I'd also like Peranakan Museum, Singapore Zoo, ArtScience Museum, Marina Bay Sands SkyPark Observation Deck and Singapore Cable Car. I'd like to spend 90 minutes at Marina Bay Sands SkyPark Observation Deck. I'd like to spend 70 minutes at Maxwell Food Centre. I want to be at Maxwell Food Centre no earlier than 19:35 and done there by 20:45.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

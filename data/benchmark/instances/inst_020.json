@@ -1,0 +1,86 @@
+{
+ "id": "inst_020",
+ "set": "generated",
+ "n_locations": 6,
+ "budget_tightness": "none",
+ "expected_status": "UNSAT",
+ "conflict_type": "horizon",
+ "seeded_conflict": [
+  "horizon",
+  "must_visit:maxwell",
+  "must_visit:ocbc_skyway",
+  "must_visit:universal_studios"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "18:40",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": "clarke_quay",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": true,
+    "duration_min": 60,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": 120,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 09:00 until 18:40. I'm starting from Clarke Quay. Money is not a concern. I definitely need to see OCBC Skyway, Maxwell Food Centre and Universal Studios Singapore. If there's time, I'd also like Singapore Cable Car, ArtScience Museum and Chinatown Complex Food Centre. I'd like to spend 60 minutes at OCBC Skyway. I'd like to spend 120 minutes at ArtScience Museum.",
+ "request_text": "My day out runs from 09:00 until 18:40. I'm starting from Clarke Quay. Money is not a concern. I definitely need to see OCBC Skyway, Maxwell Food Centre and Universal Studios Singapore. If there's time, I'd also like Singapore Cable Car, ArtScience Museum and Chinatown Complex Food Centre. I'd like to spend 60 minutes at OCBC Skyway. I'd like to spend 120 minutes at ArtScience Museum.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

@@ -1,0 +1,83 @@
+{
+ "id": "inst_051",
+ "set": "generated",
+ "n_locations": 5,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "two_conflicts",
+ "seeded_conflict": null,
+ "seeded_conflicts": [
+  [
+   "budget",
+   "must_visit:tekka_centre",
+   "must_visit:wings_of_time"
+  ],
+  [
+   "must_visit:wings_of_time",
+   "window:wings_of_time"
+  ]
+ ],
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": null,
+  "duration_limit_min": 715,
+  "budget": 22,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "wings_of_time",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "19:40",
+    "latest_end": "19:55"
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "tekka_centre",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": 70,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "Starting at 11:00, I've got 11 hours and 55 minutes to spend. I can spend at most S$22. I definitely need to see Wings of Time and Tekka Centre. If there's time, I'd also like Buddha Tooth Relic Temple, National Orchid Garden and Singapore River Cruise. I want to be at Wings of Time no earlier than 19:40 and done there by 19:55. I'd like to spend 30 minutes at Tekka Centre. I'd like to spend 70 minutes at Singapore River Cruise.",
+ "request_text": "Hey, I’ve got 11 hours and 55 minutes to kill starting at 11:00. I’m looking to spend at most S$22 total. I really need to hit up Tekka Centre (would like to spend 30 minutes there) and Wings of Time—I need to be at Wings of Time no earlier than 19:40 and finished by 19:55. If I can squeeze them in, I’d also love to see Buddha Tooth Relic Temple, National Orchid Garden, and a Singapore River Cruise (I’d like to spend 70 minutes at Singapore River Cruise).",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

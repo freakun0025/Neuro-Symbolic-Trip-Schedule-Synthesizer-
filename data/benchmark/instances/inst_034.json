@@ -1,0 +1,108 @@
+{
+ "id": "inst_034",
+ "set": "generated",
+ "n_locations": 9,
+ "budget_tightness": "loose",
+ "expected_status": "UNSAT",
+ "conflict_type": "budget",
+ "seeded_conflict": [
+  "budget",
+  "must_visit:chinatown_complex"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "17:05",
+  "duration_limit_min": null,
+  "budget": 4,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "siloso_beach",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": true,
+    "duration_min": 75,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": 210,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_zoo",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 09:00 until 17:05. My budget is S$4. I want to visit Siloso Beach, Haw Par Villa and Chinatown Complex Food Centre. If there's time, I'd also like SkyHelix Sentosa, Adventure Cove Waterpark, Universal Studios Singapore, National Gallery Singapore, ArtScience Museum and Singapore Zoo. I'd like to spend 75 minutes at Chinatown Complex Food Centre. I'd like to spend 210 minutes at Adventure Cove Waterpark.",
+ "request_text": "My day out runs from 09:00 until 17:05. My budget is S$4. I want to visit Siloso Beach, Haw Par Villa and Chinatown Complex Food Centre. If there's time, I'd also like SkyHelix Sentosa, Adventure Cove Waterpark, Universal Studios Singapore, National Gallery Singapore, ArtScience Museum and Singapore Zoo. I'd like to spend 75 minutes at Chinatown Complex Food Centre. I'd like to spend 210 minutes at Adventure Cove Waterpark.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

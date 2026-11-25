@@ -1,0 +1,149 @@
+{
+ "id": "inst_046",
+ "set": "generated",
+ "n_locations": 12,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "17:50",
+  "duration_limit_min": null,
+  "budget": 162,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "gardens_domes",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "10:30",
+    "latest_end": "14:00"
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "bird_paradise",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "tekka_centre",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchard_road",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": false,
+    "duration_min": 150,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "gardens_domes",
+    "after": "bird_paradise"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "gardens_domes",
+    "start": 660,
+    "end": 780
+   },
+   {
+    "location_id": "bird_paradise",
+    "start": 829,
+    "end": 1009
+   }
+  ],
+  "total_cost": 95,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 11:00 until 17:50. I can spend at most S$162. I want to visit Bird Paradise. If there's time, I'd also like OCBC Skyway, Flower Dome and Cloud Forest, Spectra Light and Water Show, Singapore Cable Car, Tekka Centre, Marina Bay Sands SkyPark Observation Deck, Orchard Road, Singapore Botanic Gardens, Maxwell Food Centre, National Orchid Garden and Supertree Grove. I want to do Flower Dome and Cloud Forest before Bird Paradise. I want to be at Flower Dome and Cloud Forest no earlier than 10:30 and done there by 14:00. I'd like to spend 150 minutes at Singapore Botanic Gardens.",
+ "request_text": "My day out runs from 11:00 until 17:50. I can spend at most S$162. I want to visit Bird Paradise. If there's time, I'd also like OCBC Skyway, Flower Dome and Cloud Forest, Spectra Light and Water Show, Singapore Cable Car, Tekka Centre, Marina Bay Sands SkyPark Observation Deck, Orchard Road, Singapore Botanic Gardens, Maxwell Food Centre, National Orchid Garden and Supertree Grove. I want to do Flower Dome and Cloud Forest before Bird Paradise. I want to be at Flower Dome and Cloud Forest no earlier than 10:30 and done there by 14:00. I'd like to spend 150 minutes at Singapore Botanic Gardens.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

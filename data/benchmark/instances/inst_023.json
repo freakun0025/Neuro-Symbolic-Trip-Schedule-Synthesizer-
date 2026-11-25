@@ -1,0 +1,109 @@
+{
+ "id": "inst_023",
+ "set": "generated",
+ "n_locations": 7,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "13:30",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyline_luge",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_zoo",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "peranakan_museum",
+    "after": "singapore_flyer"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "peranakan_museum",
+    "start": 600,
+    "end": 690
+   },
+   {
+    "location_id": "singapore_flyer",
+    "start": 705,
+    "end": 750
+   }
+  ],
+  "total_cost": 55,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 10:00 until 13:30. Money is not a concern. I definitely need to see Peranakan Museum and Singapore Flyer. Optionally, Skyline Luge Sentosa, Singapore Zoo, National Museum of Singapore, National Orchid Garden and Chinatown Complex Food Centre. I want to do Peranakan Museum before Singapore Flyer.",
+ "request_text": "Hey, I’m planning a day out from 10:00 to 13:30. Budget isn't an issue at all. I definitely need to hit up the Peranakan Museum first, followed by the Singapore Flyer. If there’s extra time, I’d also love to check out Skyline Luge Sentosa, Singapore Zoo, National Museum of Singapore, National Orchid Garden, and Chinatown Complex Food Centre.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

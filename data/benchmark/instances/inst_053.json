@@ -1,0 +1,109 @@
+{
+ "id": "inst_053",
+ "set": "generated",
+ "n_locations": 7,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "two_conflicts",
+ "seeded_conflict": null,
+ "seeded_conflicts": [
+  [
+   "budget",
+   "must_visit:national_museum"
+  ],
+  [
+   "must_visit:fort_canning",
+   "must_visit:national_museum",
+   "precedence:fort_canning:national_museum",
+   "precedence:national_museum:fort_canning"
+  ]
+ ],
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "16:25",
+  "duration_limit_min": null,
+  "budget": 6,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "tekka_centre",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "merlion_park",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "fort_canning",
+    "after": "national_museum"
+   },
+   {
+    "before": "national_museum",
+    "after": "fort_canning"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "I'm free from 10:00 to 16:25. My budget is S$6. I definitely need to see National Museum of Singapore and Fort Canning Park. If there's time, I'd also like Tekka Centre, Merlion Park, Peranakan Museum, East Coast Lagoon Food Village and Adventure Cove Waterpark. I want to do Fort Canning Park before National Museum of Singapore. I want to do National Museum of Singapore before Fort Canning Park.",
+ "request_text": "I'm free from 10:00 to 16:25. My budget is S$6. I definitely need to see National Museum of Singapore and Fort Canning Park. If there's time, I'd also like Tekka Centre, Merlion Park, Peranakan Museum, East Coast Lagoon Food Village and Adventure Cove Waterpark. I want to do Fort Canning Park before National Museum of Singapore. I want to do National Museum of Singapore before Fort Canning Park.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

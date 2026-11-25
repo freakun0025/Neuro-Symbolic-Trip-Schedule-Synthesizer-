@@ -1,0 +1,80 @@
+{
+ "id": "inst_010",
+ "set": "generated",
+ "n_locations": 4,
+ "budget_tightness": "loose",
+ "expected_status": "UNSAT",
+ "conflict_type": "precedence_window",
+ "seeded_conflict": [
+  "must_visit:buddha_tooth",
+  "must_visit:clarke_quay",
+  "opening:buddha_tooth",
+  "opening:clarke_quay",
+  "precedence:clarke_quay:buddha_tooth"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "14:00",
+  "day_end": "23:55",
+  "duration_limit_min": null,
+  "budget": 50,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "spectra",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "clarke_quay",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "spectra",
+    "after": "fort_canning"
+   },
+   {
+    "before": "clarke_quay",
+    "after": "buddha_tooth"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "I'm free from 14:00 to 23:55. I can spend at most S$50. I definitely need to see Spectra Light and Water Show, Fort Canning Park, Clarke Quay and Buddha Tooth Relic Temple. I want to do Spectra Light and Water Show before Fort Canning Park. I want to do Clarke Quay before Buddha Tooth Relic Temple.",
+ "request_text": "I'm free from 14:00 to 23:55. I can spend at most S$50. I definitely need to see Spectra Light and Water Show, Fort Canning Park, Clarke Quay and Buddha Tooth Relic Temple. I want to do Spectra Light and Water Show before Fort Canning Park. I want to do Clarke Quay before Buddha Tooth Relic Temple.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

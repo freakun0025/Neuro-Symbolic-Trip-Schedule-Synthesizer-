@@ -1,0 +1,85 @@
+{
+ "id": "inst_008",
+ "set": "generated",
+ "n_locations": 4,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "15:30",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "maxwell",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyline_luge",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "night_safari",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "skypark",
+    "after": "maxwell"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "skypark",
+    "start": 660,
+    "end": 690
+   },
+   {
+    "location_id": "maxwell",
+    "start": 705,
+    "end": 750
+   }
+  ],
+  "total_cost": 40,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 10:00 until 15:30. Money is not a concern. I want to visit Maxwell Food Centre. If there's time, I'd also like Skyline Luge Sentosa, Night Safari and Marina Bay Sands SkyPark Observation Deck. I want to do Marina Bay Sands SkyPark Observation Deck before Maxwell Food Centre. I'd like to spend 30 minutes at Marina Bay Sands SkyPark Observation Deck.",
+ "request_text": "My day out runs from 10:00 until 15:30. Money is not a concern. I want to visit Maxwell Food Centre. If there's time, I'd also like Skyline Luge Sentosa, Night Safari and Marina Bay Sands SkyPark Observation Deck. I want to do Marina Bay Sands SkyPark Observation Deck before Maxwell Food Centre. I'd like to spend 30 minutes at Marina Bay Sands SkyPark Observation Deck.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

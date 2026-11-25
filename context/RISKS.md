@@ -15,7 +15,7 @@ The phrase "every returned plan satisfies all constraints" is true only relative
 **Fix (already in the spec):** measure extraction accuracy, and add the **oracle** run (gold IR → Z3). The headline result becomes "oracle 0 violations; pipeline violations against gold = extraction errors". Never compare the pipeline-vs-extracted number with the baseline-vs-gold number, because that comparison is unfair in our favour. **Always report both methods against gold.**
 
 ### R3 🔴 Live demo on examiner queries: places not in the KB
-The examiner will say "Taj Mahal", "a good biryani place", or a city we didn't curate. The proposal promises a "live demo on examiner-provided queries".
+The examiner will say "Taj Mahal", "a good chilli crab place", or a city we didn't curate (we only have Singapore). The proposal promises a "live demo on examiner-provided queries".
 **Fix:** (a) the UI always shows the KB place list and the city name; (b) unknown places → `NEEDS_CLARIFICATION` with a clear message, never a silent drop; (c) the editable-IR box (FR-18) lets you fix extraction live; (d) rehearse 15+ varied requests from `demo_requests.json`. Say upfront at the viva: "single city, N places, static data".
 
 ### R4 🔴 "I have 4 hours" has no absolute anchor
@@ -56,16 +56,26 @@ The LLM paraphrase can drop "Museum before Café", turn $30 into "about thirty",
 
 ### R13 🟠 The baseline comparison must be fair
 A pure-LLM baseline that never sees opening hours or the travel matrix will fail for reasons that have nothing to do with reasoning. One that is not allowed to say "infeasible" gets zero detection by design.
-**Fix:** the baseline gets the **same KB rows** for the instance's places plus the travel matrix, uses structured output, and may answer `feasible: false`. Use the same model family as stated (GPT-4o family). If budget allows, also run `gpt-4o`, not just `-mini`.
+**Fix:**
+- The baseline gets the **same KB rows** for the instance's places, including showtimes, plus the travel matrix. It uses structured output and may answer `feasible: false`.
+- Run it twice:
+  1. with the **same model** the pipeline uses for extraction (like-for-like)
+  2. with the **strongest model** available on the configured provider (the fairest test of "can a pure LLM do it")
+- Log both model strings. The proposal said "GPT-4o family"; if another provider is used, say so in the report as a deviation.
 
 ### R14 🟠 Structured-output pitfalls
-- OpenAI strict mode: all properties must be required, nullable fields are written `X | None`, defaults are not allowed in the schema, and some JSON-Schema keywords (regex patterns, min/max) may be unsupported or ignored depending on the API version, so Pydantic validation after the call is still essential.
-- Dynamic enums of 30 ids are fine; enums of thousands would not be (one more reason to stay with one city).
-- `llama3.1:8b` follows schemas much less reliably. Expect more retries and lower extraction accuracy, and **report it per backend** instead of hiding it.
+- We use one OpenAI-compatible client across providers (OpenAI, Gemini, Groq, OpenRouter, local Ollama). Their support for `response_format={"type": "json_schema"}` varies:
+  - some enforce it strictly
+  - some accept only a subset of JSON Schema (regex patterns, min/max, enums may be ignored)
+  - some support only `json_object`
+  - OpenAI strict mode additionally needs all properties required and nullable fields written as `X | None`, with no defaults
+- **Fix:** try `json_schema`, fall back to `json_object` with the schema in the prompt, and always validate with Pydantic. Retries and fallbacks are counted per model, so a weak provider shows up as more retries, not as silent wrong data.
+- Dynamic enums of ~40 ids are fine; enums of thousands would not be (one more reason to stay with one city).
+- Small or open models follow schemas much less reliably. Expect more retries and lower extraction accuracy, and **report it per model** instead of hiding it.
 
 ### R15 🟠 Reproducibility of LLM numbers
 Even at temperature 0, outputs can differ between calls and model snapshots.
-**Fix:** disk cache keyed by (backend, model, prompt, schema hash), committed to git; log the exact model string; the final evaluation is run once and the cache is frozen.
+**Fix:** disk cache keyed by (base URL, model, prompt, schema hash), committed to git; log the exact model string; the final evaluation is run once and the cache is frozen. Free tiers (Gemini, Groq) have per-minute rate limits, so the runner uses exponential backoff, and the full benchmark is run early once to warm the cache.
 
 ### R16 🟠 The "LLM only rephrases" step can introduce wrong numbers
 A rephrase like "raise your budget to about $40" breaks the exactness the project is built on.
@@ -96,6 +106,34 @@ The proposal's `(X_i ∧ X_j) ⇒ …` makes "Museum before Café" **vacuous** i
 ### R22 🟡 Citation
 Hao et al. was published at **NAACL 2025** (Hao, Chen, Zhang, Fan). Cite the NAACL version in the final report, not only the arXiv id.
 
+### R23 🔴 The `codegen` ablation executes LLM-written code
+**Fix:**
+- Run it only in `nstrip.ablation`, only on team-made benchmark instances, never in the UI or on examiner input.
+- Use a fresh subprocess (`python -I`, temp working directory, 20 s timeout) and capture stdout and stderr.
+- The pipeline and the app must not import `nstrip.ablation` (enforced by the import-ban test).
+
+### R24 🟠 The `codegen` ablation must be fair, and it is not Hao et al.'s system
+A weak prompt makes code generation look bad, which would be a strawman.
+**Fix:**
+- Same model, same KB rows (including the travel matrix and showtimes) and same request text as the pipeline.
+- A short API contract and one worked example in the prompt.
+- The report says plainly that this is a **single-shot simplification** of Hao et al., not a reproduction. If time allows, add a repair variant with up to 3 rounds of feeding back the error.
+
+### R25 🟠 Showtimes change the search, not just the data
+**Measured** (`results/stress.md`, 3 random Singapore problems per cell): up to 12 places the median solve is under 1 s.
+From ~15 places the optional-subset optimisation usually hits its 3 s budget, the greedy fallback takes over
+(plans valid, `optimal=False`), and solves take several seconds, up to ~30 s at 20–25 places. No feasibility
+timeouts occurred. The benchmark stays within 3–12 places, as in the proposal.
+`X_i ⇒ ∨_k S_i = t_k` adds real disjunctions. Combined with non-overlap, solve time grows with n, and the showtime cases are the ones most likely to hit the timeout.
+**Fix:**
+- Keep the solver timeout and the `SOLVER_TIMEOUT` status.
+- Report the stress sweep (n = 3…30) with and without showtimes.
+- The brute-force cross-check must include showtime places.
+
+### R26 🟡 Singapore data drift
+Fees, hours and showtimes change (shows get paused, prices rise).
+**Fix:** a `source_url` per row, a `curated_on` date in `kb_meta.json`, and a sentence in the limitations section. Every claim is relative to the KB snapshot, so drift does not affect correctness.
+
 ---
 
 ## Part B — Over-engineering to avoid (cut list)
@@ -107,16 +145,16 @@ Hao et al. was published at **NAACL 2025** (Hao, Chen, Zhang, Fan). Cite the NAA
 | O3 | Global minimum relaxation (MaxSMT over all soft constraints with a cost model across $ and minutes) | Units cannot be compared; it needs a weighting the team cannot defend | Per-member Optimize relaxations + a `restores_feasibility` flag |
 | O4 | Enumerating all MUSes (MARCO), QuickXplain, etc. | Beyond the proposal; deletion is enough at 12 places | Deletion-based minimisation; mention the alternatives in one sentence |
 | O5 | Writing our own SAT/DPLL solver or a manual CNF/Tseitin pipeline | Z3 does this; it adds bugs, not marks | Explain DPLL(T) conceptually in the report |
-| O6 | An LLM-generates-Z3-code path "for comparison" | That is re-implementing Hao et al.; doubles the work | Compare qualitatively in the report section |
-| O7 | LangChain or agent frameworks, vector DB, RAG | 30 places fit in the prompt | Plain `openai` / `ollama` clients |
+| O6 | A full re-implementation of Hao et al. (multi-step formulation, iterative repair, their prompts) | Doubles the work; not needed to measure difference 1 | **Changed in v1.1:** a *lean* single-shot `codegen` ablation (one prompt, subprocess runner, same checker, about 80 lines) is in scope (D19), because PRD §6 promises the differences are *evaluated*. Anything beyond that is still out. |
+| O7 | LangChain or agent frameworks, vector DB, RAG | ~40 places fit in the prompt | The plain `openai` client (any OpenAI-compatible base URL) |
 | O8 | Database (SQLite/Postgres), REST API, Docker, auth | Nobody needs them for a course demo | CSV/JSON files, one Gradio process |
 | O9 | React or custom front end | Gradio is in the proposal | Gradio Blocks with 4–5 panels |
 | O10 | Soft preferences / ratings / "best trip" scoring | Not in the proposal; muddies "all reasoning is symbolic and exact" | `ignored_preferences` list, shown only |
-| O11 | Day-of-week hours, multiple windows per place, transport modes | Each one multiplies the encoding and the test matrix | One window, one travel matrix |
+| O11 | Day-of-week hours, multiple windows per place, transport modes | Each one multiplies the encoding and the test matrix | One window, one travel matrix. (Fixed showtimes are the one deliberate exception, D18.) |
 | O12 | Fine-tuning the extractor | No data, no time | Few-shot prompt + retry |
-| O13 | More than two LLM backends | Each backend adds failure modes | gpt-4o-mini + llama3.1:8b (as proposed) |
+| O13 | Provider-specific SDKs or code paths (google-genai, groq, ollama packages) | Each adds failure modes | **One** OpenAI-compatible client; the provider is a base URL in `.env` (D16) |
 | O14 | Significance tests, bootstrap studies on n = 50 | Overclaims | Counts + Wilson intervals |
-| O15 | A large benchmark (hundreds of instances) | Manual review becomes impossible, so paraphrase errors creep in | 50 instances, all reviewed |
+| O15 | A large benchmark (hundreds of instances) | Manual review becomes impossible, so paraphrase errors creep in | 50 generated + 15 held-out instances, all reviewed |
 
 **Things that look like extra engineering but are worth the effort:** the oracle run (≈10 lines, the strongest argument in the report), the brute-force cross-check for n ≤ 7 (catches compiler bugs, ≈40 lines), the checker import ban test (≈15 lines), and the LLM disk cache (saves money and makes runs reproducible).
 
@@ -131,3 +169,6 @@ Hao et al. was published at **NAACL 2025** (Hao, Chen, Zhang, Fan). Cite the NAA
 5. *"What does DPLL(T) actually do here?"* → CDCL enumerates Boolean assignments to X_i, P_ij and the assumption literals; the LIA theory solver (simplex + branch-and-bound) checks the arithmetic; conflicts become learned clauses; the final conflict over assumption literals is the unsat core.
 6. *"How do you know a benchmark instance is really infeasible?"* → R11: a seeded arithmetic conflict, cross-checked by Z3.
 7. *"Show me a request with two conflicts."* → R8 demo: `restores_feasibility = false`, apply, re-diagnose.
+8. *"So is your approach actually better than Hao et al.'s?"* → The `codegen` ablation numbers on the same instances with the same model: crash rate, gold violations, detection. Then the caveat: it is a single-shot simplification, and code generation is more expressive (R24, ARCHITECTURE §9).
+9. *"Where does the SAT search actually matter?"* → Showtimes and non-overlap are disjunctions. Walk through Garden Rhapsody at 19:45 ∨ 20:45 against a precedence and a closing time.
+10. *"Is the held-out set really independent?"* → Written by each member before seeing the templates, labels backed by a witness or an arithmetic note, and prompts never tuned on it.

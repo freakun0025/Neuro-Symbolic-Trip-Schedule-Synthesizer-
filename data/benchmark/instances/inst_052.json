@@ -1,0 +1,105 @@
+{
+ "id": "inst_052",
+ "set": "generated",
+ "n_locations": 6,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "two_conflicts",
+ "seeded_conflict": null,
+ "seeded_conflicts": [
+  [
+   "must_visit:cable_car",
+   "window:cable_car"
+  ],
+  [
+   "must_visit:buddha_tooth",
+   "must_visit:cable_car",
+   "precedence:buddha_tooth:cable_car",
+   "precedence:cable_car:buddha_tooth"
+  ]
+ ],
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "17:05",
+  "duration_limit_min": null,
+  "budget": 65,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "11:00",
+    "latest_end": "11:35"
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": 120,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": false,
+    "duration_min": 75,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "supertree_grove",
+    "after": "artscience"
+   },
+   {
+    "before": "cable_car",
+    "after": "buddha_tooth"
+   },
+   {
+    "before": "buddha_tooth",
+    "after": "cable_car"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 11:00 until 17:05. My budget is S$65. I want to visit Buddha Tooth Relic Temple and Singapore Cable Car. If there's time, I'd also like Adventure Cove Waterpark, ArtScience Museum, Supertree Grove and National Orchid Garden. I want to do Supertree Grove before ArtScience Museum. I want to do Singapore Cable Car before Buddha Tooth Relic Temple. I want to do Buddha Tooth Relic Temple before Singapore Cable Car. I want to be at Singapore Cable Car no earlier than 11:00 and done there by 11:35. I'd like to spend 120 minutes at ArtScience Museum. I'd like to spend 75 minutes at Supertree Grove.",
+ "request_text": "My day out runs from 11:00 until 17:05. My budget is S$65. I want to visit Buddha Tooth Relic Temple and Singapore Cable Car. If there's time, I'd also like Adventure Cove Waterpark, ArtScience Museum, Supertree Grove and National Orchid Garden. I want to do Supertree Grove before ArtScience Museum. I want to do Singapore Cable Car before Buddha Tooth Relic Temple. I want to do Buddha Tooth Relic Temple before Singapore Cable Car. I want to be at Singapore Cable Car no earlier than 11:00 and done there by 11:35. I'd like to spend 120 minutes at ArtScience Museum. I'd like to spend 75 minutes at Supertree Grove.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

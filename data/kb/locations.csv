@@ -1,0 +1,40 @@
+id,name,aliases,category,cost,typical_duration_min,open,close,showtimes,lat,lon,source_url,checked
+universal_studios,Universal Studios Singapore,universal studios|uss|universal,theme_park,83,480,10:00,19:00,,1.2540,103.8238,https://www.rwsentosa.com/en/play/universal-studios-singapore,yes
+adventure_cove,Adventure Cove Waterpark,adventure cove|water park|waterpark,theme_park,40,180,10:00,17:00,,1.2585,103.8186,https://www.rwsentosa.com/en/play/adventure-cove-waterpark,yes
+oceanarium,Singapore Oceanarium,oceanarium|sea aquarium|s.e.a. aquarium|aquarium,attraction,50,120,10:00,19:00,,1.2583,103.8205,https://www.rwsentosa.com/en/play/singapore-oceanarium,yes
+wings_of_time,Wings of Time,wings of time|sentosa night show,show,19,20,19:30,21:30,19:40|20:40,1.2509,103.8178,https://www.mountfaberleisure.com/attraction/wings-of-time/,yes
+skyline_luge,Skyline Luge Sentosa,luge|skyline luge,attraction,30,60,10:00,21:00,,1.2521,103.8180,https://www.skylineluge.com/en/sentosa,no
+cable_car,Singapore Cable Car,cable car|sentosa cable car,attraction,35,45,08:45,22:00,,1.2713,103.8184,https://www.mountfaberleisure.com/attraction/singapore-cable-car-sky-network/,no
+skyhelix,SkyHelix Sentosa,skyhelix|sky helix,attraction,20,30,10:00,21:30,,1.2553,103.8196,https://www.sentosa.com.sg/en/things-to-do/attractions/skyhelix-sentosa/,no
+siloso_beach,Siloso Beach,siloso|sentosa beach|beach,nature,0,90,07:00,22:00,,1.2546,103.8126,https://www.sentosa.com.sg/en/things-to-do/beaches/siloso-beach/,no
+gardens_domes,Flower Dome and Cloud Forest,gardens by the bay|flower dome|cloud forest|domes|conservatories,attraction,46,120,09:00,21:00,,1.2840,103.8644,https://www.gardensbythebay.com.sg/en/things-to-do/attractions.html,yes
+supertree_grove,Supertree Grove,supertrees|supertree|outdoor gardens,nature,0,45,05:00,24:00,,1.2816,103.8636,https://www.gardensbythebay.com.sg/en/things-to-do/attractions/supertree-grove.html,no
+ocbc_skyway,OCBC Skyway,skyway|supertree skyway,attraction,14,30,09:00,21:00,,1.2818,103.8638,https://www.gardensbythebay.com.sg/en/things-to-do/attractions/ocbc-skyway.html,no
+garden_rhapsody,Garden Rhapsody,garden rhapsody|supertree light show|light show at gardens by the bay,show,0,15,19:30,21:15,19:45|20:45,1.2816,103.8636,https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/garden-rhapsody.html,yes
+spectra,Spectra Light and Water Show,spectra|mbs light show|marina bay light show,show,0,15,19:45,21:30,20:00|21:00,1.2834,103.8590,https://www.marinabaysands.com/attractions/spectra.html,yes
+skypark,Marina Bay Sands SkyPark Observation Deck,skypark|mbs observation deck|marina bay sands rooftop,attraction,32,60,11:00,21:00,,1.2834,103.8607,https://www.marinabaysands.com/attractions/sands-skypark.html,yes
+artscience,ArtScience Museum,artscience|art science museum,museum,30,90,10:00,19:00,,1.2863,103.8593,https://www.marinabaysands.com/museum.html,yes
+singapore_flyer,Singapore Flyer,flyer|ferris wheel,attraction,40,45,10:00,22:00,,1.2893,103.8631,https://www.singaporeflyer.com/,yes
+merlion_park,Merlion Park,merlion,attraction,0,30,00:00,24:00,,1.2868,103.8545,https://www.visitsingapore.com/see-do-singapore/places-to-see/merlion-park/,no
+lau_pa_sat,Lau Pa Sat,lau pa sat|telok ayer market|satay street,food,15,60,00:00,24:00,,1.2806,103.8504,https://www.laupasat.sg/,yes
+national_museum,National Museum of Singapore,national museum|museum of singapore,museum,15,120,10:00,19:00,,1.2966,103.8485,https://www.nhb.gov.sg/nationalmuseum/plan-your-visit/visitor-information/admissions,yes
+acm,Asian Civilisations Museum,asian civilisations museum|acm,museum,25,120,10:00,19:00,,1.2875,103.8514,https://www.nhb.gov.sg/acm/visit/plan-your-visit,yes
+peranakan_museum,Peranakan Museum,peranakan museum,museum,15,90,10:00,19:00,,1.2944,103.8490,https://www.nhb.gov.sg/peranakanmuseum,no
+national_gallery,National Gallery Singapore,national gallery|art gallery,museum,25,150,10:00,19:00,,1.2904,103.8515,https://www.nationalgallery.sg/,no
+fort_canning,Fort Canning Park,fort canning,nature,0,60,00:00,24:00,,1.2950,103.8460,https://www.nparks.gov.sg/gardens-parks-and-nature/parks-and-nature-reserves/fort-canning-park,no
+river_cruise,Singapore River Cruise,river cruise|bumboat|singapore river,attraction,28,40,09:00,22:30,,1.2890,103.8466,https://rivercruise.com.sg/,no
+clarke_quay,Clarke Quay,clarke quay|riverside dinner,food,30,90,17:00,24:00,,1.2906,103.8465,https://www.clarkequay.com.sg/,no
+maxwell,Maxwell Food Centre,maxwell|maxwell hawker centre|tian tian chicken rice,food,8,45,08:00,24:00,,1.2803,103.8448,https://chinatown.sg/dine/maxwell-hawker-centre/,yes
+chinatown_complex,Chinatown Complex Food Centre,chinatown complex|chinatown hawker centre,food,8,45,07:00,22:00,,1.2826,103.8431,https://chinatown.sg/?p=4467,yes
+buddha_tooth,Buddha Tooth Relic Temple,buddha tooth relic temple|buddha tooth temple,attraction,0,45,07:00,17:00,,1.2815,103.8443,https://www.btrts.org.sg/,no
+tekka_centre,Tekka Centre,tekka|little india hawker centre,food,8,45,06:30,21:00,,1.3063,103.8505,https://www.visitsingapore.com/dining-drinks-singapore/local-dishes/hawker-centres/tekka-centre/,no
+orchard_road,Orchard Road,orchard|orchard road shopping|ion orchard,shopping,0,120,10:00,22:00,,1.3040,103.8318,https://www.visitsingapore.com/see-do-singapore/places-to-see/orchard-road/,no
+botanic_gardens,Singapore Botanic Gardens,botanic gardens|botanical gardens,nature,0,120,05:00,24:00,,1.3138,103.8159,https://www.nparks.gov.sg/sbg,no
+orchid_garden,National Orchid Garden,orchid garden|orchids,nature,15,60,08:30,19:00,,1.3115,103.8150,https://www.nparks.gov.sg/sbg/visit/attractions/national-orchid-garden,no
+singapore_zoo,Singapore Zoo,zoo|singapore zoo,nature,49,240,08:30,18:00,,1.4043,103.7930,https://www.mandai.com/singapore-zoo,yes
+night_safari,Night Safari,night safari,nature,56,180,19:15,24:00,,1.4022,103.7882,https://www.mandai.com/night-safari,yes
+river_wonders,River Wonders,river wonders|river safari|pandas,nature,43,120,10:00,19:00,,1.4040,103.7908,https://www.mandai.com/river-wonders,no
+bird_paradise,Bird Paradise,bird paradise|bird park|jurong bird park,nature,49,180,09:00,18:00,,1.4048,103.7856,https://www.mandai.com/bird-paradise,yes
+haw_par_villa,Haw Par Villa,haw par villa,attraction,0,90,09:00,20:00,,1.2830,103.7820,https://www.hawparvilla.sg/,no
+east_coast_lagoon,East Coast Lagoon Food Village,east coast|east coast lagoon|bbq stingray,food,15,60,10:30,22:30,,1.3071,103.9338,https://www.nparks.gov.sg/gardens-parks-and-nature/parks-and-nature-reserves/east-coast-park,no
+jewel_changi,Jewel Changi Airport Rain Vortex,jewel|rain vortex|jewel changi,attraction,0,60,10:00,24:00,,1.3602,103.9893,https://www.jewelchangiairport.com/,no

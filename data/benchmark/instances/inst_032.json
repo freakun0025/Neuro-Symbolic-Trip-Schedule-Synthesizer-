@@ -1,0 +1,130 @@
+{
+ "id": "inst_032",
+ "set": "generated",
+ "n_locations": 9,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "20:30",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "tekka_centre",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchard_road",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "wings_of_time",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "tekka_centre",
+    "start": 660,
+    "end": 705
+   },
+   {
+    "location_id": "skypark",
+    "start": 722,
+    "end": 782
+   },
+   {
+    "location_id": "peranakan_museum",
+    "start": 797,
+    "end": 887
+   },
+   {
+    "location_id": "national_gallery",
+    "start": 899,
+    "end": 1049
+   }
+  ],
+  "total_cost": 80,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 11:00 until 20:30. Money is not a concern. I definitely need to see Peranakan Museum, Marina Bay Sands SkyPark Observation Deck and National Gallery Singapore. If there's time, I'd also like Tekka Centre, Orchard Road, Singapore Flyer, Singapore Cable Car, Wings of Time and Maxwell Food Centre. I'd like to spend 30 minutes at Maxwell Food Centre.",
+ "request_text": "My day out runs from 11:00 until 20:30. Money is not a concern. I definitely need to see Peranakan Museum, Marina Bay Sands SkyPark Observation Deck and National Gallery Singapore. If there's time, I'd also like Tekka Centre, Orchard Road, Singapore Flyer, Singapore Cable Car, Wings of Time and Maxwell Food Centre. I'd like to spend 30 minutes at Maxwell Food Centre.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

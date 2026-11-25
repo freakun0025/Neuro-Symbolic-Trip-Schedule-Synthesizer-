@@ -1,0 +1,83 @@
+{
+ "id": "inst_015",
+ "set": "generated",
+ "n_locations": 5,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "showtime_clash",
+ "seeded_conflict": [
+  "must_visit:maxwell",
+  "must_visit:wings_of_time",
+  "showtime:wings_of_time",
+  "window:maxwell"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "16:00",
+  "day_end": "23:55",
+  "duration_limit_min": null,
+  "budget": 121,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "gardens_domes",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "16:05",
+    "latest_end": "20:10"
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "wings_of_time",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": true,
+    "duration_min": 70,
+    "cost": null,
+    "earliest_start": "19:35",
+    "latest_end": "20:45"
+   }
+  ],
+  "precedences": [
+   {
+    "before": "cable_car",
+    "after": "gardens_domes"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 16:00 until 23:55. My budget is S$121. I want to visit Flower Dome and Cloud Forest, Singapore Cable Car, Wings of Time and Maxwell Food Centre. If there's time, I'd also like Marina Bay Sands SkyPark Observation Deck. I want to do Singapore Cable Car before Flower Dome and Cloud Forest. I want to be at Flower Dome and Cloud Forest no earlier than 16:05 and done there by 20:10. I'd like to spend 70 minutes at Maxwell Food Centre. I want to be at Maxwell Food Centre no earlier than 19:35 and done there by 20:45.",
+ "request_text": "Hey, I’m planning a trip in Singapore from 16:00 to 23:55 and I’ve got a budget of S$121. Could you help me fit these in? I definitely need to hit Singapore Cable Car before heading to Flower Dome and Cloud Forest. For Flower Dome and Cloud Forest, I need to be there no earlier than 16:05 and finished by 20:10. Also, I need to spend 70 minutes at Maxwell Food Centre, specifically between 19:35 and 20:45. I’m also planning on seeing Wings of Time. If there’s any space left in the schedule, I’d love to squeeze in Marina Bay Sands SkyPark Observation Deck too.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

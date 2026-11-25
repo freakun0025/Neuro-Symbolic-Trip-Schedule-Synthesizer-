@@ -1,0 +1,133 @@
+{
+ "id": "inst_036",
+ "set": "generated",
+ "n_locations": 10,
+ "budget_tightness": "tight",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": null,
+  "duration_limit_min": 490,
+  "budget": 83,
+  "start_location": "clarke_quay",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "bird_paradise",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "artscience",
+    "start": 674,
+    "end": 764
+   },
+   {
+    "location_id": "bird_paradise",
+    "start": 812,
+    "end": 992
+   },
+   {
+    "location_id": "botanic_gardens",
+    "start": 1028,
+    "end": 1148
+   }
+  ],
+  "total_cost": 79,
+  "optimal": true
+ },
+ "request_template": "I have 8 hours and 10 minutes starting at 11:00. I'm starting from Clarke Quay. My budget is S$83. I definitely need to see Singapore Botanic Gardens, ArtScience Museum and Bird Paradise. Optionally, SkyHelix Sentosa, National Museum of Singapore, Chinatown Complex Food Centre, Buddha Tooth Relic Temple, Marina Bay Sands SkyPark Observation Deck, Spectra Light and Water Show and Peranakan Museum.",
+ "request_text": "I have 8 hours and 10 minutes starting at 11:00. I'm starting from Clarke Quay. My budget is S$83. I definitely need to see Singapore Botanic Gardens, ArtScience Museum and Bird Paradise. Optionally, SkyHelix Sentosa, National Museum of Singapore, Chinatown Complex Food Centre, Buddha Tooth Relic Temple, Marina Bay Sands SkyPark Observation Deck, Spectra Light and Water Show and Peranakan Museum.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

@@ -1,0 +1,82 @@
+{
+ "id": "inst_002",
+ "set": "generated",
+ "n_locations": 3,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "14:15",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "lau_pa_sat",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "supertree_grove",
+    "after": "artscience"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "lau_pa_sat",
+    "start": 540,
+    "end": 570
+   },
+   {
+    "location_id": "supertree_grove",
+    "start": 584,
+    "end": 629
+   },
+   {
+    "location_id": "artscience",
+    "start": 641,
+    "end": 731
+   }
+  ],
+  "total_cost": 45,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 09:00 until 14:15. Money is not a concern. I want to visit Lau Pa Sat and Supertree Grove. If there's time, I'd also like ArtScience Museum. I want to do Supertree Grove before ArtScience Museum. I'd like to spend 30 minutes at Lau Pa Sat.",
+ "request_text": "My day out runs from 09:00 until 14:15. Money is not a concern. I want to visit Lau Pa Sat and Supertree Grove. If there's time, I'd also like ArtScience Museum. I want to do Supertree Grove before ArtScience Museum. I'd like to spend 30 minutes at Lau Pa Sat.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

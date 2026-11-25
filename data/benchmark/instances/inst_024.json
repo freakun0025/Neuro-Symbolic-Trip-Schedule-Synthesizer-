@@ -1,0 +1,92 @@
+{
+ "id": "inst_024",
+ "set": "generated",
+ "n_locations": 7,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "window",
+ "seeded_conflict": [
+  "must_visit:skyhelix",
+  "window:skyhelix"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "13:40",
+  "duration_limit_min": null,
+  "budget": 59,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "oceanarium",
+    "must_visit": false,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "siloso_beach",
+    "must_visit": false,
+    "duration_min": 120,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "10:50",
+    "latest_end": "12:25"
+   },
+   {
+    "location_id": "orchard_road",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "tekka_centre",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyhelix",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "10:00",
+    "latest_end": "10:20"
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "I'm free from 10:00 to 13:40. My budget is S$59. I definitely need to see ArtScience Museum, Tekka Centre and SkyHelix Sentosa. If there's time, I'd also like Singapore Oceanarium, Siloso Beach, Orchard Road and Singapore Flyer. I'd like to spend 90 minutes at Singapore Oceanarium. I'd like to spend 120 minutes at Siloso Beach. I want to be at ArtScience Museum no earlier than 10:50 and done there by 12:25. I'd like to spend 30 minutes at Tekka Centre. I want to be at SkyHelix Sentosa no earlier than 10:00 and done there by 10:20.",
+ "request_text": "I'm free from 10:00 to 13:40. My budget is S$59. I definitely need to see ArtScience Museum, Tekka Centre and SkyHelix Sentosa. If there's time, I'd also like Singapore Oceanarium, Siloso Beach, Orchard Road and Singapore Flyer. I'd like to spend 90 minutes at Singapore Oceanarium. I'd like to spend 120 minutes at Siloso Beach. I want to be at ArtScience Museum no earlier than 10:50 and done there by 12:25. I'd like to spend 30 minutes at Tekka Centre. I want to be at SkyHelix Sentosa no earlier than 10:00 and done there by 10:20.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

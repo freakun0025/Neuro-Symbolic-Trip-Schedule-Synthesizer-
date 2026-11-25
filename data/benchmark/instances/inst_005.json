@@ -1,0 +1,61 @@
+{
+ "id": "inst_005",
+ "set": "generated",
+ "n_locations": 3,
+ "budget_tightness": "none",
+ "expected_status": "UNSAT",
+ "conflict_type": "horizon",
+ "seeded_conflict": [
+  "horizon",
+  "must_visit:national_gallery",
+  "must_visit:singapore_flyer"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "13:55",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": "clarke_quay",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 11:00 until 13:55. I'm starting from Clarke Quay. Money is not a concern. I want to visit National Gallery Singapore and Singapore Flyer. Optionally, National Orchid Garden. I'd like to spend 30 minutes at Singapore Flyer.",
+ "request_text": "Starting at Clarke Quay, I’m planning a day out from 11:00 until 13:55. I’d love to check out the National Gallery Singapore and the Singapore Flyer—I’m aiming to spend 30 minutes at the Singapore Flyer specifically. If there's time, the National Orchid Garden is an optional stop too. Money is not a concern for this trip!",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}
