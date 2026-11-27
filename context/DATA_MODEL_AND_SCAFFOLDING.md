@@ -2,7 +2,7 @@
 
 Package name: `nstrip`. Python ≥ 3.11. All models are Pydantic v2 (`model_config = ConfigDict(extra="forbid", frozen=True)` unless noted).
 
-**Units (everywhere):** time = `int` minutes since midnight (0–1440); duration = `int` minutes; money = `int` whole currency units (USD, as in the proposal example). The only place strings like `"09:30"` or `"$30"` exist is the LLM-facing schema, and validators convert them immediately.
+**Units (everywhere):** time = `int` minutes since midnight (0–1440); duration = `int` minutes; money = `int` whole currency units (SGD for the Singapore KB; the `tiny_kb` test fixture keeps the proposal's $). The only place strings like `"09:30"` or `"$30"` exist is the LLM-facing schema, and validators convert them immediately.
 
 ---
 
@@ -11,29 +11,31 @@ Package name: `nstrip`. Python ≥ 3.11. All models are Pydantic v2 (`model_conf
 ```
 nstrip/
 ├── README.md                     # quickstart, demo instructions
-├── AGENTS.md                     # rules for any coding agent
-├── CLAUDE.md                     # rules for Claude Code
 ├── pyproject.toml                # deps pinned; [project.scripts] entry points
-├── .env.example                  # OPENAI_API_KEY=, NSTRIP_BACKEND=openai|ollama|cache, NSTRIP_MODEL=
+├── .env.example                  # see §1.1 (OPENAI_BASE_URL, OPENAI_API_KEY, NSTRIP_MODEL, per-role overrides, NSTRIP_MODE)
 ├── .gitignore                    # .env, results/*/scratch, __pycache__ (NOT data/cache)
 │
-├── docs/
+├── context/
 │   ├── PRD.md
 │   ├── ARCHITECTURE.md
 │   ├── ARCHITECTURE_ESSENTIAL.md
 │   ├── DATA_MODEL_AND_SCAFFOLDING.md
 │   ├── RISKS.md
+│   ├── AGENTS.md                 # rules for anyone (human or coding agent) working on the repo
+│   ├── CLAUDE.md                 # one-page version of AGENTS.md
 │   └── report/                   # LaTeX/Markdown report, figures generated from results/
 │
 ├── data/
 │   ├── kb/
 │   │   ├── locations.csv         # one row per place (see §3)
-│   │   ├── travel_params.json    # {"overhead_min": 10, "speed_kmph": 20}
-│   │   └── kb_meta.json          # {"city": "...", "currency": "USD", "curated_on": "YYYY-MM-DD", "version": "<sha>"}
+│   │   ├── travel_params.json    # {"overhead_min": 10, "speed_kmph": 25}
+│   │   └── kb_meta.json          # {"city": "Singapore", "currency": "SGD", "curated_on": "YYYY-MM-DD", "version": "<sha>"}
 │   ├── benchmark/
 │   │   ├── manifest.json         # list of ids, generator seed, kb version, review status
-│   │   └── instances/
-│   │       └── inst_001.json … inst_050.json
+│   │   ├── instances/
+│   │   │   └── inst_001.json … inst_050.json
+│   │   └── heldout/
+│   │       └── held_001.json … held_015.json   # hand-written, hand-annotated (FR-21b)
 │   ├── examples/
 │   │   └── demo_requests.json    # curated requests for the UI + viva rehearsal
 │   └── cache/
@@ -41,7 +43,7 @@ nstrip/
 │
 ├── src/nstrip/
 │   ├── __init__.py
-│   ├── config.py                 # env + defaults (DEFAULT_DAY_START=540, DEFAULT_DAY_END=1260, SOLVER_TIMEOUT_MS=10000, MAX_RETRIES=3)
+│   ├── config.py                 # env + defaults (DEFAULT_DAY_START=540, DEFAULT_DAY_END=1260, SOLVER_TIMEOUT_MS=10000, OPTIMISE_TIMEOUT_MS=3000, MAX_RETRIES=3)
 │   ├── models/
 │   │   ├── __init__.py
 │   │   ├── ir.py                 # TripRequestIR, ActivitySpec, PrecedenceSpec, make_ir_model(kb_ids)
@@ -57,7 +59,7 @@ nstrip/
 │   ├── extract/
 │   │   ├── __init__.py
 │   │   ├── prompts.py            # SYSTEM_RULES, FEW_SHOTS, render_prompt()
-│   │   ├── llm_client.py         # LLMClient protocol; OpenAIClient; OllamaClient; CacheOnlyClient; DiskCache
+│   │   ├── llm_client.py         # LLMClient protocol; OpenAICompatClient (any base URL); CacheOnlyClient; FakeClient; DiskCache
 │   │   └── extractor.py          # extract(text, kb, client) -> TripRequestIR | ExtractionFailure
 │   ├── ground.py                 # ground(ir, kb) -> ProblemInstance
 │   ├── encode/
@@ -79,12 +81,16 @@ nstrip/
 │   ├── baseline/
 │   │   ├── __init__.py
 │   │   └── pure_llm.py           # plan_with_llm(text, kb_subset, client) -> BaselineAnswer
+│   ├── ablation/
+│   │   ├── __init__.py
+│   │   └── codegen.py            # Hao-style: LLM writes Z3 code → subprocess (timeout) → Plan | UNSAT | CRASH
 │   ├── bench/
 │   │   ├── __init__.py
 │   │   ├── generate.py           # witness-first SAT, seeded-conflict UNSAT
 │   │   ├── paraphrase.py         # LLM paraphrase + guard
-│   │   ├── run.py                # CLI: --method pipeline|oracle|baseline
-│   │   ├── metrics.py            # summary.csv, tables.md
+│   │   ├── run.py                # CLI: --method pipeline|oracle|baseline|codegen --set generated|heldout
+│   │   ├── metrics.py            # summary.csv, tables.md, error taxonomy, core-size table, Wilson CIs
+│   │   ├── stress.py             # solver-only scaling sweep n = 3..30 (with/without showtimes)
 │   │   └── bruteforce.py         # exhaustive solver for n ≤ 7 (tests only; no z3)
 │   └── app/
 │       ├── __init__.py
@@ -100,19 +106,47 @@ nstrip/
 │   ├── test_core_minimality.py   # every returned core: drop any member → SAT
 │   ├── test_relax.py             # budget δ exact; restores_feasibility false with 2 conflicts
 │   ├── test_checker.py           # hand-made bad plans → each violation kind detected
-│   ├── test_checker_independence.py   # AST import ban
+│   ├── test_checker_independence.py   # AST import ban (checker ↛ z3/encode/solve; pipeline/app ↛ ablation)
+│   ├── test_showtime.py          # disjunction encoded; checker flags off-slot start; showtime clash → core has showtime:<id>
+│   ├── test_codegen_runner.py    # subprocess runner parses plan / UNSAT / crash / timeout (canned code, no LLM)
 │   ├── test_z3_vs_bruteforce.py  # random n≤6 problems: same SAT/UNSAT; Z3 plans pass checker
 │   ├── test_extractor_retry.py   # fake client returns invalid then valid JSON
 │   ├── test_rephrase_guard.py
-│   └── test_bench_labels.py      # every instance: witness passes checker / seeded conflict holds
+│   ├── test_bench_labels.py      # every instance: witness passes checker / seeded conflict holds; held-out labels
+│   ├── test_llm_client.py        # cache replay, provider fallback json_schema -> json_object, env roles
+│   ├── test_pipeline.py          # end-to-end with FakeClient; statuses; checker disagreement -> INTERNAL_ERROR
+│   ├── test_bench_run.py         # run_one for every method with scripted clients; metrics helpers
+│   └── test_app.py               # demo examples' expected statuses; one-click fixes; rendering
 │
 └── results/
-    └── <run_id>/                 # e.g. 2026-11-25_pipeline_gpt-4o-mini
-        ├── config.json
+    └── <run_id>/                 # e.g. 2026-11-28_pipeline_generated_<model>
+        ├── config.json           # base URL, model strings per role, KB version, git sha
         ├── records.jsonl
         ├── summary.csv
         └── tables.md
 ```
+
+### 1.1 LLM configuration (`.env`)
+
+The `openai` SDK reads `OPENAI_BASE_URL` and `OPENAI_API_KEY` itself, so switching provider is a change to `.env` only.
+
+```bash
+# provider: pick one base URL
+OPENAI_BASE_URL=https://api.openai.com/v1
+# OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
+# OPENAI_BASE_URL=https://api.groq.com/openai/v1
+# OPENAI_BASE_URL=https://openrouter.ai/api/v1
+# OPENAI_BASE_URL=http://localhost:11434/v1          # local Ollama
+OPENAI_API_KEY=...
+
+NSTRIP_MODEL=<default model id>                      # used by every role unless overridden
+NSTRIP_EXTRACT_MODEL=                                 # optional per-role overrides:
+NSTRIP_BASELINE_MODEL=                                #   EXTRACT, BASELINE, CODEGEN, PARAPHRASE, REPHRASE
+NSTRIP_CODEGEN_MODEL=
+# NSTRIP_<ROLE>_BASE_URL / NSTRIP_<ROLE>_API_KEY      # optional: run one role on a different provider
+NSTRIP_MODE=live                                      # live | cache  (cache = never call the network)
+```
+`config.py` resolves each role in this order: role override, then the default model, then error. Model ids change between providers and over time, so verify them on setup and never hard-code them in source.
 
 ## 2. Core models
 
@@ -154,7 +188,7 @@ class TripRequestIR(BaseModel):
 ```
 
 `make_ir_model(kb_ids: list[str]) -> type[TripRequestIR]` builds the model with `LocationId = Literal[*kb_ids]` (or a dynamic `Enum`) so the JSON schema sent to the LLM contains the allowed ids.
-**OpenAI strict mode note:** in strict structured outputs every property must be listed as required and nullable fields must be typed `X | None`, with no defaults in the schema. `prompts.py` generates the strict-compatible schema from the model; don't hand-write it.
+**Structured-output note:** providers differ in how much of JSON Schema they enforce. OpenAI strict mode, for example, needs every property listed as required, nullable fields typed `X | None`, and no defaults. `prompts.py` generates the schema from the model (never hand-written). The client tries `json_schema` and falls back to `json_object` with the schema in the prompt. Pydantic validation afterwards is the only authority.
 
 ### 2.2 Grounded problem — `models/problem.py`
 
@@ -167,6 +201,7 @@ class Activity(BaseModel):
     cost: int                # C_i
     open: int                # O_i (KB)
     close: int               # K_i (KB)
+    showtimes: list[int]     # KB only, never from the LLM; [] = no fixed start times
     user_earliest: int | None
     user_latest: int | None
 
@@ -187,10 +222,10 @@ class ProblemInstance(BaseModel):
 
 ```python
 class ConstraintKind(StrEnum):
-    BUDGET="budget"; HORIZON="horizon"; OPENING="opening"; WINDOW="window"
+    BUDGET="budget"; HORIZON="horizon"; OPENING="opening"; SHOWTIME="showtime"; WINDOW="window"
     MUST_VISIT="must_visit"; PRECEDENCE="precedence"
 
-RELAXABLE = {BUDGET, HORIZON, WINDOW, MUST_VISIT, PRECEDENCE}       # OPENING is a world fact
+RELAXABLE = {BUDGET, HORIZON, WINDOW, MUST_VISIT, PRECEDENCE}       # OPENING, SHOWTIME are world facts
 
 def cid(kind, *ids) -> str          # "budget", "opening:museum", "precedence:museum:cafe"
 def parse_cid(s) -> tuple[ConstraintKind, tuple[str, ...]]
@@ -209,6 +244,7 @@ class Visit(BaseModel):
 class Plan(BaseModel):
     visits: list[Visit]          # sorted by start
     total_cost: int
+    optimal: bool = True         # False if Optimize timed out and a merely feasible model was used
 
 class Relaxation(BaseModel):
     cid: str
@@ -219,8 +255,9 @@ class Relaxation(BaseModel):
 
 class Diagnosis(BaseModel):
     core: list[str]              # cids, minimal
+    raw_core_size: int           # size of Z3's unsat_core() before minimisation (core-size metric)
     is_minimal: bool             # False only if a minimisation check timed out
-    world_facts: list[str]       # core members of kind OPENING
+    world_facts: list[str]       # core members of kind OPENING or SHOWTIME
     relaxations: list[Relaxation]
     solver_calls: int
 
@@ -244,7 +281,7 @@ class PipelineResult(BaseModel):
 ```python
 class Violation(BaseModel):
     kind: Literal["unknown_location", "duplicate", "duration_mismatch", "overlap_or_transit",
-                  "horizon", "opening", "window", "budget", "missing_must_visit", "precedence"]
+                  "horizon", "opening", "showtime", "window", "budget", "missing_must_visit", "precedence"]
     detail: str
     location_ids: list[str] = []
 
@@ -257,12 +294,15 @@ class CheckReport(BaseModel):
 
 ```python
 class BenchmarkInstance(BaseModel):
-    id: str                                   # "inst_017"
+    id: str                                   # "inst_017" | "held_004"
+    set: Literal["generated", "heldout"]
     n_locations: int                          # 3..12
     budget_tightness: Literal["tight", "loose", "none"]
     expected_status: Literal["SAT", "UNSAT"]
-    conflict_type: Literal["budget", "horizon", "window", "precedence_window", "precedence_cycle"] | None
+    conflict_type: Literal["budget", "horizon", "window", "precedence_window",
+                           "precedence_cycle", "showtime_clash", "other"] | None   # "other" = held-out only
     seeded_conflict: list[str] | None         # cids, e.g. ["budget","must_visit:a","must_visit:b"]
+    conflict_note: str | None                 # held-out UNSAT: one-line arithmetic argument
     gold_ir: TripRequestIR
     witness_plan: Plan | None                 # SAT only; must pass checker
     request_template: str
@@ -280,15 +320,19 @@ class BaselineAnswer(BaseModel):
 
 class RunRecord(BaseModel):
     run_id: str; instance_id: str
-    method: Literal["pipeline", "oracle", "baseline"]
-    backend: str; model: str
-    status: Status | Literal["BASELINE_SAT", "BASELINE_UNSAT"]
+    method: Literal["pipeline", "oracle", "baseline", "codegen"]
+    base_url: str; model: str
+    status: Status | Literal["BASELINE_SAT", "BASELINE_UNSAT", "BASELINE_FAILED", "CODEGEN_SAT", "CODEGEN_UNSAT", "CODEGEN_CRASH"]
     extracted_ir: TripRequestIR | None
     plan: Plan | None
     diagnosis: Diagnosis | None
     check_vs_gold: CheckReport | None
     check_vs_extracted: CheckReport | None    # pipeline only; must be ok
     extraction_scores: dict | None            # per-kind tp/fp/fn
+    error_classes: list[str] | None           # taxonomy labels for this instance's extraction errors
+    codegen_stderr: str | None                # codegen only: truncated traceback on crash
+    core_sizes: dict[str, int] | None         # oracle UNSAT: raw, minimal, z3_minimize, calls
+    error: str | None                         # pipeline error text, baseline reason or failure
     timings_ms: dict[str, float]
 ```
 
@@ -296,17 +340,25 @@ class RunRecord(BaseModel):
 
 | column | type | example |
 |---|---|---|
-| id | slug, unique | `museum` |
-| name | str | `Government Museum` |
-| aliases | `|`-separated | `museum|govt museum` |
-| category | str | `museum` |
-| cost | int | `20` |
+| id | slug, unique | `national_museum` |
+| name | str | `National Museum of Singapore` |
+| aliases | `|`-separated | `national museum|museum of singapore` |
+| category | str | `museum` · `theme_park` · `attraction` · `show` · `nature` · `food` · `shopping` |
+| cost | int (SGD) | `15` (food: typical meal per person) |
 | typical_duration_min | int | `120` |
 | open | `HH:MM` | `10:00` |
-| close | `HH:MM` | `17:00` |
-| lat, lon | float | `12.97, 77.59` |
+| close | `HH:MM`, or `24:00` for open until midnight or later | `19:00` |
+| showtimes | `|`-separated `HH:MM`, may be empty | `19:45|20:45` (Garden Rhapsody) |
+| lat, lon | float | `1.2966, 103.8485` |
+| source_url | str | official page the values came from |
+| checked | `yes` / `no` | `yes` = cross-checked on `curated_on`; `no` = still to verify against `source_url` |
 
-The loader validates: unique ids, open < close, cost ≥ 0, duration > 0, and `typical_duration_min ≤ close − open`. A test fixture KB (`tiny_kb`) lives in `tests/conftest.py`, not in `data/`.
+The loader validates:
+- unique ids, ids match `^[a-z0-9_]+$` (no `:`, so cids stay parseable), open < close, cost ≥ 0, duration > 0, `typical_duration_min ≤ close − open`
+- for every showtime t: `open ≤ t` and `t + typical_duration_min ≤ close`
+- the travel matrix is metric. Places at identical coordinates (e.g. Garden Rhapsody at Supertree Grove) get transit 0; every other pair gets the overhead.
+
+Values are an approximate snapshot; `kb_meta.json.curated_on` records the date. A test fixture KB (`tiny_kb`) lives in `tests/conftest.py`, not in `data/`.
 
 ## 4. Canonical constraint tuples (extraction accuracy)
 
@@ -322,15 +374,19 @@ Both gold and extracted IR are first **grounded** (`ground(ir, kb)`), and the tu
 | effective facts | `("duration", id, d)`, `("cost", id, c)` (after override/KB merge) |
 | origin | `("origin", id, return_to_start)` |
 
+Showtimes and opening hours come only from the KB, so they are identical for gold and extracted problems and are not scored.
+
 Report micro P/R/F1 per kind, and instance exact match = the sets are equal.
 
 ## 5. Example benchmark instance (abbreviated)
 
+This example uses the proposal's Museum/Park/Café ids for readability. Real instances use Singapore KB ids and SGD.
+
 ```json
 {
-  "id": "inst_003", "n_locations": 3, "budget_tightness": "tight",
+  "id": "inst_003", "set": "generated", "n_locations": 3, "budget_tightness": "tight",
   "expected_status": "UNSAT", "conflict_type": "budget",
-  "seeded_conflict": ["budget", "must_visit:museum", "must_visit:cafe"],
+  "seeded_conflict": ["budget", "must_visit:museum", "must_visit:cafe"], "conflict_note": null,
   "gold_ir": {
     "schema_version": "1.0", "day_start": null, "day_end": null,
     "duration_limit_min": 240, "budget": 30, "start_location": null, "return_to_start": false,
@@ -345,7 +401,7 @@ Report micro P/R/F1 per kind, and instance exact match = the sets are equal.
   "witness_plan": null,
   "request_template": "I have 4 hours and $30, and want the Museum ($20, 2 h), Park (free, 1 h) and Café ($15, 1 h), Museum before Café.",
   "request_text": "Got about four hours and thirty dollars. I'd like to hit the Museum ($20, 2 hours), the Park (free, 1 hour) and the Café ($15, 1 hour) — Museum has to come before the Café.",
-  "paraphrase_model": "gpt-4o-mini", "paraphrase_guard_passed": true,
+  "paraphrase_model": "<configured paraphrase model>", "paraphrase_guard_passed": true,
   "reviewed_by": "PB", "kb_version": "a1b2c3d", "generator_seed": 851
 }
 ```
@@ -356,25 +412,30 @@ Report micro P/R/F1 per kind, and instance exact match = the sets are equal.
 # kb
 def load_kb(path: Path = DATA/"kb") -> KB
 # extract
-def extract(text: str, kb: KB, client: LLMClient, max_retries: int = 3) -> tuple[TripRequestIR | None, int, str | None]
+def extract(text: str, kb: KB, client: LLMClient, max_retries: int = 3) -> tuple[TripRequestIR | None, int, str | None]   # up to 1 + max_retries calls
 # ground
 def ground(ir: TripRequestIR, kb: KB, source: Literal["extracted","gold"]) -> ProblemInstance
 # encode
-def compile_problem(p: ProblemInstance) -> Encoding   # Encoding: vars, hard: list[BoolRef], tracked: dict[cid, (BoolRef lit, BoolRef φ)]
-# solve
+def compile_problem(p: ProblemInstance) -> Encoding   # Encoding: problem, X, S, P (order vars), hard, tracked: dict[cid, Tracked(lit, phi, readable)]
+# solve  (Encoding carries its ProblemInstance, so no separate p argument)
+def solve(p: ProblemInstance, timeout_ms: int) -> tuple[Status, Plan | None, Diagnosis | None]   # nstrip.solve
 def check_feasible(enc: Encoding, timeout_ms: int) -> Literal["sat","unsat","unknown"]
-def optimise_plan(enc: Encoding, p: ProblemInstance, timeout_ms: int) -> Plan
-def minimise_core(enc: Encoding, timeout_ms: int) -> tuple[list[str], bool, int]
-def relax_all(enc: Encoding, p: ProblemInstance, core: list[str], timeout_ms: int) -> list[Relaxation]
+def optimise_plan(enc: Encoding, timeout_ms: int) -> Plan   # falls back to the feasible model, optimal=False
+def minimise_core(enc: Encoding, timeout_ms: int) -> tuple[list[str], int, bool, int]   # core, raw_size, is_minimal, calls
+def relax_all(enc: Encoding, core: list[str], timeout_ms: int) -> list[Relaxation]
 # checker
 def check_plan(p: ProblemInstance, plan: Plan) -> CheckReport
 # explain
-def render_plan(p, plan) -> str ; def render_diagnosis(p, d) -> str
-def rephrase(text: str, client: LLMClient) -> tuple[str, Literal["template","llm_rephrase"]]
+def render_plan(p, plan, currency="SGD") -> str ; def render_diagnosis(p, d, currency="SGD") -> str
+def rephrase(text: str, client: LLMClient, names: list[str]) -> tuple[str, Literal["template","llm_rephrase"]]   # names = place names the guard checks
 # pipeline
 def run_pipeline(text: str | None, kb: KB, client: LLMClient | None, ir: TripRequestIR | None = None) -> PipelineResult
 # baseline
 def plan_with_llm(text: str, kb: KB, ids: list[str], client: LLMClient) -> BaselineAnswer
+# ablation (evaluation only)
+def run_codegen(text: str, kb: KB, ids: list[str], client: LLMClient, timeout_s: int = 20) -> tuple[Plan | None, Literal["SAT","UNSAT","CRASH"], str | None]
+# llm client
+def make_client(role: Literal["extract","baseline","codegen","paraphrase","rephrase"], model: str | None = None, live: bool | None = None) -> LLMClient   # reads §1.1 env
 ```
 
 ## 7. `pyproject.toml` (dependencies)
@@ -386,8 +447,7 @@ requires-python = ">=3.11"
 dependencies = [
   "z3-solver>=4.12,<5",
   "pydantic>=2.6,<3",
-  "openai>=1.40",
-  "ollama>=0.3",
+  "openai>=1.40",                 # the only LLM client; any OpenAI-compatible base URL (incl. local Ollama /v1)
   "pandas>=2.1",
   "numpy>=1.26",
   "gradio>=4.40",
@@ -407,11 +467,11 @@ Pin exact versions in a lock file (`uv lock` or `pip freeze > requirements.lock`
 ## 8. Build order (scaffold → working)
 
 1. `models/*` + `tests/conftest.py::tiny_kb` + `checker` + `test_checker.py`
-2. `kb/*` + `test_kb_metric.py`
-3. `encode/compiler.py` + `solve/*` + `test_proposal_example.py`, `test_core_minimality.py`, `test_relax.py`
-4. `bench/bruteforce.py` + `test_z3_vs_bruteforce.py`
+2. `kb/*` + `data/kb/locations.csv` (Singapore) + `test_kb_metric.py`
+3. `encode/compiler.py` + `solve/*` + `test_proposal_example.py`, `test_core_minimality.py`, `test_relax.py`, `test_showtime.py`
+4. `bench/bruteforce.py` (incl. showtimes) + `test_z3_vs_bruteforce.py`
 5. `ground.py` + `extract/*` (fake client in tests) + `pipeline.py`
 6. `explain/*`
-7. `bench/generate.py`, `paraphrase.py`, `run.py`, `metrics.py`
-8. `baseline/pure_llm.py`
+7. `bench/generate.py`, `paraphrase.py`, `run.py`, `metrics.py`; team writes `heldout/` in parallel from step 2 on
+8. `baseline/pure_llm.py`, `ablation/codegen.py` + `test_codegen_runner.py`, `bench/stress.py`
 9. `app/gradio_app.py`
