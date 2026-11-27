@@ -1,0 +1,12 @@
+{
+  "city": "Singapore",
+  "currency": "SGD",
+  "curated_on": "2026-11-25",
+  "notes": [
+    "Approximate snapshot. Fees are the adult non-resident price, rounded to whole SGD.",
+    "Food places: cost is a typical meal per person, not an admission fee.",
+    "One opening window per place per day, no day-of-week logic. Shows list their daily showtimes; Spectra's extra 22:00 Fri/Sat show is left out.",
+    "checked=yes: values cross-checked against web sources on curated_on. checked=no: still to verify against source_url.",
+    "close = 24:00 means open until midnight or later; single-day trips end by midnight."
+  ]
+}
