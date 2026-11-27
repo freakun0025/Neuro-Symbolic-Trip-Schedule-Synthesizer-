@@ -1,0 +1,77 @@
+[
+ {
+  "title": "Marina Bay evening (feasible, two shows)",
+  "expect": "SAT",
+  "text": "I'm free from 14:00 to 22:30 with S$120. I want the Flower Dome and Cloud Forest, Garden Rhapsody, Spectra and dinner at Lau Pa Sat. If there's time, the Singapore Flyer too.",
+  "ir": {"day_start": "14:00", "day_end": "22:30", "budget": 120,
+         "activities": [{"location_id": "gardens_domes", "must_visit": true},
+                        {"location_id": "garden_rhapsody", "must_visit": true},
+                        {"location_id": "spectra", "must_visit": true},
+                        {"location_id": "lau_pa_sat", "must_visit": true},
+                        {"location_id": "singapore_flyer", "must_visit": false}]}
+ },
+ {
+  "title": "USS + Night Safari on S$100 (budget conflict)",
+  "expect": "UNSAT",
+  "text": "I have from 9am until 11:55pm and S$100. Universal Studios and the Night Safari are both must-dos.",
+  "ir": {"day_start": "09:00", "day_end": "23:55", "budget": 100,
+         "activities": [{"location_id": "universal_studios", "must_visit": true},
+                        {"location_id": "night_safari", "must_visit": true}]}
+ },
+ {
+  "title": "Too much for 4 hours and S$30 (two independent conflicts)",
+  "expect": "UNSAT",
+  "text": "4 hours from 10am and S$30. I need the National Museum, lunch at Maxwell and the ArtScience Museum.",
+  "ir": {"day_start": "10:00", "duration_limit_min": 240, "budget": 30,
+         "activities": [{"location_id": "national_museum", "must_visit": true},
+                        {"location_id": "maxwell", "must_visit": true},
+                        {"location_id": "artscience", "must_visit": true}]}
+ },
+ {
+  "title": "A long dinner leaves no slot for Garden Rhapsody",
+  "expect": "UNSAT",
+  "text": "Evening from 18:00 to 22:00. I want to see Garden Rhapsody, and have a 90-minute dinner at Lau Pa Sat between 19:30 and 21:00.",
+  "ir": {"day_start": "18:00", "day_end": "22:00",
+         "activities": [{"location_id": "garden_rhapsody", "must_visit": true},
+                        {"location_id": "lau_pa_sat", "must_visit": true, "duration_min": 90,
+                         "earliest_start": "19:30", "latest_end": "21:00"}]}
+ },
+ {
+  "title": "Night Safari before the Zoo (opening hours make it impossible)",
+  "expect": "UNSAT",
+  "text": "Whole day from 8am. I want to do the Night Safari first and then the Singapore Zoo.",
+  "ir": {"day_start": "08:00", "day_end": "23:55",
+         "activities": [{"location_id": "night_safari", "must_visit": true},
+                        {"location_id": "singapore_zoo", "must_visit": true}],
+         "precedences": [{"before": "night_safari", "after": "singapore_zoo"}]}
+ },
+ {
+  "title": "Museum morning from Orchard, back by 5pm (start location, order, lunch window)",
+  "expect": "SAT",
+  "text": "Starting from Orchard Road at 9:30. National Museum first, then lunch at Maxwell after 12:30, then the Buddha Tooth Relic Temple. I need to be back at Orchard by 5pm.",
+  "ir": {"day_start": "09:30", "day_end": "17:00", "start_location": "orchard_road", "return_to_start": true,
+         "activities": [{"location_id": "national_museum", "must_visit": true},
+                        {"location_id": "maxwell", "must_visit": true, "earliest_start": "12:30"},
+                        {"location_id": "buddha_tooth", "must_visit": true}],
+         "precedences": [{"before": "national_museum", "after": "maxwell"},
+                         {"before": "maxwell", "after": "buddha_tooth"}]}
+ },
+ {
+  "title": "Sentosa day (theme park, show, optional luge)",
+  "expect": "SAT",
+  "text": "10am to 9pm on Sentosa with S$150: Universal Studios, then Wings of Time in the evening. The Skyline Luge if there's time.",
+  "ir": {"day_start": "10:00", "day_end": "21:00", "budget": 150,
+         "activities": [{"location_id": "universal_studios", "must_visit": true},
+                        {"location_id": "wings_of_time", "must_visit": true},
+                        {"location_id": "skyline_luge", "must_visit": false}],
+         "precedences": [{"before": "universal_studios", "after": "wings_of_time"}]}
+ },
+ {
+  "title": "A place we do not know (needs clarification)",
+  "expect": "NEEDS_CLARIFICATION",
+  "text": "I'd like to see the Merlion and the Taj Mahal this afternoon.",
+  "ir": {"day_start": "13:00",
+         "activities": [{"location_id": "merlion_park", "must_visit": true}],
+         "unresolved_mentions": ["Taj Mahal"]}
+ }
+]
