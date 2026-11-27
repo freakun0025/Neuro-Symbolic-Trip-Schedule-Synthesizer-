@@ -1,0 +1,80 @@
+{
+ "id": "inst_006",
+ "set": "generated",
+ "n_locations": 4,
+ "budget_tightness": "tight",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "12:45",
+  "duration_limit_min": null,
+  "budget": 15,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "orchid_garden",
+    "must_visit": true,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "jewel_changi",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "orchid_garden",
+    "start": 540,
+    "end": 630
+   },
+   {
+    "location_id": "jewel_changi",
+    "start": 689,
+    "end": 749
+   }
+  ],
+  "total_cost": 15,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 09:00 until 12:45. I can spend at most S$15. I definitely need to see National Orchid Garden and Jewel Changi Airport Rain Vortex. Optionally, Spectra Light and Water Show and Adventure Cove Waterpark. I'd like to spend 90 minutes at National Orchid Garden.",
+ "request_text": "My day out runs from 09:00 until 12:45. I can spend at most S$15. I definitely need to see National Orchid Garden and Jewel Changi Airport Rain Vortex. Optionally, Spectra Light and Water Show and Adventure Cove Waterpark. I'd like to spend 90 minutes at National Orchid Garden.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

@@ -1,0 +1,93 @@
+{
+ "id": "inst_012",
+ "set": "generated",
+ "n_locations": 5,
+ "budget_tightness": "tight",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "21:10",
+  "duration_limit_min": null,
+  "budget": 103,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": true,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "universal_studios",
+    "start": 600,
+    "end": 1080
+   },
+   {
+    "location_id": "botanic_gardens",
+    "start": 1107,
+    "end": 1197
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "start": 1223,
+    "end": 1253
+   }
+  ],
+  "total_cost": 97,
+  "optimal": true
+ },
+ "request_template": "I'm free from 10:00 to 21:10. My budget is S$103. I want to visit Singapore Botanic Gardens, OCBC Skyway and Universal Studios Singapore. If there's time, I'd also like Singapore Cable Car and Haw Par Villa. I'd like to spend 90 minutes at Singapore Botanic Gardens.",
+ "request_text": "I'm free from 10:00 to 21:10. My budget is S$103. I want to visit Singapore Botanic Gardens, OCBC Skyway and Universal Studios Singapore. If there's time, I'd also like Singapore Cable Car and Haw Par Villa. I'd like to spend 90 minutes at Singapore Botanic Gardens.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

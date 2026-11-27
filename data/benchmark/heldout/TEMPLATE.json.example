@@ -1,0 +1,34 @@
+{
+ "id": "held_000",
+ "set": "heldout",
+ "n_locations": 2,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "day_start": "10:00",
+  "day_end": "15:00",
+  "budget": null,
+  "activities": [
+   {"location_id": "national_museum", "must_visit": true},
+   {"location_id": "maxwell", "must_visit": false, "earliest_start": "12:30"}
+  ],
+  "precedences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {"location_id": "national_museum", "start": 600, "end": 720},
+   {"location_id": "maxwell", "start": 750, "end": 795}
+  ],
+  "total_cost": 23
+ },
+ "request_template": "free 10 to 3, mostly want the national museum, maybe lunch at maxwell after 12:30",
+ "request_text": "free 10 to 3, mostly want the national museum, maybe lunch at maxwell after 12:30",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": "AA",
+ "kb_version": "e5a5ae6",
+ "generator_seed": null
+}

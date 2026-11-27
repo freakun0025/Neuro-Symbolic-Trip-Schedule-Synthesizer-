@@ -1,0 +1,120 @@
+{
+ "id": "inst_033",
+ "set": "generated",
+ "n_locations": 9,
+ "budget_tightness": "tight",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "13:50",
+  "duration_limit_min": null,
+  "budget": 66,
+  "start_location": "national_museum",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "night_safari",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": 70,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "lau_pa_sat",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "siloso_beach",
+    "must_visit": false,
+    "duration_min": 60,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "bird_paradise",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "ocbc_skyway",
+    "start": 556,
+    "end": 586
+   },
+   {
+    "location_id": "bird_paradise",
+    "start": 635,
+    "end": 815
+   }
+  ],
+  "total_cost": 63,
+  "optimal": true
+ },
+ "request_template": "I'm free from 09:00 to 13:50. I'm starting from National Museum of Singapore. My budget is S$66. I want to visit Bird Paradise. Optionally, Haw Par Villa, Night Safari, Singapore River Cruise, OCBC Skyway, Maxwell Food Centre, Lau Pa Sat, Siloso Beach and SkyHelix Sentosa. I'd like to spend 70 minutes at Singapore River Cruise. I'd like to spend 60 minutes at Siloso Beach.",
+ "request_text": "I've got some free time between 09:00 and 13:50 and I'm looking to head out from National Museum of Singapore. I'm hoping to check out Bird Paradise and have a budget of S$66 to work with. If I can fit them in, I'd also love to see Haw Par Villa, Night Safari, Singapore River Cruise, OCBC Skyway, Maxwell Food Centre, Lau Pa Sat, Siloso Beach, and SkyHelix Sentosa. Just a heads up, I'd like to spend 70 minutes at Singapore River Cruise and 60 minutes at Siloso Beach.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

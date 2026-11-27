@@ -1,0 +1,132 @@
+{
+ "id": "inst_050",
+ "set": "generated",
+ "n_locations": 12,
+ "budget_tightness": "none",
+ "expected_status": "UNSAT",
+ "conflict_type": "horizon",
+ "seeded_conflict": [
+  "horizon",
+  "must_visit:cable_car"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "10:40",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": "12:20",
+    "latest_end": "14:25"
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "acm",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "gardens_domes",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "oceanarium",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": false,
+    "duration_min": 75,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "I'm free from 10:00 to 10:40. Money is not a concern. I definitely need to see Singapore Cable Car. Optionally, OCBC Skyway, Singapore Flyer, East Coast Lagoon Food Village, Asian Civilisations Museum, Flower Dome and Cloud Forest, Buddha Tooth Relic Temple, Singapore Oceanarium, National Museum of Singapore, Supertree Grove, Singapore River Cruise and National Orchid Garden. I'd like to spend 30 minutes at OCBC Skyway. I want to be at OCBC Skyway no earlier than 12:20 and done there by 14:25. I'd like to spend 30 minutes at Singapore Flyer. I'd like to spend 75 minutes at Supertree Grove.",
+ "request_text": "I'm free from 10:00 to 10:40. Money is not a concern. I definitely need to see Singapore Cable Car. Optionally, OCBC Skyway, Singapore Flyer, East Coast Lagoon Food Village, Asian Civilisations Museum, Flower Dome and Cloud Forest, Buddha Tooth Relic Temple, Singapore Oceanarium, National Museum of Singapore, Supertree Grove, Singapore River Cruise and National Orchid Garden. I'd like to spend 30 minutes at OCBC Skyway. I want to be at OCBC Skyway no earlier than 12:20 and done there by 14:25. I'd like to spend 30 minutes at Singapore Flyer. I'd like to spend 75 minutes at Supertree Grove.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

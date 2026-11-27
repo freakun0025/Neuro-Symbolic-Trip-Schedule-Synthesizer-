@@ -1,0 +1,133 @@
+{
+ "id": "inst_037",
+ "set": "generated",
+ "n_locations": 10,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": null,
+  "duration_limit_min": 895,
+  "budget": 104,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "oceanarium",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": 450,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": false,
+    "duration_min": 120,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "night_safari",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "19:15",
+    "latest_end": "22:15"
+   },
+   {
+    "location_id": "siloso_beach",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "haw_par_villa",
+    "after": "night_safari"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "haw_par_villa",
+    "start": 540,
+    "end": 630
+   },
+   {
+    "location_id": "night_safari",
+    "start": 1155,
+    "end": 1335
+   }
+  ],
+  "total_cost": 56,
+  "optimal": true
+ },
+ "request_template": "Starting at 09:00, I've got 14 hours and 55 minutes to spend. My budget is S$104. I want to visit Night Safari. If there's time, I'd also like Singapore Oceanarium, OCBC Skyway, Haw Par Villa, Adventure Cove Waterpark, East Coast Lagoon Food Village, Universal Studios Singapore, Peranakan Museum, National Gallery Singapore and Siloso Beach. I want to do Haw Par Villa before Night Safari. I'd like to spend 450 minutes at Universal Studios Singapore. I'd like to spend 120 minutes at Peranakan Museum. I want to be at Night Safari no earlier than 19:15 and done there by 22:15.",
+ "request_text": "Starting at 09:00, I've got 14 hours and 55 minutes to spend. My budget is S$104. I want to visit Night Safari. If there's time, I'd also like Singapore Oceanarium, OCBC Skyway, Haw Par Villa, Adventure Cove Waterpark, East Coast Lagoon Food Village, Universal Studios Singapore, Peranakan Museum, National Gallery Singapore and Siloso Beach. I want to do Haw Par Villa before Night Safari. I'd like to spend 450 minutes at Universal Studios Singapore. I'd like to spend 120 minutes at Peranakan Museum. I want to be at Night Safari no earlier than 19:15 and done there by 22:15.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

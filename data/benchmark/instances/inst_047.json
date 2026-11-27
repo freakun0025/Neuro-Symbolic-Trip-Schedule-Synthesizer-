@@ -1,0 +1,159 @@
+{
+ "id": "inst_047",
+ "set": "generated",
+ "n_locations": 12,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "21:00",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "tekka_centre",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "10:00",
+    "latest_end": "12:50"
+   },
+   {
+    "location_id": "garden_rhapsody",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "bird_paradise",
+    "must_visit": false,
+    "duration_min": 210,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "siloso_beach",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "night_safari",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "gardens_domes",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": false,
+    "duration_min": 60,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "clarke_quay",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "acm",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "maxwell",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "tekka_centre",
+    "after": "garden_rhapsody"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "singapore_flyer",
+    "start": 600,
+    "end": 645
+   },
+   {
+    "location_id": "tekka_centre",
+    "start": 661,
+    "end": 706
+   },
+   {
+    "location_id": "maxwell",
+    "start": 724,
+    "end": 754
+   },
+   {
+    "location_id": "garden_rhapsody",
+    "start": 1185,
+    "end": 1200
+   }
+  ],
+  "total_cost": 56,
+  "optimal": true
+ },
+ "request_template": "I'm free from 10:00 to 21:00. Money is not a concern. I want to visit Garden Rhapsody and Maxwell Food Centre. If there's time, I'd also like Tekka Centre, Bird Paradise, Fort Canning Park, Singapore Flyer, Siloso Beach, Night Safari, Flower Dome and Cloud Forest, OCBC Skyway, Clarke Quay and Asian Civilisations Museum. I want to do Tekka Centre before Garden Rhapsody. I want to be at Tekka Centre no earlier than 10:00 and done there by 12:50. I'd like to spend 210 minutes at Bird Paradise. I'd like to spend 60 minutes at OCBC Skyway. I'd like to spend 30 minutes at Maxwell Food Centre.",
+ "request_text": "I'm free from 10:00 to 21:00. Money is not a concern. I want to visit Garden Rhapsody and Maxwell Food Centre. If there's time, I'd also like Tekka Centre, Bird Paradise, Fort Canning Park, Singapore Flyer, Siloso Beach, Night Safari, Flower Dome and Cloud Forest, OCBC Skyway, Clarke Quay and Asian Civilisations Museum. I want to do Tekka Centre before Garden Rhapsody. I want to be at Tekka Centre no earlier than 10:00 and done there by 12:50. I'd like to spend 210 minutes at Bird Paradise. I'd like to spend 60 minutes at OCBC Skyway. I'd like to spend 30 minutes at Maxwell Food Centre.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

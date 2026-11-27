@@ -1,0 +1,156 @@
+{
+ "id": "inst_042",
+ "set": "generated",
+ "n_locations": 11,
+ "budget_tightness": "tight",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": null,
+  "duration_limit_min": 405,
+  "budget": 121,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "jewel_changi",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "garden_rhapsody",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "gardens_domes",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_wonders",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "river_cruise",
+    "after": "orchid_garden"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "river_cruise",
+    "start": 660,
+    "end": 700
+   },
+   {
+    "location_id": "jewel_changi",
+    "start": 753,
+    "end": 813
+   },
+   {
+    "location_id": "singapore_flyer",
+    "start": 862,
+    "end": 892
+   },
+   {
+    "location_id": "orchid_garden",
+    "start": 917,
+    "end": 977
+   },
+   {
+    "location_id": "skypark",
+    "start": 1002,
+    "end": 1062
+   }
+  ],
+  "total_cost": 115,
+  "optimal": true
+ },
+ "request_template": "I have 6 hours and 45 minutes starting at 11:00. My budget is S$121. I definitely need to see Jewel Changi Airport Rain Vortex, National Orchid Garden and Singapore Flyer. If there's time, I'd also like Garden Rhapsody, Marina Bay Sands SkyPark Observation Deck, Flower Dome and Cloud Forest, River Wonders, Adventure Cove Waterpark, Chinatown Complex Food Centre, National Museum of Singapore and Singapore River Cruise. I want to do Singapore River Cruise before National Orchid Garden. I'd like to spend 30 minutes at Singapore Flyer. I'd like to spend 90 minutes at National Museum of Singapore.",
+ "request_text": "I have 6 hours and 45 minutes starting at 11:00. My budget is S$121. I definitely need to see Jewel Changi Airport Rain Vortex, National Orchid Garden and Singapore Flyer. If there's time, I'd also like Garden Rhapsody, Marina Bay Sands SkyPark Observation Deck, Flower Dome and Cloud Forest, River Wonders, Adventure Cove Waterpark, Chinatown Complex Food Centre, National Museum of Singapore and Singapore River Cruise. I want to do Singapore River Cruise before National Orchid Garden. I'd like to spend 30 minutes at Singapore Flyer. I'd like to spend 90 minutes at National Museum of Singapore.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

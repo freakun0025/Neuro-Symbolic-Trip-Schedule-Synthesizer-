@@ -1,0 +1,104 @@
+{
+ "id": "inst_025",
+ "set": "generated",
+ "n_locations": 7,
+ "budget_tightness": "loose",
+ "expected_status": "UNSAT",
+ "conflict_type": "precedence_window",
+ "seeded_conflict": [
+  "must_visit:buddha_tooth",
+  "must_visit:clarke_quay",
+  "opening:buddha_tooth",
+  "opening:clarke_quay",
+  "precedence:clarke_quay:buddha_tooth"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "14:00",
+  "day_end": "23:55",
+  "duration_limit_min": null,
+  "budget": 62,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": 60,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchard_road",
+    "must_visit": false,
+    "duration_min": 150,
+    "cost": null,
+    "earliest_start": "13:00",
+    "latest_end": "17:30"
+   },
+   {
+    "location_id": "wings_of_time",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "clarke_quay",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "spectra",
+    "after": "river_cruise"
+   },
+   {
+    "before": "clarke_quay",
+    "after": "buddha_tooth"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 14:00 until 23:55. My budget is S$62. I definitely need to see Singapore River Cruise, Clarke Quay and Buddha Tooth Relic Temple. Optionally, SkyHelix Sentosa, Orchard Road, Wings of Time and Spectra Light and Water Show. I want to do Spectra Light and Water Show before Singapore River Cruise. I want to do Clarke Quay before Buddha Tooth Relic Temple. I'd like to spend 60 minutes at SkyHelix Sentosa. I'd like to spend 150 minutes at Orchard Road. I want to be at Orchard Road no earlier than 13:00 and done there by 17:30.",
+ "request_text": "Hey, planning a trip from 14:00 to 23:55 with a budget of S$62. I need to hit up Buddha Tooth Relic Temple, Clarke Quay, and Singapore River Cruise. Also down for Orchard Road, SkyHelix Sentosa, Wings of Time, and Spectra Light and Water Show if there's time.\n\nJust a few rules:\n- Need to do Spectra Light and Water Show before Singapore River Cruise.\n- Clarke Quay has to be before Buddha Tooth Relic Temple.\n- If I go to Orchard Road, I need to spend 150 minutes there, but only between 13:00 and 17:30.\n- Want to spend 60 minutes at SkyHelix Sentosa.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

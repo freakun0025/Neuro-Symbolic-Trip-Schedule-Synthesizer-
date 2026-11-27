@@ -1,0 +1,111 @@
+{
+ "id": "inst_016",
+ "set": "generated",
+ "n_locations": 6,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "18:05",
+  "duration_limit_min": null,
+  "budget": 83,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "supertree_grove",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "10:00",
+    "latest_end": "11:30"
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "skyhelix",
+    "start": 600,
+    "end": 630
+   },
+   {
+    "location_id": "fort_canning",
+    "start": 653,
+    "end": 713
+   },
+   {
+    "location_id": "supertree_grove",
+    "start": 729,
+    "end": 774
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "start": 785,
+    "end": 815
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "start": 845,
+    "end": 905
+   }
+  ],
+  "total_cost": 49,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 09:00 until 18:05. My budget is S$83. I want to visit Supertree Grove and East Coast Lagoon Food Village. If there's time, I'd also like Buddha Tooth Relic Temple, SkyHelix Sentosa, OCBC Skyway and Fort Canning Park. I want to be at SkyHelix Sentosa no earlier than 10:00 and done there by 11:30.",
+ "request_text": "My day out runs from 09:00 until 18:05. My budget is S$83. I want to visit Supertree Grove and East Coast Lagoon Food Village. If there's time, I'd also like Buddha Tooth Relic Temple, SkyHelix Sentosa, OCBC Skyway and Fort Canning Park. I want to be at SkyHelix Sentosa no earlier than 10:00 and done there by 11:30.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

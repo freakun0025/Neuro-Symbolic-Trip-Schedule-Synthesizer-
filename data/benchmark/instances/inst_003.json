@@ -1,0 +1,77 @@
+{
+ "id": "inst_003",
+ "set": "generated",
+ "n_locations": 3,
+ "budget_tightness": "tight",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "18:35",
+  "duration_limit_min": null,
+  "budget": 101,
+  "start_location": "clarke_quay",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "gardens_domes",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_zoo",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "oceanarium",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "singapore_zoo",
+    "after": "gardens_domes"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "singapore_zoo",
+    "start": 704,
+    "end": 944
+   },
+   {
+    "location_id": "gardens_domes",
+    "start": 992,
+    "end": 1112
+   }
+  ],
+  "total_cost": 95,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 11:00 until 18:35. I'm starting from Clarke Quay. My budget is S$101. I want to visit Flower Dome and Cloud Forest and Singapore Zoo. If there's time, I'd also like Singapore Oceanarium. I want to do Singapore Zoo before Flower Dome and Cloud Forest.",
+ "request_text": "Hey, I'm planning a day out from 11:00 to 18:35 starting at Clarke Quay. My budget is S$101 for the day. I really want to hit up Singapore Zoo first, then head over to Flower Dome and Cloud Forest. If I can squeeze it in, I'd love to check out Singapore Oceanarium too!",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

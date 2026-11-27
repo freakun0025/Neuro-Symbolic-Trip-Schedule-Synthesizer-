@@ -1,0 +1,116 @@
+{
+ "id": "inst_039",
+ "set": "generated",
+ "n_locations": 10,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "window",
+ "seeded_conflict": [
+  "must_visit:spectra",
+  "window:spectra"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "21:55",
+  "duration_limit_min": null,
+  "budget": 1,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "clarke_quay",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "night_safari",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "siloso_beach",
+    "must_visit": false,
+    "duration_min": 60,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "20:00",
+    "latest_end": "20:05"
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 09:00 until 21:55. I can spend at most S$1. I definitely need to see Spectra Light and Water Show. Optionally, Clarke Quay, Universal Studios Singapore, Fort Canning Park, Adventure Cove Waterpark, Night Safari, National Museum of Singapore, Singapore Cable Car, Supertree Grove and Siloso Beach. I'd like to spend 30 minutes at Singapore Cable Car. I'd like to spend 60 minutes at Siloso Beach. I want to be at Spectra Light and Water Show no earlier than 20:00 and done there by 20:05.",
+ "request_text": "My day out runs from 09:00 until 21:55. I can spend at most S$1. I definitely need to see Spectra Light and Water Show. Optionally, Clarke Quay, Universal Studios Singapore, Fort Canning Park, Adventure Cove Waterpark, Night Safari, National Museum of Singapore, Singapore Cable Car, Supertree Grove and Siloso Beach. I'd like to spend 30 minutes at Singapore Cable Car. I'd like to spend 60 minutes at Siloso Beach. I want to be at Spectra Light and Water Show no earlier than 20:00 and done there by 20:05.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

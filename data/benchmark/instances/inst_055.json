@@ -1,0 +1,127 @@
+{
+ "id": "inst_055",
+ "set": "generated",
+ "n_locations": 9,
+ "budget_tightness": "tight",
+ "expected_status": "UNSAT",
+ "conflict_type": "two_conflicts",
+ "seeded_conflict": null,
+ "seeded_conflicts": [
+  [
+   "horizon",
+   "must_visit:haw_par_villa",
+   "must_visit:national_museum",
+   "must_visit:supertree_grove"
+  ],
+  [
+   "must_visit:national_museum",
+   "must_visit:supertree_grove",
+   "precedence:national_museum:supertree_grove",
+   "precedence:supertree_grove:national_museum"
+  ]
+ ],
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "14:00",
+  "duration_limit_min": null,
+  "budget": 16,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "clarke_quay",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchard_road",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "oceanarium",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "lau_pa_sat",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "national_museum",
+    "after": "supertree_grove"
+   },
+   {
+    "before": "supertree_grove",
+    "after": "national_museum"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 10:00 until 14:00. I can spend at most S$16. I want to visit Supertree Grove, Haw Par Villa and National Museum of Singapore. If there's time, I'd also like Clarke Quay, East Coast Lagoon Food Village, Orchard Road, Singapore Oceanarium, Singapore Botanic Gardens and Lau Pa Sat. I want to do National Museum of Singapore before Supertree Grove. I want to do Supertree Grove before National Museum of Singapore. I'd like to spend 30 minutes at East Coast Lagoon Food Village.",
+ "request_text": "My day out runs from 10:00 until 14:00. I can spend at most S$16. I want to visit Supertree Grove, Haw Par Villa and National Museum of Singapore. If there's time, I'd also like Clarke Quay, East Coast Lagoon Food Village, Orchard Road, Singapore Oceanarium, Singapore Botanic Gardens and Lau Pa Sat. I want to do National Museum of Singapore before Supertree Grove. I want to do Supertree Grove before National Museum of Singapore. I'd like to spend 30 minutes at East Coast Lagoon Food Village.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

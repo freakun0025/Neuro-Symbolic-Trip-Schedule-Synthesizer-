@@ -1,0 +1,111 @@
+{
+ "id": "inst_029",
+ "set": "generated",
+ "n_locations": 8,
+ "budget_tightness": "none",
+ "expected_status": "UNSAT",
+ "conflict_type": "precedence_cycle",
+ "seeded_conflict": [
+  "must_visit:fort_canning",
+  "must_visit:supertree_grove",
+  "precedence:fort_canning:supertree_grove",
+  "precedence:supertree_grove:fort_canning"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "23:55",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": "merlion_park",
+  "return_to_start": true,
+  "activities": [
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "merlion_park",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "supertree_grove",
+    "after": "fort_canning"
+   },
+   {
+    "before": "fort_canning",
+    "after": "supertree_grove"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 09:00 until 23:55. I'm starting from Merlion Park and need to be back there by the end. Money is not a concern. I want to visit Fort Canning Park and Supertree Grove. If there's time, I'd also like SkyHelix Sentosa, Spectra Light and Water Show, Marina Bay Sands SkyPark Observation Deck, Merlion Park, National Gallery Singapore and Universal Studios Singapore. I want to do Supertree Grove before Fort Canning Park. I want to do Fort Canning Park before Supertree Grove.",
+ "request_text": "Hey, I'm planning a full day out from 09:00 to 23:55 and need to start and finish at Merlion Park. Money is not a concern at all. I definitely need to hit up Supertree Grove and Fort Canning Park (I need to do Fort Canning Park before Supertree Grove, but also Supertree Grove before Fort Canning Park, so please figure that out!). If there’s room in the schedule, I’d love to squeeze in SkyHelix Sentosa, Spectra Light and Water Show, Marina Bay Sands SkyPark Observation Deck, Merlion Park, National Gallery Singapore, and Universal Studios Singapore as well.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

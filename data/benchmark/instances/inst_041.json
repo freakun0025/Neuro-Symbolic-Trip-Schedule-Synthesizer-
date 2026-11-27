@@ -1,0 +1,151 @@
+{
+ "id": "inst_041",
+ "set": "generated",
+ "n_locations": 11,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "23:10",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": "maxwell",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "chinatown_complex",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "clarke_quay",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_zoo",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "buddha_tooth",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "bird_paradise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyhelix",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "oceanarium",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "clarke_quay",
+    "after": "river_cruise"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "clarke_quay",
+    "start": 1020,
+    "end": 1110
+   },
+   {
+    "location_id": "skyhelix",
+    "start": 1132,
+    "end": 1162
+   },
+   {
+    "location_id": "spectra",
+    "start": 1200,
+    "end": 1215
+   },
+   {
+    "location_id": "river_cruise",
+    "start": 1229,
+    "end": 1269
+   }
+  ],
+  "total_cost": 78,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 09:00 until 23:10. I'm starting from Maxwell Food Centre. Money is not a concern. I definitely need to see Spectra Light and Water Show. If there's time, I'd also like Peranakan Museum, Adventure Cove Waterpark, Singapore River Cruise, Chinatown Complex Food Centre, Clarke Quay, Singapore Zoo, Buddha Tooth Relic Temple, Bird Paradise, SkyHelix Sentosa and Singapore Oceanarium. I want to do Clarke Quay before Singapore River Cruise.",
+ "request_text": "Starting at Maxwell Food Centre, I’ve got the whole day from 09:00 to 23:10 to explore. Budget isn't an issue at all. The one thing I absolutely have to catch is the Spectra Light and Water Show. If I can fit them in, I’d love to check out the Peranakan Museum, Adventure Cove Waterpark, Singapore River Cruise, Chinatown Complex Food Centre, Clarke Quay, Singapore Zoo, Buddha Tooth Relic Temple, Bird Paradise, SkyHelix Sentosa, and the Singapore Oceanarium. Just a heads up, I need to hit Clarke Quay before the Singapore River Cruise.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

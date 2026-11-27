@@ -1,0 +1,93 @@
+{
+ "id": "inst_013",
+ "set": "generated",
+ "n_locations": 5,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "18:40",
+  "duration_limit_min": null,
+  "budget": 133,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "adventure_cove",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "river_cruise",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "adventure_cove",
+    "start": 660,
+    "end": 840
+   },
+   {
+    "location_id": "ocbc_skyway",
+    "start": 864,
+    "end": 894
+   },
+   {
+    "location_id": "river_cruise",
+    "start": 909,
+    "end": 939
+   }
+  ],
+  "total_cost": 82,
+  "optimal": true
+ },
+ "request_template": "My day out runs from 11:00 until 18:40. My budget is S$133. I want to visit OCBC Skyway, Adventure Cove Waterpark and Singapore River Cruise. If there's time, I'd also like Haw Par Villa and Universal Studios Singapore. I'd like to spend 30 minutes at Singapore River Cruise.",
+ "request_text": "Planning a day out from 11:00 to 18:40 with a budget of S$133. I’m definitely hitting up OCBC Skyway, Adventure Cove Waterpark, and Singapore River Cruise (spending exactly 30 minutes there). If I can squeeze them in, I’d love to see Haw Par Villa and Universal Studios Singapore too!",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

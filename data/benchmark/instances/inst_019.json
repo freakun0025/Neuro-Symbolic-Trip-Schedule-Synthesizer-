@@ -1,0 +1,86 @@
+{
+ "id": "inst_019",
+ "set": "generated",
+ "n_locations": 6,
+ "budget_tightness": "loose",
+ "expected_status": "UNSAT",
+ "conflict_type": "budget",
+ "seeded_conflict": [
+  "budget",
+  "must_visit:cable_car",
+  "must_visit:clarke_quay",
+  "must_visit:lau_pa_sat"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "22:55",
+  "duration_limit_min": null,
+  "budget": 78,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skyline_luge",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "garden_rhapsody",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "clarke_quay",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "16:00",
+    "latest_end": "19:30"
+   },
+   {
+    "location_id": "lau_pa_sat",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 11:00 until 22:55. I can spend at most S$78. I definitely need to see Clarke Quay, Lau Pa Sat and Singapore Cable Car. Optionally, Universal Studios Singapore, Skyline Luge Sentosa and Garden Rhapsody. I want to be at Clarke Quay no earlier than 16:00 and done there by 19:30.",
+ "request_text": "Planning a trip from 11:00 to 22:55 with a budget of S$78. I really need to hit up Singapore Cable Car, Lau Pa Sat, and Clarke Quay. For Clarke Quay, I need to be there no earlier than 16:00 and finished by 19:30. If there's extra time, I'd love to check out Universal Studios Singapore, Skyline Luge Sentosa, and Garden Rhapsody too.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

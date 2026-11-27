@@ -1,0 +1,119 @@
+{
+ "id": "inst_022",
+ "set": "generated",
+ "n_locations": 7,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "11:00",
+  "day_end": "22:00",
+  "duration_limit_min": null,
+  "budget": 102,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "garden_rhapsody",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "merlion_park",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "east_coast_lagoon",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "tekka_centre",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": true,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "east_coast_lagoon",
+    "start": 660,
+    "end": 720
+   },
+   {
+    "location_id": "orchid_garden",
+    "start": 762,
+    "end": 792
+   },
+   {
+    "location_id": "national_gallery",
+    "start": 814,
+    "end": 964
+   },
+   {
+    "location_id": "merlion_park",
+    "start": 976,
+    "end": 1006
+   },
+   {
+    "location_id": "garden_rhapsody",
+    "start": 1185,
+    "end": 1200
+   }
+  ],
+  "total_cost": 55,
+  "optimal": true
+ },
+ "request_template": "I'm free from 11:00 to 22:00. My budget is S$102. I definitely need to see Garden Rhapsody and National Orchid Garden. If there's time, I'd also like Merlion Park, National Gallery Singapore, National Museum of Singapore, East Coast Lagoon Food Village and Tekka Centre. I'd like to spend 30 minutes at National Orchid Garden.",
+ "request_text": "I'm free from 11:00 to 22:00. My budget is S$102. I definitely need to see Garden Rhapsody and National Orchid Garden. If there's time, I'd also like Merlion Park, National Gallery Singapore, National Museum of Singapore, East Coast Lagoon Food Village and Tekka Centre. I'd like to spend 30 minutes at National Orchid Garden.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

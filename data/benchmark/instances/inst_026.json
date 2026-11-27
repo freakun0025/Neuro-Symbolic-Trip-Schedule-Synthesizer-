@@ -1,0 +1,127 @@
+{
+ "id": "inst_026",
+ "set": "generated",
+ "n_locations": 8,
+ "budget_tightness": "none",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "10:00",
+  "day_end": "22:15",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "river_cruise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "peranakan_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "skypark",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": true,
+    "duration_min": 120,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "wings_of_time",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_zoo",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "singapore_flyer",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_gallery",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "haw_par_villa",
+    "start": 600,
+    "end": 720
+   },
+   {
+    "location_id": "national_gallery",
+    "start": 749,
+    "end": 899
+   },
+   {
+    "location_id": "skypark",
+    "start": 913,
+    "end": 973
+   },
+   {
+    "location_id": "wings_of_time",
+    "start": 1180,
+    "end": 1200
+   },
+   {
+    "location_id": "singapore_flyer",
+    "start": 1226,
+    "end": 1271
+   }
+  ],
+  "total_cost": 116,
+  "optimal": true
+ },
+ "request_template": "I'm free from 10:00 to 22:15. Money is not a concern. I want to visit Marina Bay Sands SkyPark Observation Deck, Haw Par Villa, Singapore Flyer and National Gallery Singapore. If there's time, I'd also like Singapore River Cruise, Peranakan Museum, Wings of Time and Singapore Zoo. I'd like to spend 120 minutes at Haw Par Villa.",
+ "request_text": "I'm free from 10:00 to 22:15. Money is not a concern. I want to visit Marina Bay Sands SkyPark Observation Deck, Haw Par Villa, Singapore Flyer and National Gallery Singapore. If there's time, I'd also like Singapore River Cruise, Peranakan Museum, Wings of Time and Singapore Zoo. I'd like to spend 120 minutes at Haw Par Villa.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

@@ -1,0 +1,90 @@
+{
+ "id": "inst_007",
+ "set": "generated",
+ "n_locations": 4,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": null,
+  "duration_limit_min": 895,
+  "budget": 62,
+  "start_location": "national_museum",
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "merlion_park",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": false,
+    "duration_min": 30,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "spectra",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "19:00",
+    "latest_end": "20:15"
+   },
+   {
+    "location_id": "botanic_gardens",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "botanic_gardens",
+    "after": "cable_car"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "botanic_gardens",
+    "start": 560,
+    "end": 680
+   },
+   {
+    "location_id": "spectra",
+    "start": 1200,
+    "end": 1215
+   },
+   {
+    "location_id": "cable_car",
+    "start": 1237,
+    "end": 1267
+   }
+  ],
+  "total_cost": 35,
+  "optimal": true
+ },
+ "request_template": "Starting at 09:00, I've got 14 hours and 55 minutes to spend. I'm starting from National Museum of Singapore. My budget is S$62. I want to visit Singapore Botanic Gardens. If there's time, I'd also like Merlion Park, Singapore Cable Car and Spectra Light and Water Show. I want to do Singapore Botanic Gardens before Singapore Cable Car. I'd like to spend 30 minutes at Singapore Cable Car. I want to be at Spectra Light and Water Show no earlier than 19:00 and done there by 20:15.",
+ "request_text": "Hey, I'm planning a day out starting from National Museum of Singapore at 09:00. I’ve got 14 hours and 55 minutes total and a budget of S$62 to work with. Definitely want to hit Singapore Botanic Gardens first, and I need to make sure that's before I head to Singapore Cable Car (where I only need 30 minutes). If I can fit them in, I’d love to see Merlion Park and the Spectra Light and Water Show as well. Just need to make sure I’m at the Spectra Light and Water Show no earlier than 19:00 and finished up by 20:15.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

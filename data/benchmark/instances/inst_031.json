@@ -1,0 +1,130 @@
+{
+ "id": "inst_031",
+ "set": "generated",
+ "n_locations": 9,
+ "budget_tightness": "loose",
+ "expected_status": "SAT",
+ "conflict_type": null,
+ "seeded_conflict": null,
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": null,
+  "duration_limit_min": 355,
+  "budget": 72,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "national_gallery",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "bird_paradise",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "universal_studios",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "orchid_garden",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "supertree_grove",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "artscience",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "haw_par_villa",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "cable_car",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "national_museum",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "cable_car",
+    "after": "haw_par_villa"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": {
+  "visits": [
+   {
+    "location_id": "cable_car",
+    "start": 540,
+    "end": 585
+   },
+   {
+    "location_id": "supertree_grove",
+    "start": 608,
+    "end": 653
+   },
+   {
+    "location_id": "haw_par_villa",
+    "start": 685,
+    "end": 775
+   }
+  ],
+  "total_cost": 35,
+  "optimal": true
+ },
+ "request_template": "Starting at 09:00, I've got 5 hours and 55 minutes to spend. My budget is S$72. I definitely need to see Supertree Grove, Haw Par Villa and Singapore Cable Car. If there's time, I'd also like National Gallery Singapore, Bird Paradise, Universal Studios Singapore, National Orchid Garden, ArtScience Museum and National Museum of Singapore. I want to do Singapore Cable Car before Haw Par Villa.",
+ "request_text": "Hey, I’ve got 5 hours and 55 minutes to kill starting at 09:00 and a budget of S$72. I need to hit up Supertree Grove, Singapore Cable Car, and Haw Par Villa—make sure to do the Cable Car before Haw Par Villa. If I can fit more in, I’d love to see National Gallery Singapore, Bird Paradise, Universal Studios Singapore, National Orchid Garden, ArtScience Museum, and National Museum of Singapore too.",
+ "paraphrase_model": "gemini-3.1-flash-lite",
+ "paraphrase_guard_passed": true,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}

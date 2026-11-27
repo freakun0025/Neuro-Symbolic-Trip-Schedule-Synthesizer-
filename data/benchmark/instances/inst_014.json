@@ -1,0 +1,87 @@
+{
+ "id": "inst_014",
+ "set": "generated",
+ "n_locations": 5,
+ "budget_tightness": "none",
+ "expected_status": "UNSAT",
+ "conflict_type": "precedence_cycle",
+ "seeded_conflict": [
+  "must_visit:clarke_quay",
+  "must_visit:skyline_luge",
+  "precedence:clarke_quay:skyline_luge",
+  "precedence:skyline_luge:clarke_quay"
+ ],
+ "seeded_conflicts": null,
+ "conflict_note": null,
+ "gold_ir": {
+  "schema_version": "1.0",
+  "day_start": "09:00",
+  "day_end": "23:20",
+  "duration_limit_min": null,
+  "budget": null,
+  "start_location": null,
+  "return_to_start": false,
+  "activities": [
+   {
+    "location_id": "skyline_luge",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "acm",
+    "must_visit": false,
+    "duration_min": 90,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "clarke_quay",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": "17:00",
+    "latest_end": "18:30"
+   },
+   {
+    "location_id": "gardens_domes",
+    "must_visit": false,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   },
+   {
+    "location_id": "fort_canning",
+    "must_visit": true,
+    "duration_min": null,
+    "cost": null,
+    "earliest_start": null,
+    "latest_end": null
+   }
+  ],
+  "precedences": [
+   {
+    "before": "skyline_luge",
+    "after": "clarke_quay"
+   },
+   {
+    "before": "clarke_quay",
+    "after": "skyline_luge"
+   }
+  ],
+  "unresolved_mentions": [],
+  "ignored_preferences": []
+ },
+ "witness_plan": null,
+ "request_template": "My day out runs from 09:00 until 23:20. Money is not a concern. I definitely need to see Skyline Luge Sentosa, Clarke Quay and Fort Canning Park. Optionally, Asian Civilisations Museum and Flower Dome and Cloud Forest. I want to do Skyline Luge Sentosa before Clarke Quay. I want to do Clarke Quay before Skyline Luge Sentosa. I'd like to spend 90 minutes at Asian Civilisations Museum. I want to be at Clarke Quay no earlier than 17:00 and done there by 18:30.",
+ "request_text": "My day out runs from 09:00 until 23:20. Money is not a concern. I definitely need to see Skyline Luge Sentosa, Clarke Quay and Fort Canning Park. Optionally, Asian Civilisations Museum and Flower Dome and Cloud Forest. I want to do Skyline Luge Sentosa before Clarke Quay. I want to do Clarke Quay before Skyline Luge Sentosa. I'd like to spend 90 minutes at Asian Civilisations Museum. I want to be at Clarke Quay no earlier than 17:00 and done there by 18:30.",
+ "paraphrase_model": null,
+ "paraphrase_guard_passed": false,
+ "reviewed_by": null,
+ "kb_version": "e5a5ae6",
+ "generator_seed": 851
+}
