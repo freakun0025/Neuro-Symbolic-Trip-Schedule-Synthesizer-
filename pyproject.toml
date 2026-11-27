@@ -1,0 +1,39 @@
+[project]
+name = "nstrip"
+version = "0.1.0"
+description = "Neuro-symbolic trip planner: LLM extraction -> typed IR -> Z3 (AID 851)"
+requires-python = ">=3.11"
+dependencies = [
+  "z3-solver>=4.12,<5",
+  "pydantic>=2.6,<3",
+  "openai>=1.40",
+  "python-dotenv>=1.0",
+  "gradio>=4.40",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.scripts]
+nstrip-gen = "nstrip.bench.generate:main"
+nstrip-paraphrase = "nstrip.bench.paraphrase:main"
+nstrip-run = "nstrip.bench.run:main"
+nstrip-eval = "nstrip.bench.metrics:main"
+nstrip-stress = "nstrip.bench.stress:main"
+nstrip-app = "nstrip.app.gradio_app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nstrip"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+ignore = ["RUF012"]  # Pydantic copies field defaults per instance, so `= []` on a model field is safe
