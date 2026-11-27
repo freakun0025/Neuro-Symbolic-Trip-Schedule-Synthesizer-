@@ -73,8 +73,9 @@ def _place(row: dict[str, str]) -> Place:
 
 
 def load_kb(path: Path = KB_DIR) -> KB:
-    csv_bytes = (path / "locations.csv").read_bytes()
-    params_bytes = (path / "travel_params.json").read_bytes()
+    # normalise line endings so the version hash is the same on a CRLF (Windows) checkout
+    csv_bytes = (path / "locations.csv").read_bytes().replace(b"\r\n", b"\n")
+    params_bytes = (path / "travel_params.json").read_bytes().replace(b"\r\n", b"\n")
     places: dict[str, Place] = {}
     for row in csv.DictReader(csv_bytes.decode().splitlines()):
         try:
