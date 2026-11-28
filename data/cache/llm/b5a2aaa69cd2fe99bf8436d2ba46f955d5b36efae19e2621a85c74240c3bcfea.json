@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.1-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 10:00 until 13:30. Money is not a concern. I definitely need to see Peranakan Museum and Singapore Flyer. Optionally, Skyline Luge Sentosa, Singapore Zoo, National Museum of Singapore, National Orchid Garden and Chinatown Complex Food Centre. I want to do Peranakan Museum before Singapore Flyer."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Hey, I\u2019m planning a day out from 10:00 to 13:30. Budget isn't an issue at all. I definitely need to hit up the Peranakan Museum first, followed by the Singapore Flyer. If there\u2019s extra time, I\u2019d also love to check out Skyline Luge Sentosa, Singapore Zoo, National Museum of Singapore, National Orchid Garden, and Chinatown Complex Food Centre."
+}

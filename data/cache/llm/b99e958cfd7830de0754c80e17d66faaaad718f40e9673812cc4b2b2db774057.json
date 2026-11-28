@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "Starting at 09:00, I've got 14 hours and 55 minutes to spend. I'm starting from National Museum of Singapore. My budget is S$62. I want to visit Singapore Botanic Gardens. If there's time, I'd also like Merlion Park, Singapore Cable Car and Spectra Light and Water Show. I want to do Singapore Botanic Gardens before Singapore Cable Car. I'd like to spend 30 minutes at Singapore Cable Car. I want to be at Spectra Light and Water Show no earlier than 19:00 and done there by 20:15."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "I'm starting at National Museum of Singapore at 09:00 with S$62 to spend and 14 hours and 55 minutes available. My main target is Singapore Botanic Gardens. If time permits, I'd also love to add Merlion Park, Singapore Cable Car and Spectra Light and Water Show to the itinerary. Please make sure Singapore Botanic Gardens is visited before Singapore Cable Car. I'd like to spend 30 minutes at Singapore Cable Car. Lastly, I want to hit Spectra Light and Water Show no earlier than 19:00 and be done there by 20:15."
+}

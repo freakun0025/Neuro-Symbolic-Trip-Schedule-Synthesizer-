@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nclarke_quay | Clarke Quay | 30 | 90 | 17:00-24:00 | -\nsupertree_grove | Supertree Grove | 0 | 45 | 05:00-24:00 | -\neast_coast_lagoon | East Coast Lagoon Food Village | 15 | 60 | 10:30-22:30 | -\norchard_road | Orchard Road | 0 | 120 | 10:00-22:00 | -\noceanarium | Singapore Oceanarium | 50 | 120 | 10:00-19:00 | -\nbotanic_gardens | Singapore Botanic Gardens | 0 | 120 | 05:00-24:00 | -\nhaw_par_villa | Haw Par Villa | 0 | 90 | 09:00-20:00 | -\nlau_pa_sat | Lau Pa Sat | 15 | 60 | 00:00-24:00 | -\nnational_museum | National Museum of Singapore | 15 | 120 | 10:00-19:00 | -\n\nTravel times in minutes (row -> column):\nclarke_quay: supertree_grove 16, east_coast_lagoon 34, orchard_road 16, oceanarium 22, botanic_gardens 21, haw_par_villa 28, lau_pa_sat 13, national_museum 12\nsupertree_grove: clarke_quay 16, east_coast_lagoon 30, orchard_road 21, oceanarium 24, botanic_gardens 26, haw_par_villa 32, lau_pa_sat 14, national_museum 16\neast_coast_lagoon: clarke_quay 34, supertree_grove 30, orchard_road 38, oceanarium 43, botanic_gardens 42, haw_par_villa 52, lau_pa_sat 34, national_museum 33\norchard_road: clarke_quay 16, supertree_grove 21, east_coast_lagoon 38, oceanarium 23, botanic_gardens 15, haw_par_villa 25, lau_pa_sat 18, national_museum 15\noceanarium: clarke_quay 22, supertree_grove 24, east_coast_lagoon 43, orchard_road 23, botanic_gardens 25, haw_par_villa 23, lau_pa_sat 20, national_museum 23\nbotanic_gardens: clarke_quay 21, supertree_grove 26, east_coast_lagoon 42, orchard_road 15, oceanarium 25, haw_par_villa 23, lau_pa_sat 23, national_museum 20\nhaw_par_villa: clarke_quay 28, supertree_grove 32, east_coast_lagoon 52, orchard_road 25, oceanarium 23, botanic_gardens 23, lau_pa_sat 29, national_museum 29\nlau_pa_sat: clarke_quay 13, supertree_grove 14, east_coast_lagoon 34, orchard_road 18, oceanarium 20, botanic_gardens 23, haw_par_villa 29, national_museum 15\nnational_museum: clarke_quay 12, supertree_grove 16, east_coast_lagoon 33, orchard_road 15, oceanarium 23, botanic_gardens 20, haw_par_villa 29, lau_pa_sat 15\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 10:00 until 14:00. I can spend at most S$16. I want to visit Supertree Grove, Haw Par Villa and National Museum of Singapore. If there's time, I'd also like Clarke Quay, East Coast Lagoon Food Village, Orchard Road, Singapore Oceanarium, Singapore Botanic Gardens and Lau Pa Sat. I want to do National Museum of Singapore before Supertree Grove. I want to do Supertree Grove before National Museum of Singapore. I'd like to spend 30 minutes at East Coast Lagoon Food Village."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"Contradictory order constraints for Supertree Grove and National Museum of Singapore, and not enough time to visit the required places within the 10:00 to 14:00 time window.\"\n}"
+}

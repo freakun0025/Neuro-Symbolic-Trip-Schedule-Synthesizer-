@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 11:00 to 16:20. Money is not a concern. I definitely need to see SkyHelix Sentosa, Fort Canning Park, Skyline Luge Sentosa and Singapore River Cruise. If there's time, I'd also like Siloso Beach. I want to be at Fort Canning Park no earlier than 11:55 and done there by 14:25."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Planning a quick trip from 11:00 to 16:20, and money is not a concern. The places I definitely need to see are Singapore River Cruise, SkyHelix Sentosa, Skyline Luge Sentosa, and Fort Canning Park. Just note that I want to be at Fort Canning Park no earlier than 11:55 and done there by 14:25. If there's time, I'd also like Siloso Beach."
+}

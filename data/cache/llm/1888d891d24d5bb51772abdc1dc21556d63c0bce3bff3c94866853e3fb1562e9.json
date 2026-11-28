@@ -1,0 +1,408 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You convert a traveller's request for ONE day in Singapore into JSON matching the schema below.\nYou only record what the user said. You never plan the day, never judge feasibility, never invent facts.\n\nRules:\n- location_id must be an id from the place list. Match the user's words to names and aliases.\n  A place the user mentions that is NOT in the list goes into unresolved_mentions (in the user's words).\n  Never substitute a different place for it.\n- must_visit: true for places the user wants, needs or must see; false for \"maybe\", \"if there's time\",\n  \"optionally\", \"would be nice\".\n- Fill duration_min or cost for a place ONLY if the user states it for that place; otherwise null\n  (the system already knows typical durations and prices).\n- All times are 24-hour \"HH:MM\". \"I have 4 hours\" -> duration_limit_min 240. \"from 10am\" -> day_start \"10:00\".\n  \"until 6pm\", \"back by 18:00\" -> day_end \"18:00\".\n- budget: the total amount of money in whole SGD, rounded down; null if not mentioned.\n- earliest_start / latest_end: only for a time the user gives for that specific place\n  (\"lunch at Maxwell after 1pm\" -> earliest_start \"13:00\"; \"finish the zoo by 3pm\" -> latest_end \"15:00\").\n- precedences: only explicit orderings (\"X before Y\", \"after X go to Y\" -> before X, after Y).\n- start_location: only if the user names a starting place from the list; return_to_start: true only if they\n  say they must end back there.\n- Vague wishes (\"something relaxing\", \"good food\", \"not too touristy\") go into ignored_preferences.\n- Output JSON only. No prose, no code fences.\n\nPlace list (id: name):\n- universal_studios: Universal Studios Singapore (also: universal studios, uss, universal) [theme_park]\n- adventure_cove: Adventure Cove Waterpark (also: adventure cove, water park, waterpark) [theme_park]\n- oceanarium: Singapore Oceanarium (also: oceanarium, sea aquarium, s.e.a. aquarium, aquarium) [attraction]\n- wings_of_time: Wings of Time (also: wings of time, sentosa night show) [show]\n- skyline_luge: Skyline Luge Sentosa (also: luge, skyline luge) [attraction]\n- cable_car: Singapore Cable Car (also: cable car, sentosa cable car) [attraction]\n- skyhelix: SkyHelix Sentosa (also: skyhelix, sky helix) [attraction]\n- siloso_beach: Siloso Beach (also: siloso, sentosa beach, beach) [nature]\n- gardens_domes: Flower Dome and Cloud Forest (also: gardens by the bay, flower dome, cloud forest, domes, conservatories) [attraction]\n- supertree_grove: Supertree Grove (also: supertrees, supertree, outdoor gardens) [nature]\n- ocbc_skyway: OCBC Skyway (also: skyway, supertree skyway) [attraction]\n- garden_rhapsody: Garden Rhapsody (also: garden rhapsody, supertree light show, light show at gardens by the bay) [show]\n- spectra: Spectra Light and Water Show (also: spectra, mbs light show, marina bay light show) [show]\n- skypark: Marina Bay Sands SkyPark Observation Deck (also: skypark, mbs observation deck, marina bay sands rooftop) [attraction]\n- artscience: ArtScience Museum (also: artscience, art science museum) [museum]\n- singapore_flyer: Singapore Flyer (also: flyer, ferris wheel) [attraction]\n- merlion_park: Merlion Park (also: merlion) [attraction]\n- lau_pa_sat: Lau Pa Sat (also: lau pa sat, telok ayer market, satay street) [food]\n- national_museum: National Museum of Singapore (also: national museum, museum of singapore) [museum]\n- acm: Asian Civilisations Museum (also: asian civilisations museum, acm) [museum]\n- peranakan_museum: Peranakan Museum (also: peranakan museum) [museum]\n- national_gallery: National Gallery Singapore (also: national gallery, art gallery) [museum]\n- fort_canning: Fort Canning Park (also: fort canning) [nature]\n- river_cruise: Singapore River Cruise (also: river cruise, bumboat, singapore river) [attraction]\n- clarke_quay: Clarke Quay (also: clarke quay, riverside dinner) [food]\n- maxwell: Maxwell Food Centre (also: maxwell, maxwell hawker centre, tian tian chicken rice) [food]\n- chinatown_complex: Chinatown Complex Food Centre (also: chinatown complex, chinatown hawker centre) [food]\n- buddha_tooth: Buddha Tooth Relic Temple (also: buddha tooth relic temple, buddha tooth temple) [attraction]\n- tekka_centre: Tekka Centre (also: tekka, little india hawker centre) [food]\n- orchard_road: Orchard Road (also: orchard, orchard road shopping, ion orchard) [shopping]\n- botanic_gardens: Singapore Botanic Gardens (also: botanic gardens, botanical gardens) [nature]\n- orchid_garden: National Orchid Garden (also: orchid garden, orchids) [nature]\n- singapore_zoo: Singapore Zoo (also: zoo, singapore zoo) [nature]\n- night_safari: Night Safari (also: night safari) [nature]\n- river_wonders: River Wonders (also: river wonders, river safari, pandas) [nature]\n- bird_paradise: Bird Paradise (also: bird paradise, bird park, jurong bird park) [nature]\n- haw_par_villa: Haw Par Villa (also: haw par villa) [attraction]\n- east_coast_lagoon: East Coast Lagoon Food Village (also: east coast, east coast lagoon, bbq stingray) [food]\n- jewel_changi: Jewel Changi Airport Rain Vortex (also: jewel, rain vortex, jewel changi) [attraction]\n\nJSON schema:\n{\"$defs\": {\"ActivitySpec\": {\"additionalProperties\": false, \"properties\": {\"location_id\": {\"enum\": [\"universal_studios\", \"adventure_cove\", \"oceanarium\", \"wings_of_time\", \"skyline_luge\", \"cable_car\", \"skyhelix\", \"siloso_beach\", \"gardens_domes\", \"supertree_grove\", \"ocbc_skyway\", \"garden_rhapsody\", \"spectra\", \"skypark\", \"artscience\", \"singapore_flyer\", \"merlion_park\", \"lau_pa_sat\", \"national_museum\", \"acm\", \"peranakan_museum\", \"national_gallery\", \"fort_canning\", \"river_cruise\", \"clarke_quay\", \"maxwell\", \"chinatown_complex\", \"buddha_tooth\", \"tekka_centre\", \"orchard_road\", \"botanic_gardens\", \"orchid_garden\", \"singapore_zoo\", \"night_safari\", \"river_wonders\", \"bird_paradise\", \"haw_par_villa\", \"east_coast_lagoon\", \"jewel_changi\"], \"title\": \"Location Id\", \"type\": \"string\"}, \"must_visit\": {\"title\": \"Must Visit\", \"type\": \"boolean\"}, \"duration_min\": {\"anyOf\": [{\"exclusiveMinimum\": 0, \"type\": \"integer\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Duration Min\"}, \"cost\": {\"anyOf\": [{\"minimum\": 0, \"type\": \"integer\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Cost\"}, \"earliest_start\": {\"anyOf\": [{\"pattern\": \"^([01]\\\\d|2[0-3]):[0-5]\\\\d$\", \"type\": \"string\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Earliest Start\"}, \"latest_end\": {\"anyOf\": [{\"pattern\": \"^([01]\\\\d|2[0-3]):[0-5]\\\\d$\", \"type\": \"string\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Latest End\"}}, \"required\": [\"location_id\", \"must_visit\"], \"title\": \"ActivitySpec\", \"type\": \"object\"}, \"PrecedenceSpec\": {\"additionalProperties\": false, \"properties\": {\"before\": {\"enum\": [\"universal_studios\", \"adventure_cove\", \"oceanarium\", \"wings_of_time\", \"skyline_luge\", \"cable_car\", \"skyhelix\", \"siloso_beach\", \"gardens_domes\", \"supertree_grove\", \"ocbc_skyway\", \"garden_rhapsody\", \"spectra\", \"skypark\", \"artscience\", \"singapore_flyer\", \"merlion_park\", \"lau_pa_sat\", \"national_museum\", \"acm\", \"peranakan_museum\", \"national_gallery\", \"fort_canning\", \"river_cruise\", \"clarke_quay\", \"maxwell\", \"chinatown_complex\", \"buddha_tooth\", \"tekka_centre\", \"orchard_road\", \"botanic_gardens\", \"orchid_garden\", \"singapore_zoo\", \"night_safari\", \"river_wonders\", \"bird_paradise\", \"haw_par_villa\", \"east_coast_lagoon\", \"jewel_changi\"], \"title\": \"Before\", \"type\": \"string\"}, \"after\": {\"enum\": [\"universal_studios\", \"adventure_cove\", \"oceanarium\", \"wings_of_time\", \"skyline_luge\", \"cable_car\", \"skyhelix\", \"siloso_beach\", \"gardens_domes\", \"supertree_grove\", \"ocbc_skyway\", \"garden_rhapsody\", \"spectra\", \"skypark\", \"artscience\", \"singapore_flyer\", \"merlion_park\", \"lau_pa_sat\", \"national_museum\", \"acm\", \"peranakan_museum\", \"national_gallery\", \"fort_canning\", \"river_cruise\", \"clarke_quay\", \"maxwell\", \"chinatown_complex\", \"buddha_tooth\", \"tekka_centre\", \"orchard_road\", \"botanic_gardens\", \"orchid_garden\", \"singapore_zoo\", \"night_safari\", \"river_wonders\", \"bird_paradise\", \"haw_par_villa\", \"east_coast_lagoon\", \"jewel_changi\"], \"title\": \"After\", \"type\": \"string\"}}, \"required\": [\"before\", \"after\"], \"title\": \"PrecedenceSpec\", \"type\": \"object\"}}, \"additionalProperties\": false, \"properties\": {\"schema_version\": {\"const\": \"1.0\", \"default\": \"1.0\", \"title\": \"Schema Version\", \"type\": \"string\"}, \"day_start\": {\"anyOf\": [{\"pattern\": \"^([01]\\\\d|2[0-3]):[0-5]\\\\d$\", \"type\": \"string\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Day Start\"}, \"day_end\": {\"anyOf\": [{\"pattern\": \"^([01]\\\\d|2[0-3]):[0-5]\\\\d$\", \"type\": \"string\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Day End\"}, \"duration_limit_min\": {\"anyOf\": [{\"exclusiveMinimum\": 0, \"maximum\": 1440, \"type\": \"integer\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Duration Limit Min\"}, \"budget\": {\"anyOf\": [{\"minimum\": 0, \"type\": \"integer\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Budget\"}, \"start_location\": {\"anyOf\": [{\"enum\": [\"universal_studios\", \"adventure_cove\", \"oceanarium\", \"wings_of_time\", \"skyline_luge\", \"cable_car\", \"skyhelix\", \"siloso_beach\", \"gardens_domes\", \"supertree_grove\", \"ocbc_skyway\", \"garden_rhapsody\", \"spectra\", \"skypark\", \"artscience\", \"singapore_flyer\", \"merlion_park\", \"lau_pa_sat\", \"national_museum\", \"acm\", \"peranakan_museum\", \"national_gallery\", \"fort_canning\", \"river_cruise\", \"clarke_quay\", \"maxwell\", \"chinatown_complex\", \"buddha_tooth\", \"tekka_centre\", \"orchard_road\", \"botanic_gardens\", \"orchid_garden\", \"singapore_zoo\", \"night_safari\", \"river_wonders\", \"bird_paradise\", \"haw_par_villa\", \"east_coast_lagoon\", \"jewel_changi\"], \"type\": \"string\"}, {\"type\": \"null\"}], \"default\": null, \"title\": \"Start Location\"}, \"return_to_start\": {\"default\": false, \"title\": \"Return To Start\", \"type\": \"boolean\"}, \"activities\": {\"items\": {\"$ref\": \"#/$defs/ActivitySpec\"}, \"title\": \"Activities\", \"type\": \"array\"}, \"precedences\": {\"default\": [], \"items\": {\"$ref\": \"#/$defs/PrecedenceSpec\"}, \"title\": \"Precedences\", \"type\": \"array\"}, \"unresolved_mentions\": {\"default\": [], \"items\": {\"type\": \"string\"}, \"title\": \"Unresolved Mentions\", \"type\": \"array\"}, \"ignored_preferences\": {\"default\": [], \"items\": {\"type\": \"string\"}, \"title\": \"Ignored Preferences\", \"type\": \"array\"}}, \"required\": [\"activities\"], \"title\": \"TripRequestIR\", \"type\": \"object\"}"
+   },
+   {
+    "role": "user",
+    "content": "I've got 5 hours from 2pm and S$80. I want to see the Flower Dome and the Singapore Flyer, and Spectra if there's time. Flyer before the domes please. Also something relaxing, and maybe Kinokuniya."
+   },
+   {
+    "role": "assistant",
+    "content": "{\"day_start\": \"14:00\", \"duration_limit_min\": 300, \"budget\": 80, \"activities\": [{\"location_id\": \"gardens_domes\", \"must_visit\": true}, {\"location_id\": \"singapore_flyer\", \"must_visit\": true}, {\"location_id\": \"spectra\", \"must_visit\": false}], \"precedences\": [{\"before\": \"singapore_flyer\", \"after\": \"gardens_domes\"}], \"unresolved_mentions\": [\"Kinokuniya\"], \"ignored_preferences\": [\"something relaxing\"]}"
+   },
+   {
+    "role": "user",
+    "content": "Starting from Orchard Road at 9:30, I must do the National Museum, then lunch at Maxwell after 12:30 for about 45 minutes. Need to be back at Orchard by 5pm."
+   },
+   {
+    "role": "assistant",
+    "content": "{\"day_start\": \"09:30\", \"day_end\": \"17:00\", \"start_location\": \"orchard_road\", \"return_to_start\": true, \"activities\": [{\"location_id\": \"national_museum\", \"must_visit\": true}, {\"location_id\": \"maxwell\", \"must_visit\": true, \"duration_min\": 45, \"earliest_start\": \"12:30\"}], \"precedences\": [{\"before\": \"national_museum\", \"after\": \"maxwell\"}]}"
+   },
+   {
+    "role": "user",
+    "content": "I\u2019ve got a window from 11:00 to 16:20 and budget isn't an issue at all. I really need to hit up SkyHelix Sentosa, Skyline Luge Sentosa, and the Singapore River Cruise. Also, I need to make sure I\u2019m at Fort Canning Park no earlier than 11:55 and finished there by 14:25. If I can squeeze it in, I\u2019d love to check out Siloso Beach too."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "ActivitySpec": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "enum": [
+        "universal_studios",
+        "adventure_cove",
+        "oceanarium",
+        "wings_of_time",
+        "skyline_luge",
+        "cable_car",
+        "skyhelix",
+        "siloso_beach",
+        "gardens_domes",
+        "supertree_grove",
+        "ocbc_skyway",
+        "garden_rhapsody",
+        "spectra",
+        "skypark",
+        "artscience",
+        "singapore_flyer",
+        "merlion_park",
+        "lau_pa_sat",
+        "national_museum",
+        "acm",
+        "peranakan_museum",
+        "national_gallery",
+        "fort_canning",
+        "river_cruise",
+        "clarke_quay",
+        "maxwell",
+        "chinatown_complex",
+        "buddha_tooth",
+        "tekka_centre",
+        "orchard_road",
+        "botanic_gardens",
+        "orchid_garden",
+        "singapore_zoo",
+        "night_safari",
+        "river_wonders",
+        "bird_paradise",
+        "haw_par_villa",
+        "east_coast_lagoon",
+        "jewel_changi"
+       ],
+       "title": "Location Id",
+       "type": "string"
+      },
+      "must_visit": {
+       "title": "Must Visit",
+       "type": "boolean"
+      },
+      "duration_min": {
+       "anyOf": [
+        {
+         "exclusiveMinimum": 0,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Duration Min"
+      },
+      "cost": {
+       "anyOf": [
+        {
+         "minimum": 0,
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Cost"
+      },
+      "earliest_start": {
+       "anyOf": [
+        {
+         "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Earliest Start"
+      },
+      "latest_end": {
+       "anyOf": [
+        {
+         "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "default": null,
+       "title": "Latest End"
+      }
+     },
+     "required": [
+      "location_id",
+      "must_visit"
+     ],
+     "title": "ActivitySpec",
+     "type": "object"
+    },
+    "PrecedenceSpec": {
+     "additionalProperties": false,
+     "properties": {
+      "before": {
+       "enum": [
+        "universal_studios",
+        "adventure_cove",
+        "oceanarium",
+        "wings_of_time",
+        "skyline_luge",
+        "cable_car",
+        "skyhelix",
+        "siloso_beach",
+        "gardens_domes",
+        "supertree_grove",
+        "ocbc_skyway",
+        "garden_rhapsody",
+        "spectra",
+        "skypark",
+        "artscience",
+        "singapore_flyer",
+        "merlion_park",
+        "lau_pa_sat",
+        "national_museum",
+        "acm",
+        "peranakan_museum",
+        "national_gallery",
+        "fort_canning",
+        "river_cruise",
+        "clarke_quay",
+        "maxwell",
+        "chinatown_complex",
+        "buddha_tooth",
+        "tekka_centre",
+        "orchard_road",
+        "botanic_gardens",
+        "orchid_garden",
+        "singapore_zoo",
+        "night_safari",
+        "river_wonders",
+        "bird_paradise",
+        "haw_par_villa",
+        "east_coast_lagoon",
+        "jewel_changi"
+       ],
+       "title": "Before",
+       "type": "string"
+      },
+      "after": {
+       "enum": [
+        "universal_studios",
+        "adventure_cove",
+        "oceanarium",
+        "wings_of_time",
+        "skyline_luge",
+        "cable_car",
+        "skyhelix",
+        "siloso_beach",
+        "gardens_domes",
+        "supertree_grove",
+        "ocbc_skyway",
+        "garden_rhapsody",
+        "spectra",
+        "skypark",
+        "artscience",
+        "singapore_flyer",
+        "merlion_park",
+        "lau_pa_sat",
+        "national_museum",
+        "acm",
+        "peranakan_museum",
+        "national_gallery",
+        "fort_canning",
+        "river_cruise",
+        "clarke_quay",
+        "maxwell",
+        "chinatown_complex",
+        "buddha_tooth",
+        "tekka_centre",
+        "orchard_road",
+        "botanic_gardens",
+        "orchid_garden",
+        "singapore_zoo",
+        "night_safari",
+        "river_wonders",
+        "bird_paradise",
+        "haw_par_villa",
+        "east_coast_lagoon",
+        "jewel_changi"
+       ],
+       "title": "After",
+       "type": "string"
+      }
+     },
+     "required": [
+      "before",
+      "after"
+     ],
+     "title": "PrecedenceSpec",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "schema_version": {
+     "const": "1.0",
+     "default": "1.0",
+     "title": "Schema Version",
+     "type": "string"
+    },
+    "day_start": {
+     "anyOf": [
+      {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Day Start"
+    },
+    "day_end": {
+     "anyOf": [
+      {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Day End"
+    },
+    "duration_limit_min": {
+     "anyOf": [
+      {
+       "exclusiveMinimum": 0,
+       "maximum": 1440,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Duration Limit Min"
+    },
+    "budget": {
+     "anyOf": [
+      {
+       "minimum": 0,
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Budget"
+    },
+    "start_location": {
+     "anyOf": [
+      {
+       "enum": [
+        "universal_studios",
+        "adventure_cove",
+        "oceanarium",
+        "wings_of_time",
+        "skyline_luge",
+        "cable_car",
+        "skyhelix",
+        "siloso_beach",
+        "gardens_domes",
+        "supertree_grove",
+        "ocbc_skyway",
+        "garden_rhapsody",
+        "spectra",
+        "skypark",
+        "artscience",
+        "singapore_flyer",
+        "merlion_park",
+        "lau_pa_sat",
+        "national_museum",
+        "acm",
+        "peranakan_museum",
+        "national_gallery",
+        "fort_canning",
+        "river_cruise",
+        "clarke_quay",
+        "maxwell",
+        "chinatown_complex",
+        "buddha_tooth",
+        "tekka_centre",
+        "orchard_road",
+        "botanic_gardens",
+        "orchid_garden",
+        "singapore_zoo",
+        "night_safari",
+        "river_wonders",
+        "bird_paradise",
+        "haw_par_villa",
+        "east_coast_lagoon",
+        "jewel_changi"
+       ],
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Start Location"
+    },
+    "return_to_start": {
+     "default": false,
+     "title": "Return To Start",
+     "type": "boolean"
+    },
+    "activities": {
+     "items": {
+      "$ref": "#/$defs/ActivitySpec"
+     },
+     "title": "Activities",
+     "type": "array"
+    },
+    "precedences": {
+     "default": [],
+     "items": {
+      "$ref": "#/$defs/PrecedenceSpec"
+     },
+     "title": "Precedences",
+     "type": "array"
+    },
+    "unresolved_mentions": {
+     "default": [],
+     "items": {
+      "type": "string"
+     },
+     "title": "Unresolved Mentions",
+     "type": "array"
+    },
+    "ignored_preferences": {
+     "default": [],
+     "items": {
+      "type": "string"
+     },
+     "title": "Ignored Preferences",
+     "type": "array"
+    }
+   },
+   "required": [
+    "activities"
+   ],
+   "title": "TripRequestIR",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\"day_start\": \"11:00\", \"day_end\": \"16:20\", \"activities\": [{\"location_id\": \"skyhelix\", \"must_visit\": true}, {\"location_id\": \"skyline_luge\", \"must_visit\": true}, {\"location_id\": \"river_cruise\", \"must_visit\": true}, {\"location_id\": \"fort_canning\", \"must_visit\": true, \"earliest_start\": \"11:55\", \"latest_end\": \"14:25\"}, {\"location_id\": \"siloso_beach\", \"must_visit\": false}]}"
+}

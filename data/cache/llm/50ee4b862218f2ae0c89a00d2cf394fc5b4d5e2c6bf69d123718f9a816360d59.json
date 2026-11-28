@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\norchard_road | Orchard Road | 0 | 120 | 10:00-22:00 | -\ncable_car | Singapore Cable Car | 35 | 45 | 08:45-22:00 | -\ngardens_domes | Flower Dome and Cloud Forest | 46 | 120 | 09:00-21:00 | -\nhaw_par_villa | Haw Par Villa | 0 | 90 | 09:00-20:00 | -\n\nTravel times in minutes (row -> column):\norchard_road: cable_car 20, gardens_domes 21, haw_par_villa 25\ncable_car: orchard_road 20, gardens_domes 23, haw_par_villa 21\ngardens_domes: orchard_road 21, cable_car 23, haw_par_villa 32\nhaw_par_villa: orchard_road 25, cable_car 21, gardens_domes 32\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, I\u2019ve got some free time from 09:00 to 14:10 and a budget of S$47. I really need to hit up Orchard Road, Flower Dome and Cloud Forest. If I can fit them in, I\u2019d also love to see Singapore Cable Car and Haw Par Villa. \n\nI need to do Orchard Road before the Flower Dome and Cloud Forest. For Orchard Road, I can\u2019t get there before 10:00 and I need to be finished by 11:50. Then for Flower Dome and Cloud Forest, I need to spend 90 minutes there, arriving no earlier than 11:50 and finishing by 14:55. Also, I\u2019d like to spend 75 minutes at Singapore Cable Car."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\"feasible\":false,\"visits\":[],\"reason\":\"Orchard Road's typical 120\u2011minute duration cannot fit between the required start after 10:00 and finish by 11:50, making the schedule impossible.\"}"
+}

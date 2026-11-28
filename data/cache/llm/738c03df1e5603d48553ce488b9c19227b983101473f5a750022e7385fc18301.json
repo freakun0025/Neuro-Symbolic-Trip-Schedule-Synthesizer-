@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 14:00 until 23:55. My budget is S$62. I definitely need to see Singapore River Cruise, Clarke Quay and Buddha Tooth Relic Temple. Optionally, SkyHelix Sentosa, Orchard Road, Wings of Time and Spectra Light and Water Show. I want to do Spectra Light and Water Show before Singapore River Cruise. I want to do Clarke Quay before Buddha Tooth Relic Temple. I'd like to spend 60 minutes at SkyHelix Sentosa. I'd like to spend 150 minutes at Orchard Road. I want to be at Orchard Road no earlier than 13:00 and done there by 17:30."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Looking to plan my day from 14:00 until 23:55 with a total budget of S$62. \n\nThe places I definitely need to see are Singapore River Cruise, Clarke Quay and Buddha Tooth Relic Temple. If there's time, optionally I'd love to visit SkyHelix Sentosa, Orchard Road, Wings of Time and Spectra Light and Water Show. \n\nFor the sequence, I want to do Clarke Quay before Buddha Tooth Relic Temple, and I want to do Spectra Light and Water Show before Singapore River Cruise. \n\nAs for time at each spot, I'd like to spend 60 minutes at SkyHelix Sentosa. For shopping/walking around, I'd like to spend 150 minutes at Orchard Road, provided I want to be at Orchard Road no earlier than 13:00 and done there by 17:30."
+}

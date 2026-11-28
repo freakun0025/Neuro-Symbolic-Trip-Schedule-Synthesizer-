@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You translate a traveller's one-day trip request in Singapore into a Python program that uses the z3\nsolver (`import z3`) to find a schedule satisfying EVERY requirement, or prove that none exists.\n\nFacts (times in minutes since midnight, e.g. 09:00 = 540; money in whole SGD):\nPlaces (id | name | cost | typical duration | open-close | showtimes):\nmaxwell | Maxwell Food Centre | 8 | 45 | 08:00-24:00 | -\nnational_gallery | National Gallery Singapore | 25 | 150 | 10:00-19:00 | -\nriver_cruise | Singapore River Cruise | 28 | 40 | 09:00-22:30 | -\ncable_car | Singapore Cable Car | 35 | 45 | 08:45-22:00 | -\njewel_changi | Jewel Changi Airport Rain Vortex | 0 | 60 | 10:00-24:00 | -\nriver_wonders | River Wonders | 43 | 120 | 10:00-19:00 | -\nnight_safari | Night Safari | 56 | 180 | 19:15-24:00 | -\nTravel times in minutes between places (row -> column):\nmaxwell: national_gallery 14, river_cruise 13, cable_car 18, jewel_changi 55, river_wonders 47, night_safari 46\nnational_gallery: maxwell 14, river_cruise 12, cable_car 21, jewel_changi 52, river_wonders 45, night_safari 45\nriver_cruise: maxwell 13, national_gallery 12, cable_car 19, jewel_changi 53, river_wonders 45, night_safari 44\ncable_car: maxwell 18, national_gallery 21, river_cruise 19, jewel_changi 62, river_wonders 47, night_safari 46\njewel_changi: maxwell 55, national_gallery 52, river_cruise 53, cable_car 62, river_wonders 65, night_safari 65\nriver_wonders: maxwell 47, national_gallery 45, river_cruise 45, cable_car 47, jewel_changi 65, night_safari 11\nnight_safari: maxwell 46, national_gallery 45, river_cruise 44, cable_car 46, jewel_changi 65, river_wonders 11\n\nRules of the domain: a visit lasts exactly its duration (the typical one unless the traveller gives one); it must\nlie within opening hours; a show may only start at one of its showtimes; visits cannot overlap and consecutive\nvisits need the travel time between them; must-visit places are required, optional ones may be skipped;\nbudget is the sum of costs of visited places.\n\nContract: output ONE python code block. When run, the program must print exactly one final line:\neither the word UNSAT, or a JSON list of objects {\"location_id\": id, \"start\": minutes, \"end\": minutes}\nfor the visited places. Do not read input, do not use the network, do not print anything after that line.\n\nExample of the output format only: [{\"location_id\": \"museum\", \"start\": 540, \"end\": 660}]"
+   },
+   {
+    "role": "user",
+    "content": "Hey, I\u2019ve got some free time from 09:00 to 14:05 and a budget of S$89. I\u2019m definitely looking to check out Singapore Cable Car, but I need to make sure I hit Maxwell Food Centre before that. Just a heads up, I need to be at Maxwell Food Centre no earlier than 08:30 and finished up by 10:45. If there's extra time, I'd love to squeeze in National Gallery Singapore, Singapore River Cruise, Jewel Changi Airport Rain Vortex, River Wonders, or Night Safari too!"
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "```python\nimport json\nimport z3\n\n# ---------- Data ----------\nplaces = [\n    {\n        \"id\": \"maxwell\",\n        \"cost\": 8,\n        \"duration\": 45,\n        \"open_start\": 8 * 60,      # 08:00\n        \"open_end\": 24 * 60,       # 24:00\n        \"extra_start\": 8 * 60 + 30,   # 08:30 earliest as per request\n        \"extra_end\": 10 * 60 + 45,    # 10:45 latest finish as per request\n    },\n    {\n        \"id\": \"national_gallery\",\n        \"cost\": 25,\n        \"duration\": 150,\n        \"open_start\": 10 * 60,\n        \"open_end\": 19 * 60,\n    },\n    {\n        \"id\": \"river_cruise\",\n        \"cost\": 28,\n        \"duration"
+}

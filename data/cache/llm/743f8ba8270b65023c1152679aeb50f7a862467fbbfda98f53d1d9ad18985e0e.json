@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\ncable_car | Singapore Cable Car | 35 | 45 | 08:45-22:00 | -\ngarden_rhapsody | Garden Rhapsody | 0 | 15 | 19:30-21:15 | 19:45, 20:45\nskyhelix | SkyHelix Sentosa | 20 | 30 | 10:00-21:30 | -\ngardens_domes | Flower Dome and Cloud Forest | 46 | 120 | 09:00-21:00 | -\nnational_gallery | National Gallery Singapore | 25 | 150 | 10:00-19:00 | -\neast_coast_lagoon | East Coast Lagoon Food Village | 15 | 60 | 10:30-22:30 | -\nadventure_cove | Adventure Cove Waterpark | 40 | 180 | 10:00-17:00 | -\noceanarium | Singapore Oceanarium | 50 | 120 | 10:00-19:00 | -\nclarke_quay | Clarke Quay | 30 | 90 | 17:00-24:00 | -\nbuddha_tooth | Buddha Tooth Relic Temple | 0 | 45 | 07:00-17:00 | -\n\nTravel times in minutes (row -> column):\ncable_car: garden_rhapsody 23, skyhelix 15, gardens_domes 23, national_gallery 21, east_coast_lagoon 43, adventure_cove 14, oceanarium 14, clarke_quay 20, buddha_tooth 18\ngarden_rhapsody: cable_car 23, skyhelix 24, gardens_domes 11, national_gallery 14, east_coast_lagoon 30, adventure_cove 24, oceanarium 24, clarke_quay 16, buddha_tooth 16\nskyhelix: cable_car 15, garden_rhapsody 24, gardens_domes 25, national_gallery 23, east_coast_lagoon 44, adventure_cove 11, oceanarium 11, clarke_quay 22, buddha_tooth 20\ngardens_domes: cable_car 23, garden_rhapsody 11, skyhelix 25, national_gallery 14, east_coast_lagoon 30, adventure_cove 24, oceanarium 24, clarke_quay 16, buddha_tooth 16\nnational_gallery: cable_car 21, garden_rhapsody 14, skyhelix 23, gardens_domes 14, east_coast_lagoon 33, adventure_cove 23, oceanarium 22, clarke_quay 12, buddha_tooth 14\neast_coast_lagoon: cable_car 43, garden_rhapsody 30, skyhelix 44, gardens_domes 30, national_gallery 33, adventure_cove 44, oceanarium 43, clarke_quay 34, buddha_tooth 35\nadventure_cove: cable_car 14, garden_rhapsody 24, skyhelix 11, gardens_domes 24, national_gallery 23, east_coast_lagoon 44, oceanarium 11, clarke_quay 22, buddha_tooth 20\noceanarium: cable_car 14, garden_rhapsody 24, skyhelix 11, gardens_domes 24, national_gallery 22, east_coast_lagoon 43, adventure_cove 11, clarke_quay 22, buddha_tooth 19\nclarke_quay: cable_car 20, garden_rhapsody 16, skyhelix 22, gardens_domes 16, national_gallery 12, east_coast_lagoon 34, adventure_cove 22, oceanarium 22, buddha_tooth 13\nbuddha_tooth: cable_car 18, garden_rhapsody 16, skyhelix 20, gardens_domes 16, national_gallery 14, east_coast_lagoon 35, adventure_cove 20, oceanarium 19, clarke_quay 13\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 14:00 to 23:55. I can spend at most S$169. I want to visit Singapore Cable Car, Clarke Quay and Buddha Tooth Relic Temple. If there's time, I'd also like Garden Rhapsody, SkyHelix Sentosa, Flower Dome and Cloud Forest, National Gallery Singapore, East Coast Lagoon Food Village, Adventure Cove Waterpark and Singapore Oceanarium. I want to do Clarke Quay before Buddha Tooth Relic Temple."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"Clarke Quay opens at 17:00 while Buddha Tooth Relic Temple closes at 17:00, making it impossible to visit Clarke Quay before Buddha Tooth within the given time window.\"\n}"
+}

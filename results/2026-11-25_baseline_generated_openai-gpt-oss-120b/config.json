@@ -1,0 +1,10 @@
+{
+ "run_id": "2026-11-25_baseline_generated_openai-gpt-oss-120b",
+ "method": "baseline",
+ "set": "generated",
+ "model": "openai/gpt-oss-120b",
+ "base_url": "https://api.groq.com/openai/v1",
+ "kb_version": "e5a5ae6",
+ "git_sha": "c52b230",
+ "instances": 55
+}

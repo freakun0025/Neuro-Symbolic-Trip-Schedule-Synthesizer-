@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.1-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "Starting at 09:00, I've got 14 hours and 55 minutes to spend. My budget is S$104. I want to visit Night Safari. If there's time, I'd also like Singapore Oceanarium, OCBC Skyway, Haw Par Villa, Adventure Cove Waterpark, East Coast Lagoon Food Village, Universal Studios Singapore, Peranakan Museum, National Gallery Singapore and Siloso Beach. I want to do Haw Par Villa before Night Safari. I'd like to spend 450 minutes at Universal Studios Singapore. I'd like to spend 120 minutes at Peranakan Museum. I want to be at Night Safari no earlier than 19:15 and done there by 22:15."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Hey, I\u2019ve got 14 hours and 55 minutes for a trip starting at 09:00 with a budget of S$104. I definitely want to hit up Night Safari (gotta be there between 19:15 and 22:15), and I need to make sure I do Haw Par Villa before that. Also, I\u2019m planning to spend 450 minutes at Universal Studios Singapore and 120 minutes at Peranakan Museum. If there's any time left, I\u2019d love to squeeze in Singapore Oceanarium, OCBC Skyway, Adventure Cove Waterpark, East Coast Lagoon Food Village, National Gallery Singapore, and Siloso Beach too."
+}

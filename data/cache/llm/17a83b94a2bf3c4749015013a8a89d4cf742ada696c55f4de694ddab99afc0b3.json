@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You translate a traveller's one-day trip request in Singapore into a Python program that uses the z3\nsolver (`import z3`) to find a schedule satisfying EVERY requirement, or prove that none exists.\n\nFacts (times in minutes since midnight, e.g. 09:00 = 540; money in whole SGD):\nPlaces (id | name | cost | typical duration | open-close | showtimes):\nbotanic_gardens | Singapore Botanic Gardens | 0 | 120 | 05:00-24:00 | -\ncable_car | Singapore Cable Car | 35 | 45 | 08:45-22:00 | -\nocbc_skyway | OCBC Skyway | 14 | 30 | 09:00-21:00 | -\nhaw_par_villa | Haw Par Villa | 0 | 90 | 09:00-20:00 | -\nuniversal_studios | Universal Studios Singapore | 83 | 480 | 10:00-19:00 | -\nTravel times in minutes between places (row -> column):\nbotanic_gardens: cable_car 22, ocbc_skyway 26, haw_par_villa 23, universal_studios 27\ncable_car: botanic_gardens 22, ocbc_skyway 23, haw_par_villa 21, universal_studios 15\nocbc_skyway: botanic_gardens 26, cable_car 23, haw_par_villa 32, universal_studios 23\nhaw_par_villa: botanic_gardens 23, cable_car 21, ocbc_skyway 32, universal_studios 24\nuniversal_studios: botanic_gardens 27, cable_car 15, ocbc_skyway 23, haw_par_villa 24\n\nRules of the domain: a visit lasts exactly its duration (the typical one unless the traveller gives one); it must\nlie within opening hours; a show may only start at one of its showtimes; visits cannot overlap and consecutive\nvisits need the travel time between them; must-visit places are required, optional ones may be skipped;\nbudget is the sum of costs of visited places.\n\nContract: output ONE python code block. When run, the program must print exactly one final line:\neither the word UNSAT, or a JSON list of objects {\"location_id\": id, \"start\": minutes, \"end\": minutes}\nfor the visited places. Do not read input, do not use the network, do not print anything after that line.\n\nExample of the output format only: [{\"location_id\": \"museum\", \"start\": 540, \"end\": 660}]"
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 10:00 to 21:10. My budget is S$103. I want to visit Singapore Botanic Gardens, OCBC Skyway and Universal Studios Singapore. If there's time, I'd also like Singapore Cable Car and Haw Par Villa. I'd like to spend 90 minutes at Singapore Botanic Gardens."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": ""
+}

@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\ngarden_rhapsody | Garden Rhapsody | 0 | 15 | 19:30-21:15 | 19:45, 20:45\nmerlion_park | Merlion Park | 0 | 30 | 00:00-24:00 | -\nnational_gallery | National Gallery Singapore | 25 | 150 | 10:00-19:00 | -\nnational_museum | National Museum of Singapore | 15 | 120 | 10:00-19:00 | -\neast_coast_lagoon | East Coast Lagoon Food Village | 15 | 60 | 10:30-22:30 | -\ntekka_centre | Tekka Centre | 8 | 45 | 06:30-21:00 | -\norchid_garden | National Orchid Garden | 15 | 60 | 08:30-19:00 | -\n\nTravel times in minutes (row -> column):\ngarden_rhapsody: merlion_park 13, national_gallery 14, national_museum 16, east_coast_lagoon 30, tekka_centre 18, orchid_garden 26\nmerlion_park: garden_rhapsody 13, national_gallery 12, national_museum 14, east_coast_lagoon 32, tekka_centre 16, orchid_garden 23\nnational_gallery: garden_rhapsody 14, merlion_park 12, national_museum 12, east_coast_lagoon 33, tekka_centre 15, orchid_garden 22\nnational_museum: garden_rhapsody 16, merlion_park 14, national_gallery 12, east_coast_lagoon 33, tekka_centre 13, orchid_garden 20\neast_coast_lagoon: garden_rhapsody 30, merlion_park 32, national_gallery 33, national_museum 33, tekka_centre 33, orchid_garden 42\ntekka_centre: garden_rhapsody 18, merlion_park 16, national_gallery 15, national_museum 13, east_coast_lagoon 33, orchid_garden 20\norchid_garden: garden_rhapsody 26, merlion_park 23, national_gallery 22, national_museum 20, east_coast_lagoon 42, tekka_centre 20\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 11:00 to 22:00. My budget is S$102. I definitely need to see Garden Rhapsody and National Orchid Garden. If there's time, I'd also like Merlion Park, National Gallery Singapore, National Museum of Singapore, East Coast Lagoon Food Village and Tekka Centre. I'd like to spend 30 minutes at National Orchid Garden."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"The total budget and time constraints are insufficient to visit all mandatory and optional places given their opening hours, durations, travel times, and specific showtimes.\"\n}"
+}

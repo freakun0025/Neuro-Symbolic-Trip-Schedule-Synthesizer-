@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.1-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 11:00 until 22:55. I can spend at most S$78. I definitely need to see Clarke Quay, Lau Pa Sat and Singapore Cable Car. Optionally, Universal Studios Singapore, Skyline Luge Sentosa and Garden Rhapsody. I want to be at Clarke Quay no earlier than 16:00 and done there by 19:30."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Planning a trip from 11:00 to 22:55 with a budget of S$78. I really need to hit up Singapore Cable Car, Lau Pa Sat, and Clarke Quay. For Clarke Quay, I need to be there no earlier than 16:00 and finished by 19:30. If there's extra time, I'd love to check out Universal Studios Singapore, Skyline Luge Sentosa, and Garden Rhapsody too."
+}

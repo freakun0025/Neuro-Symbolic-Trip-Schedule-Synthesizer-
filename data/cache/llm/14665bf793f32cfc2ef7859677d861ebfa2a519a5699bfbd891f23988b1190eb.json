@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 11:00 until 13:55. I'm starting from Clarke Quay. Money is not a concern. I want to visit National Gallery Singapore and Singapore Flyer. Optionally, National Orchid Garden. I'd like to spend 30 minutes at Singapore Flyer."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "I'm planning to check out National Gallery Singapore and spend 30 minutes at Singapore Flyer, plus National Orchid Garden optionally if it fits. Setting off from Clarke Quay, my day out runs from 11:00 until 13:55. Money is not a concern!"
+}

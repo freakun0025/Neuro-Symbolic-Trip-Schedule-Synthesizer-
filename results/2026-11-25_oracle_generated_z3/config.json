@@ -1,0 +1,10 @@
+{
+ "run_id": "2026-11-25_oracle_generated_z3",
+ "method": "oracle",
+ "set": "generated",
+ "model": null,
+ "base_url": null,
+ "kb_version": "e5a5ae6",
+ "git_sha": "c52b230",
+ "instances": 55
+}

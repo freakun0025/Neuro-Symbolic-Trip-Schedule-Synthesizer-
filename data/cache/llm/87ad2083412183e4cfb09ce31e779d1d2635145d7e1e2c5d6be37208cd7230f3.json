@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\noceanarium | Singapore Oceanarium | 50 | 120 | 10:00-19:00 | -\nocbc_skyway | OCBC Skyway | 14 | 30 | 09:00-21:00 | -\nhaw_par_villa | Haw Par Villa | 0 | 90 | 09:00-20:00 | -\nadventure_cove | Adventure Cove Waterpark | 40 | 180 | 10:00-17:00 | -\neast_coast_lagoon | East Coast Lagoon Food Village | 15 | 60 | 10:30-22:30 | -\nuniversal_studios | Universal Studios Singapore | 83 | 480 | 10:00-19:00 | -\nperanakan_museum | Peranakan Museum | 15 | 90 | 10:00-19:00 | -\nnational_gallery | National Gallery Singapore | 25 | 150 | 10:00-19:00 | -\nnight_safari | Night Safari | 56 | 180 | 19:15-24:00 | -\nsiloso_beach | Siloso Beach | 0 | 90 | 07:00-22:00 | -\n\nTravel times in minutes (row -> column):\noceanarium: ocbc_skyway 24, haw_par_villa 23, adventure_cove 11, east_coast_lagoon 43, universal_studios 12, peranakan_museum 23, national_gallery 22, night_safari 50, siloso_beach 13\nocbc_skyway: oceanarium 24, haw_par_villa 32, adventure_cove 24, east_coast_lagoon 30, universal_studios 23, peranakan_museum 16, national_gallery 15, night_safari 48, siloso_beach 26\nhaw_par_villa: oceanarium 23, ocbc_skyway 32, adventure_cove 22, east_coast_lagoon 52, universal_studios 24, peranakan_museum 29, national_gallery 29, night_safari 42, siloso_beach 22\nadventure_cove: oceanarium 11, ocbc_skyway 24, haw_par_villa 22, east_coast_lagoon 44, universal_studios 12, peranakan_museum 23, national_gallery 23, night_safari 50, siloso_beach 12\neast_coast_lagoon: oceanarium 43, ocbc_skyway 30, haw_par_villa 52, adventure_cove 44, universal_studios 43, peranakan_museum 33, national_gallery 33, night_safari 57, siloso_beach 46\nuniversal_studios: oceanarium 12, ocbc_skyway 23, haw_par_villa 24, adventure_cove 12, east_coast_lagoon 43, peranakan_museum 23, national_gallery 23, night_safari 51, siloso_beach 13\nperanakan_museum: oceanarium 23, ocbc_skyway 16, haw_par_villa 29, adventure_cove 23, east_coast_lagoon 33, universal_studios 23, national_gallery 12, night_safari 44, siloso_beach 25\nnational_gallery: oceanarium 22, ocbc_skyway 15, haw_par_villa 29, adventure_cove 23, east_coast_lagoon 33, universal_studios 23, peranakan_museum 12, night_safari 45, siloso_beach 25\nnight_safari: oceanarium 50, ocbc_skyway 48, haw_par_villa 42, adventure_cove 50, east_coast_lagoon 57, universal_studios 51, peranakan_museum 44, national_gallery 45, siloso_beach 50\nsiloso_beach: oceanarium 13, ocbc_skyway 26, haw_par_villa 22, adventure_cove 12, east_coast_lagoon 46, universal_studios 13, peranakan_museum 25, national_gallery 25, night_safari 50\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, I\u2019ve got 14 hours and 55 minutes for a trip starting at 09:00 with a budget of S$104. I definitely want to hit up Night Safari (gotta be there between 19:15 and 22:15), and I need to make sure I do Haw Par Villa before that. Also, I\u2019m planning to spend 450 minutes at Universal Studios Singapore and 120 minutes at Peranakan Museum. If there's any time left, I\u2019d love to squeeze in Singapore Oceanarium, OCBC Skyway, Adventure Cove Waterpark, East Coast Lagoon Food Village, National Gallery Singapore, and Siloso Beach too."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"The budget is insufficient to cover the mandatory and specified duration visits (Universal Studios Singapore costs 83, Night Safari costs 56, exceeding the budget of 104 SGD).\"\n}"
+}

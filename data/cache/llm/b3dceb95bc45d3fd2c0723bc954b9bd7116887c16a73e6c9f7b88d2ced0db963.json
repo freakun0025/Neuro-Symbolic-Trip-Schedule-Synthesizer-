@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 11:00 until 17:55. My budget is S$127. I want to visit Singapore River Cruise, River Wonders, Buddha Tooth Relic Temple and Flower Dome and Cloud Forest. Optionally, Night Safari, OCBC Skyway, National Museum of Singapore and Asian Civilisations Museum. I want to be at River Wonders no earlier than 14:35 and done there by 17:40."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Hey! I'm planning a day out from 11:00 until 17:55 with a total budget of S$127. I definitely want to see Flower Dome and Cloud Forest, Buddha Tooth Relic Temple, Singapore River Cruise, and River Wonders. Just note that for River Wonders, I want to be at River Wonders no earlier than 14:35 and done there by 17:40. If time permits, optional spots I'd love to add are Night Safari, OCBC Skyway, National Museum of Singapore, and Asian Civilisations Museum."
+}

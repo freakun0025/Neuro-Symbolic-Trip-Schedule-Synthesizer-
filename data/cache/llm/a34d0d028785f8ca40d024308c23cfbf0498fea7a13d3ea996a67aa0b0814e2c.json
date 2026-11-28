@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 11:00 until 13:00. I'm starting from Merlion Park. Money is not a concern. I want to visit National Gallery Singapore. If there's time, I'd also like Singapore Botanic Gardens, Singapore River Cruise, Adventure Cove Waterpark, SkyHelix Sentosa, East Coast Lagoon Food Village, Merlion Park, River Wonders and Universal Studios Singapore. I want to be at National Gallery Singapore no earlier than 14:25 and done there by 18:00."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "I'm starting from Merlion Park and my day out runs from 11:00 until 13:00. Money is not a concern. Top priority: I want to visit National Gallery Singapore, but I need to be at National Gallery Singapore no earlier than 14:25 and done there by 18:00. If there's time, I'd also like Singapore Botanic Gardens, Singapore River Cruise, Adventure Cove Waterpark, SkyHelix Sentosa, East Coast Lagoon Food Village, Merlion Park, River Wonders and Universal Studios Singapore."
+}

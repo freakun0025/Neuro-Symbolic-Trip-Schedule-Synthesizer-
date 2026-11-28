@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nperanakan_museum | Peranakan Museum | 15 | 90 | 10:00-19:00 | -\nnational_museum | National Museum of Singapore | 15 | 120 | 10:00-19:00 | -\nwings_of_time | Wings of Time | 19 | 20 | 19:30-21:30 | 19:40, 20:40\nspectra | Spectra Light and Water Show | 0 | 15 | 19:45-21:30 | 20:00, 21:00\nskyline_luge | Skyline Luge Sentosa | 30 | 60 | 10:00-21:00 | -\nocbc_skyway | OCBC Skyway | 14 | 30 | 09:00-21:00 | -\nnight_safari | Night Safari | 56 | 180 | 19:15-24:00 | -\ncable_car | Singapore Cable Car | 35 | 45 | 08:45-22:00 | -\nmaxwell | Maxwell Food Centre | 8 | 45 | 08:00-24:00 | -\noceanarium | Singapore Oceanarium | 50 | 120 | 10:00-19:00 | -\nriver_wonders | River Wonders | 43 | 120 | 10:00-19:00 | -\nsingapore_zoo | Singapore Zoo | 49 | 240 | 08:30-18:00 | -\n\nTravel times in minutes (row -> column):\nperanakan_museum: national_museum 11, wings_of_time 25, spectra 14, skyline_luge 24, ocbc_skyway 16, night_safari 44, cable_car 21, maxwell 14, oceanarium 23, river_wonders 44, singapore_zoo 43\nnational_museum: peranakan_museum 11, wings_of_time 25, spectra 15, skyline_luge 25, ocbc_skyway 16, night_safari 43, cable_car 21, maxwell 15, oceanarium 23, river_wonders 43, singapore_zoo 43\nwings_of_time: peranakan_museum 25, national_museum 25, spectra 25, skyline_luge 11, ocbc_skyway 25, night_safari 52, cable_car 16, maxwell 21, oceanarium 13, river_wonders 52, singapore_zoo 52\nspectra: peranakan_museum 14, national_museum 15, wings_of_time 25, skyline_luge 24, ocbc_skyway 12, night_safari 47, cable_car 22, maxwell 14, oceanarium 23, river_wonders 47, singapore_zoo 47\nskyline_luge: peranakan_museum 24, national_museum 25, wings_of_time 11, spectra 24, ocbc_skyway 25, night_safari 51, cable_car 16, maxwell 21, oceanarium 12, river_wonders 52, singapore_zoo 52\nocbc_skyway: peranakan_museum 16, national_museum 16, wings_of_time 25, spectra 12, skyline_luge 25, night_safari 48, cable_car 23, maxwell 16, oceanarium 24, river_wonders 48, singapore_zoo 48\nnight_safari: peranakan_museum 44, national_museum 43, wings_of_time 52, spectra 47, skyline_luge 51, ocbc_skyway 48, cable_car 46, maxwell 46, oceanarium 50, river_wonders 11, singapore_zoo 12\ncable_car: peranakan_museum 21, national_museum 21, wings_of_time 16, spectra 22, skyline_luge 16, ocbc_skyway 23, night_safari 46, maxwell 18, oceanarium 14, river_wonders 47, singapore_zoo 47\nmaxwell: peranakan_museum 14, national_museum 15, wings_of_time 21, spectra 14, skyline_luge 21, ocbc_skyway 16, night_safari 46, cable_car 18, oceanarium 19, river_wonders 47, singapore_zoo 46\noceanarium: peranakan_museum 23, national_museum 23, wings_of_time 13, spectra 23, skyline_luge 12, ocbc_skyway 24, night_safari 50, cable_car 14, maxwell 19, river_wonders 50, singapore_zoo 50\nriver_wonders: peranakan_museum 44, national_museum 43, wings_of_time 52, spectra 47, skyline_luge 52, ocbc_skyway 48, night_safari 11, cable_car 47, maxwell 47, oceanarium 50, singapore_zoo 11\nsingapore_zoo: peranakan_museum 43, national_museum 43, wings_of_time 52, spectra 47, skyline_luge 52, ocbc_skyway 48, night_safari 12, cable_car 47, maxwell 46, oceanarium 50, river_wonders 11\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, I\u2019ve got some free time between 11:00 and 23:10. My budget is S$24. I\u2019m definitely looking to hit up Maxwell Food Centre and Wings of Time. If I can fit more in, I\u2019d also love to see the Peranakan Museum, National Museum of Singapore, Spectra Light and Water Show, Skyline Luge Sentosa, OCBC Skyway, Night Safari, Singapore Cable Car, Singapore Oceanarium, River Wonders and Singapore Zoo."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"The total budget is S$24, but the mandatory locations Maxwell Food Centre (S$8) and Wings of Time (S$19) already cost S$27, which exceeds the budget.\"\n}"
+}

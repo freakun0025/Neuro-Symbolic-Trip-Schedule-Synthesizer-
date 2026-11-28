@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nbotanic_gardens | Singapore Botanic Gardens | 0 | 120 | 05:00-24:00 | -\nriver_cruise | Singapore River Cruise | 28 | 40 | 09:00-22:30 | -\nadventure_cove | Adventure Cove Waterpark | 40 | 180 | 10:00-17:00 | -\nskyhelix | SkyHelix Sentosa | 20 | 30 | 10:00-21:30 | -\neast_coast_lagoon | East Coast Lagoon Food Village | 15 | 60 | 10:30-22:30 | -\nmerlion_park | Merlion Park | 0 | 30 | 00:00-24:00 | -\nriver_wonders | River Wonders | 43 | 120 | 10:00-19:00 | -\nuniversal_studios | Universal Studios Singapore | 83 | 480 | 10:00-19:00 | -\nnational_gallery | National Gallery Singapore | 25 | 150 | 10:00-19:00 | -\n\nTravel times in minutes (row -> column):\nbotanic_gardens: river_cruise 21, adventure_cove 25, skyhelix 26, east_coast_lagoon 42, merlion_park 23, river_wonders 35, universal_studios 27, national_gallery 22\nriver_cruise: botanic_gardens 21, adventure_cove 22, skyhelix 22, east_coast_lagoon 34, merlion_park 13, river_wonders 45, universal_studios 22, national_gallery 12\nadventure_cove: botanic_gardens 25, river_cruise 22, skyhelix 11, east_coast_lagoon 44, merlion_park 23, river_wonders 50, universal_studios 12, national_gallery 23\nskyhelix: botanic_gardens 26, river_cruise 22, adventure_cove 11, east_coast_lagoon 44, merlion_park 23, river_wonders 51, universal_studios 12, national_gallery 23\neast_coast_lagoon: botanic_gardens 42, river_cruise 34, adventure_cove 44, skyhelix 44, merlion_park 32, river_wonders 57, universal_studios 43, national_gallery 33\nmerlion_park: botanic_gardens 23, river_cruise 13, adventure_cove 23, skyhelix 23, east_coast_lagoon 32, river_wonders 46, universal_studios 22, national_gallery 12\nriver_wonders: botanic_gardens 35, river_cruise 45, adventure_cove 50, skyhelix 51, east_coast_lagoon 57, merlion_park 46, universal_studios 51, national_gallery 45\nuniversal_studios: botanic_gardens 27, river_cruise 22, adventure_cove 12, skyhelix 12, east_coast_lagoon 43, merlion_park 22, river_wonders 51, national_gallery 23\nnational_gallery: botanic_gardens 22, river_cruise 12, adventure_cove 23, skyhelix 23, east_coast_lagoon 33, merlion_park 12, river_wonders 45, universal_studios 23\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, I'm planning a day out starting at Merlion Park from 11:00 until 13:00. Money is not a concern for this trip. I definitely need to visit National Gallery Singapore, but I need to be there no earlier than 14:25 and finished by 18:00. If there's any time left over, I\u2019d also love to fit in Singapore Botanic Gardens, Singapore River Cruise, Adventure Cove Waterpark, SkyHelix Sentosa, East Coast Lagoon Food Village, Merlion Park, River Wonders and Universal Studios Singapore."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": ""
+}

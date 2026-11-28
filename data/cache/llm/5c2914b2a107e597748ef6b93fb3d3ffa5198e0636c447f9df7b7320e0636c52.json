@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.1-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "Starting at 11:00, I've got 11 hours and 55 minutes to spend. I can spend at most S$22. I definitely need to see Wings of Time and Tekka Centre. If there's time, I'd also like Buddha Tooth Relic Temple, National Orchid Garden and Singapore River Cruise. I want to be at Wings of Time no earlier than 19:40 and done there by 19:55. I'd like to spend 30 minutes at Tekka Centre. I'd like to spend 70 minutes at Singapore River Cruise."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Hey, I\u2019ve got 11 hours and 55 minutes to kill starting at 11:00. I\u2019m looking to spend at most S$22 total. I really need to hit up Tekka Centre (would like to spend 30 minutes there) and Wings of Time\u2014I need to be at Wings of Time no earlier than 19:40 and finished by 19:55. If I can squeeze them in, I\u2019d also love to see Buddha Tooth Relic Temple, National Orchid Garden, and a Singapore River Cruise (I\u2019d like to spend 70 minutes at Singapore River Cruise)."
+}

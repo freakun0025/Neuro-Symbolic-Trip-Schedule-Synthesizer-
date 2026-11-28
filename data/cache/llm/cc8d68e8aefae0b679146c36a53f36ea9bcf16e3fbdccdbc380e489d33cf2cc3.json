@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nskyhelix | SkyHelix Sentosa | 20 | 30 | 10:00-21:30 | -\nfort_canning | Fort Canning Park | 0 | 60 | 00:00-24:00 | -\nskyline_luge | Skyline Luge Sentosa | 30 | 60 | 10:00-21:00 | -\nsiloso_beach | Siloso Beach | 0 | 90 | 07:00-22:00 | -\nriver_cruise | Singapore River Cruise | 28 | 40 | 09:00-22:30 | -\n\nTravel times in minutes (row -> column):\nskyhelix: fort_canning 23, skyline_luge 11, siloso_beach 12, river_cruise 22\nfort_canning: skyhelix 23, skyline_luge 24, siloso_beach 24, river_cruise 12\nskyline_luge: skyhelix 11, fort_canning 24, siloso_beach 12, river_cruise 23\nsiloso_beach: skyhelix 12, fort_canning 24, skyline_luge 12, river_cruise 23\nriver_cruise: skyhelix 22, fort_canning 12, skyline_luge 23, siloso_beach 23\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "I\u2019ve got a window from 11:00 to 16:20 and budget isn't an issue at all. I really need to hit up SkyHelix Sentosa, Skyline Luge Sentosa, and the Singapore River Cruise. Also, I need to make sure I\u2019m at Fort Canning Park no earlier than 11:55 and finished there by 14:25. If I can squeeze it in, I\u2019d love to check out Siloso Beach too."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\"feasible\":true,\"visits\":[{\"location_id\":\"skyhelix\",\"start\":\"11:00\",\"end\":\"11:30\"},{\"location_id\":\"fort_canning\",\"start\":\"11:55\",\"end\":\"12:55\"},{\"location_id\":\"skyline_luge\",\"start\":\"13:20\",\"end\":\"14:20\"},{\"location_id\":\"river_cruise\",\"start\":\"14:43\",\"end\":\"15:23\"}],\"reason\":\"All mandatory places fit within the 11:00-16:20 window and Fort Canning timing; Siloso Beach could not be added without exceeding the window.\"}"
+}

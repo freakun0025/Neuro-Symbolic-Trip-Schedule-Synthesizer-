@@ -1,0 +1,8 @@
+section,metric,value
+overview,instances,55
+overview,statuses,"{'BASELINE_SAT': 30, 'BASELINE_UNSAT': 25}"
+overview,end-to-end success,50/55 = 91% [95% CI 80%-96%]
+plans,SAT-claimed plans violating gold,3/30 = 10% [95% CI 3%-26%]
+plans,gold violation kinds,"{'showtime': 1, 'duration_mismatch': 2, 'horizon': 5}"
+infeasibility,precision (UNSAT = positive),23/25 = 92% [95% CI 75%-98%]
+infeasibility,recall (UNSAT = positive),23/25 = 92% [95% CI 75%-98%]

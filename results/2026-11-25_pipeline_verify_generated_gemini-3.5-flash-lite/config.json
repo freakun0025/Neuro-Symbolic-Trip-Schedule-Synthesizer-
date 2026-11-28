@@ -1,0 +1,10 @@
+{
+ "run_id": "2026-11-25_pipeline_verify_generated_gemini-3.5-flash-lite",
+ "method": "pipeline_verify",
+ "set": "generated",
+ "model": "gemini-3.5-flash-lite",
+ "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+ "kb_version": "e5a5ae6",
+ "git_sha": "c52b230",
+ "instances": 55
+}

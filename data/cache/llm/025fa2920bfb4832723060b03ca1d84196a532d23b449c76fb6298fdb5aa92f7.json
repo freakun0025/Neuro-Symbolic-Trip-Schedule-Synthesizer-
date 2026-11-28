@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 11:00 until 18:40. My budget is S$133. I want to visit OCBC Skyway, Adventure Cove Waterpark and Singapore River Cruise. If there's time, I'd also like Haw Par Villa and Universal Studios Singapore. I'd like to spend 30 minutes at Singapore River Cruise."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Planning a day out from 11:00 until 18:40 with a budget of S$133. I definitely want to check out Adventure Cove Waterpark, OCBC Skyway, and Singapore River Cruise\u2014I'd like to spend 30 minutes at Singapore River Cruise. If there's time, I'd also like Universal Studios Singapore and Haw Par Villa!"
+}

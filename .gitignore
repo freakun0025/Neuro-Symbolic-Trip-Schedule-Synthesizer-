@@ -9,6 +9,4 @@ results/*/scratch/
 # data/cache/ is committed on purpose: it makes LLM runs reproducible offline
 
 # design-review scratch (screenshots, decision-page logs)
-.impeccable/review/
-.impeccable/questions/
-.impeccable/mocks/
+.impeccable/

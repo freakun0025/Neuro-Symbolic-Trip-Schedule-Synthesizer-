@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nmaxwell | Maxwell Food Centre | 8 | 45 | 08:00-24:00 | -\nnational_gallery | National Gallery Singapore | 25 | 150 | 10:00-19:00 | -\nriver_cruise | Singapore River Cruise | 28 | 40 | 09:00-22:30 | -\ncable_car | Singapore Cable Car | 35 | 45 | 08:45-22:00 | -\njewel_changi | Jewel Changi Airport Rain Vortex | 0 | 60 | 10:00-24:00 | -\nriver_wonders | River Wonders | 43 | 120 | 10:00-19:00 | -\nnight_safari | Night Safari | 56 | 180 | 19:15-24:00 | -\n\nTravel times in minutes (row -> column):\nmaxwell: national_gallery 14, river_cruise 13, cable_car 18, jewel_changi 55, river_wonders 47, night_safari 46\nnational_gallery: maxwell 14, river_cruise 12, cable_car 21, jewel_changi 52, river_wonders 45, night_safari 45\nriver_cruise: maxwell 13, national_gallery 12, cable_car 19, jewel_changi 53, river_wonders 45, night_safari 44\ncable_car: maxwell 18, national_gallery 21, river_cruise 19, jewel_changi 62, river_wonders 47, night_safari 46\njewel_changi: maxwell 55, national_gallery 52, river_cruise 53, cable_car 62, river_wonders 65, night_safari 65\nriver_wonders: maxwell 47, national_gallery 45, river_cruise 45, cable_car 47, jewel_changi 65, night_safari 11\nnight_safari: maxwell 46, national_gallery 45, river_cruise 44, cable_car 46, jewel_changi 65, river_wonders 11\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, I\u2019ve got some free time from 09:00 to 14:05 and a budget of S$89. I\u2019m definitely looking to check out Singapore Cable Car, but I need to make sure I hit Maxwell Food Centre before that. Just a heads up, I need to be at Maxwell Food Centre no earlier than 08:30 and finished up by 10:45. If there's extra time, I'd love to squeeze in National Gallery Singapore, Singapore River Cruise, Jewel Changi Airport Rain Vortex, River Wonders, or Night Safari too!"
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"The time window from 09:00 to 14:05 is not long enough to visit Maxwell Food Centre, Singapore Cable Car, and any additional optional places while respecting opening hours, travel times, and duration constraints.\"\n}"
+}

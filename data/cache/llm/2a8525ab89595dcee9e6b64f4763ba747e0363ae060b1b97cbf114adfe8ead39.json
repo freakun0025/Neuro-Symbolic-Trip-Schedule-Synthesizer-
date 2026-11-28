@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nsiloso_beach | Siloso Beach | 0 | 90 | 07:00-22:00 | -\nskyhelix | SkyHelix Sentosa | 20 | 30 | 10:00-21:30 | -\nhaw_par_villa | Haw Par Villa | 0 | 90 | 09:00-20:00 | -\nchinatown_complex | Chinatown Complex Food Centre | 8 | 45 | 07:00-22:00 | -\nadventure_cove | Adventure Cove Waterpark | 40 | 180 | 10:00-17:00 | -\nuniversal_studios | Universal Studios Singapore | 83 | 480 | 10:00-19:00 | -\nnational_gallery | National Gallery Singapore | 25 | 150 | 10:00-19:00 | -\nartscience | ArtScience Museum | 30 | 90 | 10:00-19:00 | -\nsingapore_zoo | Singapore Zoo | 49 | 240 | 08:30-18:00 | -\n\nTravel times in minutes (row -> column):\nsiloso_beach: skyhelix 12, haw_par_villa 22, chinatown_complex 22, adventure_cove 12, universal_studios 13, national_gallery 25, artscience 26, singapore_zoo 51\nskyhelix: siloso_beach 12, haw_par_villa 23, chinatown_complex 20, adventure_cove 11, universal_studios 12, national_gallery 23, artscience 24, singapore_zoo 51\nhaw_par_villa: siloso_beach 22, skyhelix 23, chinatown_complex 27, adventure_cove 22, universal_studios 24, national_gallery 29, artscience 31, singapore_zoo 43\nchinatown_complex: siloso_beach 22, skyhelix 20, haw_par_villa 27, adventure_cove 20, universal_studios 20, national_gallery 14, artscience 15, singapore_zoo 46\nadventure_cove: siloso_beach 12, skyhelix 11, haw_par_villa 22, chinatown_complex 20, universal_studios 12, national_gallery 23, artscience 24, singapore_zoo 50\nuniversal_studios: siloso_beach 13, skyhelix 12, haw_par_villa 24, chinatown_complex 20, adventure_cove 12, national_gallery 23, artscience 23, singapore_zoo 51\nnational_gallery: siloso_beach 25, skyhelix 23, haw_par_villa 29, chinatown_complex 14, adventure_cove 23, universal_studios 23, artscience 13, singapore_zoo 45\nartscience: siloso_beach 26, skyhelix 24, haw_par_villa 31, chinatown_complex 15, adventure_cove 24, universal_studios 23, national_gallery 13, singapore_zoo 47\nsingapore_zoo: siloso_beach 51, skyhelix 51, haw_par_villa 43, chinatown_complex 46, adventure_cove 50, universal_studios 51, national_gallery 45, artscience 47\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 09:00 until 17:05. My budget is S$4. I want to visit Siloso Beach, Haw Par Villa and Chinatown Complex Food Centre. If there's time, I'd also like SkyHelix Sentosa, Adventure Cove Waterpark, Universal Studios Singapore, National Gallery Singapore, ArtScience Museum and Singapore Zoo. I'd like to spend 75 minutes at Chinatown Complex Food Centre. I'd like to spend 210 minutes at Adventure Cove Waterpark."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"Budget of S$4 is insufficient for required Chinatown Complex (cost S$8) and other paid attractions.\"\n}"
+}

@@ -1,0 +1,35 @@
+section,metric,value
+overview,instances,55
+overview,statuses,"{'SAT': 30, 'UNSAT': 25}"
+overview,end-to-end success,55/55 = 100% [95% CI 93%-100%]
+plans,SAT-claimed plans violating gold,0/30 = 0% [95% CI 0%-11%]
+plans,solver plans proven optimal (else greedy after timeout),29/30 = 97% [95% CI 83%-99%]
+plans,plans violating their own extracted constraints (must be 0),0/30 = 0% [95% CI 0%-11%]
+infeasibility,precision (UNSAT = positive),25/25 = 100% [95% CI 87%-100%]
+infeasibility,recall (UNSAT = positive),25/25 = 100% [95% CI 87%-100%]
+cores,core equals the seeded conflict,20/20 = 100% [95% CI 84%-100%]
+cores,cores reported minimal,20/20 = 100% [95% CI 84%-100%]
+cores,two-conflict instances: core is one of the seeded conflicts,5/5 = 100% [95% CI 57%-100%]
+extraction,activity P/R/F1,"1.00 / 1.00 / 1.00 (tp 408, fp 2, fn 2)"
+extraction,budget P/R/F1,"1.00 / 1.00 / 1.00 (tp 38, fp 0, fn 0)"
+extraction,cost P/R/F1,"1.00 / 1.00 / 1.00 (tp 410, fp 0, fn 0)"
+extraction,duration P/R/F1,"1.00 / 1.00 / 1.00 (tp 410, fp 0, fn 0)"
+extraction,horizon_end P/R/F1,"1.00 / 1.00 / 1.00 (tp 55, fp 0, fn 0)"
+extraction,horizon_start P/R/F1,"1.00 / 1.00 / 1.00 (tp 55, fp 0, fn 0)"
+extraction,origin P/R/F1,"1.00 / 1.00 / 1.00 (tp 11, fp 0, fn 0)"
+extraction,precedence P/R/F1,"1.00 / 1.00 / 1.00 (tp 35, fp 0, fn 0)"
+extraction,window P/R/F1,"1.00 / 1.00 / 1.00 (tp 26, fp 0, fn 0)"
+extraction,ALL P/R/F1,"1.00 / 1.00 / 1.00 (tp 1448, fp 2, fn 2)"
+extraction,instances extracted exactly,53/55 = 96% [95% CI 88%-99%]
+error taxonomy,wrong_must_visit,"2 instances, 0 with a wrong final answer"
+runtime (solve ms),n=3,"mean 5, median 6"
+runtime (solve ms),n=4,"mean 10, median 7"
+runtime (solve ms),n=5,"mean 552, median 19"
+runtime (solve ms),n=6,"mean 556, median 24"
+runtime (solve ms),n=7,"mean 671, median 16"
+runtime (solve ms),n=8,"mean 222, median 51"
+runtime (solve ms),n=9,"mean 96, median 37"
+runtime (solve ms),n=10,"mean 26, median 27"
+runtime (solve ms),n=11,"mean 114, median 67"
+runtime (solve ms),n=12,"mean 1148, median 74"
+runtime (extract ms),all,"mean 3, median 2"

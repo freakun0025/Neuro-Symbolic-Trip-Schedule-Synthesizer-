@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nmaxwell | Maxwell Food Centre | 8 | 45 | 08:00-24:00 | -\nskyline_luge | Skyline Luge Sentosa | 30 | 60 | 10:00-21:00 | -\nnight_safari | Night Safari | 56 | 180 | 19:15-24:00 | -\nskypark | Marina Bay Sands SkyPark Observation Deck | 32 | 60 | 11:00-21:00 | -\n\nTravel times in minutes (row -> column):\nmaxwell: skyline_luge 21, night_safari 46, skypark 15\nskyline_luge: maxwell 21, night_safari 51, skypark 25\nnight_safari: maxwell 46, skyline_luge 51, skypark 48\nskypark: maxwell 15, skyline_luge 25, night_safari 48\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 10:00 until 15:30. Money is not a concern. I want to visit Maxwell Food Centre. If there's time, I'd also like Skyline Luge Sentosa, Night Safari and Marina Bay Sands SkyPark Observation Deck. I want to do Marina Bay Sands SkyPark Observation Deck before Maxwell Food Centre. I'd like to spend 30 minutes at Marina Bay Sands SkyPark Observation Deck."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\"feasible\":true,\"visits\":[{\"location_id\":\"skypark\",\"start\":\"11:00\",\"end\":\"11:30\"},{\"location_id\":\"maxwell\",\"start\":\"11:45\",\"end\":\"12:30\"},{\"location_id\":\"skyline_luge\",\"start\":\"12:51\",\"end\":\"13:51\"}],\"reason\":\"All mandatory and optional visits fit within the 10:00-15:30 window respecting opening hours and travel times.\"}"
+}

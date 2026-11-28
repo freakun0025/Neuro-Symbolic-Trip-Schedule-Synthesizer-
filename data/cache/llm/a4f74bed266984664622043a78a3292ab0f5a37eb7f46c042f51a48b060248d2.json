@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nwings_of_time | Wings of Time | 19 | 20 | 19:30-21:30 | 19:40, 20:40\nbuddha_tooth | Buddha Tooth Relic Temple | 0 | 45 | 07:00-17:00 | -\norchid_garden | National Orchid Garden | 15 | 60 | 08:30-19:00 | -\ntekka_centre | Tekka Centre | 8 | 45 | 06:30-21:00 | -\nriver_cruise | Singapore River Cruise | 28 | 40 | 09:00-22:30 | -\n\nTravel times in minutes (row -> column):\nwings_of_time: buddha_tooth 21, orchid_garden 27, tekka_centre 28, river_cruise 23\nbuddha_tooth: wings_of_time 21, orchid_garden 22, tekka_centre 17, river_cruise 13\norchid_garden: wings_of_time 27, buddha_tooth 22, tekka_centre 20, river_cruise 21\ntekka_centre: wings_of_time 28, buddha_tooth 17, orchid_garden 20, river_cruise 15\nriver_cruise: wings_of_time 23, buddha_tooth 13, orchid_garden 21, tekka_centre 15\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, I\u2019ve got 11 hours and 55 minutes to kill starting at 11:00. I\u2019m looking to spend at most S$22 total. I really need to hit up Tekka Centre (would like to spend 30 minutes there) and Wings of Time\u2014I need to be at Wings of Time no earlier than 19:40 and finished by 19:55. If I can squeeze them in, I\u2019d also love to see Buddha Tooth Relic Temple, National Orchid Garden, and a Singapore River Cruise (I\u2019d like to spend 70 minutes at Singapore River Cruise)."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": false,\n  \"visits\": [],\n  \"reason\": \"The required visit to Wings of Time cannot be completed by 19:55 because the show lasts 20 minutes and the earliest available showtime is 19:40.\"\n}"
+}

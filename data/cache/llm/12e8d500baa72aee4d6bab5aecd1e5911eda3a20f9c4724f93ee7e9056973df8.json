@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 09:00 until 21:55. I can spend at most S$1. I definitely need to see Spectra Light and Water Show. Optionally, Clarke Quay, Universal Studios Singapore, Fort Canning Park, Adventure Cove Waterpark, Night Safari, National Museum of Singapore, Singapore Cable Car, Supertree Grove and Siloso Beach. I'd like to spend 30 minutes at Singapore Cable Car. I'd like to spend 60 minutes at Siloso Beach. I want to be at Spectra Light and Water Show no earlier than 20:00 and done there by 20:05."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "I'm putting together a trip from 09:00 to 21:55, and my budget is capped at at most S$1. The main thing I definitely need to see is Spectra Light and Water Show, which I want to be at no earlier than 20:00 and done there by 20:05. If time permits, some optional places I'd like to consider are Clarke Quay, Universal Studios Singapore, Fort Canning Park, Adventure Cove Waterpark, Night Safari, National Museum of Singapore, Singapore Cable Car, Supertree Grove, and Siloso Beach. If they get added, I'd like to spend 30 minutes at Singapore Cable Car and 60 minutes at Siloso Beach."
+}

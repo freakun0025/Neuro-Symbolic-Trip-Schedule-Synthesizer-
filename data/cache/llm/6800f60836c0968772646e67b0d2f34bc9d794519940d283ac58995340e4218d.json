@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nskyhelix | SkyHelix Sentosa | 20 | 30 | 10:00-21:30 | -\norchard_road | Orchard Road | 0 | 120 | 10:00-22:00 | -\nwings_of_time | Wings of Time | 19 | 20 | 19:30-21:30 | 19:40, 20:40\nspectra | Spectra Light and Water Show | 0 | 15 | 19:45-21:30 | 20:00, 21:00\nriver_cruise | Singapore River Cruise | 28 | 40 | 09:00-22:30 | -\nclarke_quay | Clarke Quay | 30 | 90 | 17:00-24:00 | -\nbuddha_tooth | Buddha Tooth Relic Temple | 0 | 45 | 07:00-17:00 | -\n\nTravel times in minutes (row -> column):\nskyhelix: orchard_road 24, wings_of_time 12, spectra 23, river_cruise 22, clarke_quay 22, buddha_tooth 20\norchard_road: skyhelix 24, wings_of_time 25, spectra 20, river_cruise 16, clarke_quay 16, buddha_tooth 17\nwings_of_time: skyhelix 12, orchard_road 25, spectra 25, river_cruise 23, clarke_quay 24, buddha_tooth 21\nspectra: skyhelix 23, orchard_road 20, wings_of_time 25, river_cruise 14, clarke_quay 14, buddha_tooth 14\nriver_cruise: skyhelix 22, orchard_road 16, wings_of_time 23, spectra 14, clarke_quay 11, buddha_tooth 13\nclarke_quay: skyhelix 22, orchard_road 16, wings_of_time 24, spectra 14, river_cruise 11, buddha_tooth 13\nbuddha_tooth: skyhelix 20, orchard_road 17, wings_of_time 21, spectra 14, river_cruise 13, clarke_quay 13\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, planning a trip from 14:00 to 23:55 with a budget of S$62. I need to hit up Buddha Tooth Relic Temple, Clarke Quay, and Singapore River Cruise. Also down for Orchard Road, SkyHelix Sentosa, Wings of Time, and Spectra Light and Water Show if there's time.\n\nJust a few rules:\n- Need to do Spectra Light and Water Show before Singapore River Cruise.\n- Clarke Quay has to be before Buddha Tooth Relic Temple.\n- If I go to Orchard Road, I need to spend 150 minutes there, but only between 13:00 and 17:30.\n- Want to spend 60 minutes at SkyHelix Sentosa."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\"feasible\":false,\"visits\":[],\"reason\":\"Clarke Quay must be visited before Buddha Tooth, but Clarke Quay opens at 17:00 while Buddha Tooth closes at 17:00, making the ordering impossible.\"}"
+}

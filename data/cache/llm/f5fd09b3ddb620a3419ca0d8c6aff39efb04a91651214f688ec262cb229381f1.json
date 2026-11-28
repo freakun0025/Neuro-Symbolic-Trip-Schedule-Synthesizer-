@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.1-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 09:00 to 13:50. I'm starting from National Museum of Singapore. My budget is S$66. I want to visit Bird Paradise. Optionally, Haw Par Villa, Night Safari, Singapore River Cruise, OCBC Skyway, Maxwell Food Centre, Lau Pa Sat, Siloso Beach and SkyHelix Sentosa. I'd like to spend 70 minutes at Singapore River Cruise. I'd like to spend 60 minutes at Siloso Beach."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "I've got some free time between 09:00 and 13:50 and I'm looking to head out from National Museum of Singapore. I'm hoping to check out Bird Paradise and have a budget of S$66 to work with. If I can fit them in, I'd also love to see Haw Par Villa, Night Safari, Singapore River Cruise, OCBC Skyway, Maxwell Food Centre, Lau Pa Sat, Siloso Beach, and SkyHelix Sentosa. Just a heads up, I'd like to spend 70 minutes at Singapore River Cruise and 60 minutes at Siloso Beach."
+}

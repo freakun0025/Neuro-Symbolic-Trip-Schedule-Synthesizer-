@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nmerlion_park | Merlion Park | 0 | 30 | 00:00-24:00 | -\ncable_car | Singapore Cable Car | 35 | 45 | 08:45-22:00 | -\nspectra | Spectra Light and Water Show | 0 | 15 | 19:45-21:30 | 20:00, 21:00\nbotanic_gardens | Singapore Botanic Gardens | 0 | 120 | 05:00-24:00 | -\nnational_museum | National Museum of Singapore | 15 | 120 | 10:00-19:00 | -\n\nTravel times in minutes (row -> column):\nmerlion_park: cable_car 21, spectra 12, botanic_gardens 23, national_museum 14\ncable_car: merlion_park 21, spectra 22, botanic_gardens 22, national_museum 21\nspectra: merlion_park 12, cable_car 22, botanic_gardens 25, national_museum 15\nbotanic_gardens: merlion_park 23, cable_car 22, spectra 25, national_museum 20\nnational_museum: merlion_park 14, cable_car 21, spectra 15, botanic_gardens 20\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "Hey, I'm planning a day out starting from National Museum of Singapore at 09:00. I\u2019ve got 14 hours and 55 minutes total and a budget of S$62 to work with. Definitely want to hit Singapore Botanic Gardens first, and I need to make sure that's before I head to Singapore Cable Car (where I only need 30 minutes). If I can fit them in, I\u2019d love to see Merlion Park and the Spectra Light and Water Show as well. Just need to make sure I\u2019m at the Spectra Light and Water Show no earlier than 19:00 and finished up by 20:15."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\n  \"feasible\": true,\n  \"visits\": [\n    {\n      \"location_id\": \"botanic_gardens\",\n      \"start\": \"09:20\",\n      \"end\": \"11:20\"\n    },\n    {\n      \"location_id\": \"cable_car\",\n      \"start\": \"11:42\",\n      \"end\": \"12:12\"\n    },\n    {\n      \"location_id\": \"merlion_park\",\n      \"start\": \"12:33\",\n      \"end\": \"13:03\"\n    },\n    {\n      \"location_id\": \"spectra\",\n      \"start\": \"20:00\",\n      \"end\": \"20:15\"\n    }\n  ],\n  \"reason\": \"The schedule satisfies all time windows, budget constraints, durations, travel times, and specific showtime requirements.\"\n}"
+}

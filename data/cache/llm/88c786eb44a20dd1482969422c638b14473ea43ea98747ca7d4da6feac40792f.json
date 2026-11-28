@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.1-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 11:00 to 23:10. My budget is S$24. I want to visit Wings of Time and Maxwell Food Centre. If there's time, I'd also like Peranakan Museum, National Museum of Singapore, Spectra Light and Water Show, Skyline Luge Sentosa, OCBC Skyway, Night Safari, Singapore Cable Car, Singapore Oceanarium, River Wonders and Singapore Zoo."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Hey, I\u2019ve got some free time between 11:00 and 23:10. My budget is S$24. I\u2019m definitely looking to hit up Maxwell Food Centre and Wings of Time. If I can fit more in, I\u2019d also love to see the Peranakan Museum, National Museum of Singapore, Spectra Light and Water Show, Skyline Luge Sentosa, OCBC Skyway, Night Safari, Singapore Cable Car, Singapore Oceanarium, River Wonders and Singapore Zoo."
+}

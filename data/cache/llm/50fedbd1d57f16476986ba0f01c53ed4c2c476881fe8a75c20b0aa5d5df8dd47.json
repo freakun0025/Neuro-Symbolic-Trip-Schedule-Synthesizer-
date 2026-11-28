@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.1-flash-lite",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 16:00 to 23:55. My budget is S$45. I want to visit Singapore Botanic Gardens, Wings of Time and Chinatown Complex Food Centre. Optionally, Bird Paradise, Supertree Grove, Adventure Cove Waterpark, National Gallery Singapore, National Orchid Garden, Clarke Quay, ArtScience Museum and East Coast Lagoon Food Village. I want to do ArtScience Museum before East Coast Lagoon Food Village. I'd like to spend 210 minutes at Bird Paradise. I'd like to spend 180 minutes at National Gallery Singapore. I'd like to spend 30 minutes at National Orchid Garden. I'd like to spend 90 minutes at East Coast Lagoon Food Village. I'd like to spend 70 minutes at Chinatown Complex Food Centre. I want to be at Chinatown Complex Food Centre no earlier than 19:35 and done there by 20:45."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "Hey, I\u2019ve got some free time from 16:00 to 23:55 and a budget of S$45. Really hoping to hit up Singapore Botanic Gardens, Wings of Time, and Chinatown Complex Food Centre. \n\nIf there\u2019s still time, I\u2019d love to check out Bird Paradise, Supertree Grove, Adventure Cove Waterpark, National Gallery Singapore, National Orchid Garden, Clarke Quay, ArtScience Museum, and East Coast Lagoon Food Village. Just a heads up, I need to do the ArtScience Museum before East Coast Lagoon Food Village.\n\nFor the timings, here\u2019s what I\u2019m looking at: 210 minutes at Bird Paradise, 180 minutes at National Gallery Singapore, 30 minutes at National Orchid Garden, 90 minutes at East Coast Lagoon Food Village, and 70 minutes at Chinatown Complex Food Centre. Also, I need to be at Chinatown Complex Food Centre no earlier than 19:35 and finished there by 20:45."
+}

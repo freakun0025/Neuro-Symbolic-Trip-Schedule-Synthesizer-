@@ -1,0 +1,20 @@
+{
+ "request": {
+  "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+  "model": "gemini-3.5-flash",
+  "messages": [
+   {
+    "role": "system",
+    "content": "Rewrite this one-day trip request the way a real traveller might type it: change the wording and the sentence order, informal is fine. Keep EVERY number, time (exactly as written, 24-hour HH:MM), money amount and place name exactly as written. Do not add, drop or change any requirement. Output only the rewritten request."
+   },
+   {
+    "role": "user",
+    "content": "My day out runs from 10:00 until 16:05. Money is not a concern. I definitely need to see Adventure Cove Waterpark and Buddha Tooth Relic Temple. If there's time, I'd also like Universal Studios Singapore, Singapore Flyer, Peranakan Museum and National Orchid Garden."
+   }
+  ],
+  "json_schema": null,
+  "temperature": 0.7,
+  "seed": 851
+ },
+ "response": "I'm free from 10:00 until 16:05. I definitely need to see Buddha Tooth Relic Temple and Adventure Cove Waterpark. Money is not a concern, so if there's time, I'd also like Universal Studios Singapore, Singapore Flyer, Peranakan Museum and National Orchid Garden."
+}

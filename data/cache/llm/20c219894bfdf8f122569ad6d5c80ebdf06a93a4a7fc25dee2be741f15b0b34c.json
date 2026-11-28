@@ -1,0 +1,74 @@
+{
+ "request": {
+  "base_url": "https://api.groq.com/openai/v1",
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You are a careful trip planner for ONE day in Singapore. Plan a schedule that satisfies ALL of the\ntraveller's requirements, using only the facts below. Requirements include: total budget, the time window\nof the day, places that must be visited, the order they ask for, times they give for specific places, and\nhow long they want to stay. Each visit lasts exactly its duration (the typical duration unless the traveller\ngives one), must be inside the place's opening hours, shows can only start at a listed showtime, visits\ncannot overlap, and you need the listed travel time between consecutive stops (and from/to the starting\nplace if one is given). Optional places should be included only if everything still fits.\nIf no schedule can satisfy every requirement, answer feasible=false with an empty visits list and say why.\n\nPlaces (id | name | cost SGD | typical minutes | open-close | showtimes):\nsingapore_zoo | Singapore Zoo | 49 | 240 | 08:30-18:00 | -\nlau_pa_sat | Lau Pa Sat | 15 | 60 | 00:00-24:00 | -\ngarden_rhapsody | Garden Rhapsody | 0 | 15 | 19:30-21:15 | 19:45, 20:45\nspectra | Spectra Light and Water Show | 0 | 15 | 19:45-21:30 | 20:00, 21:00\nsupertree_grove | Supertree Grove | 0 | 45 | 05:00-24:00 | -\ntekka_centre | Tekka Centre | 8 | 45 | 06:30-21:00 | -\n\nTravel times in minutes (row -> column):\nsingapore_zoo: lau_pa_sat 47, garden_rhapsody 48, spectra 47, supertree_grove 48, tekka_centre 41\nlau_pa_sat: singapore_zoo 47, garden_rhapsody 14, spectra 13, supertree_grove 14, tekka_centre 17\ngarden_rhapsody: singapore_zoo 48, lau_pa_sat 14, spectra 12, supertree_grove 0, tekka_centre 18\nspectra: singapore_zoo 47, lau_pa_sat 13, garden_rhapsody 12, supertree_grove 12, tekka_centre 17\nsupertree_grove: singapore_zoo 48, lau_pa_sat 14, garden_rhapsody 0, spectra 12, tekka_centre 18\ntekka_centre: singapore_zoo 41, lau_pa_sat 17, garden_rhapsody 18, spectra 17, supertree_grove 18\n\nAnswer with JSON only: {\"feasible\": bool, \"visits\": [{\"location_id\": id, \"start\": \"HH:MM\", \"end\": \"HH:MM\"}],\n\"reason\": short string}. Times are 24-hour HH:MM."
+   },
+   {
+    "role": "user",
+    "content": "I'm free from 10:00 to 20:15. I can spend at most S$16. I definitely need to see Lau Pa Sat, Spectra Light and Water Show and Supertree Grove. Optionally, Singapore Zoo, Garden Rhapsody and Tekka Centre. I want to be at Spectra Light and Water Show no earlier than 20:00 and done there by 20:45."
+   }
+  ],
+  "json_schema": {
+   "$defs": {
+    "_Stop": {
+     "additionalProperties": false,
+     "properties": {
+      "location_id": {
+       "title": "Location Id",
+       "type": "string"
+      },
+      "start": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "Start",
+       "type": "string"
+      },
+      "end": {
+       "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+       "title": "End",
+       "type": "string"
+      }
+     },
+     "required": [
+      "location_id",
+      "start",
+      "end"
+     ],
+     "title": "_Stop",
+     "type": "object"
+    }
+   },
+   "additionalProperties": false,
+   "properties": {
+    "feasible": {
+     "title": "Feasible",
+     "type": "boolean"
+    },
+    "visits": {
+     "items": {
+      "$ref": "#/$defs/_Stop"
+     },
+     "title": "Visits",
+     "type": "array"
+    },
+    "reason": {
+     "title": "Reason",
+     "type": "string"
+    }
+   },
+   "required": [
+    "feasible",
+    "visits",
+    "reason"
+   ],
+   "title": "_Answer",
+   "type": "object"
+  },
+  "temperature": 0.0,
+  "seed": null
+ },
+ "response": "{\"feasible\":true,\"visits\":[{\"location_id\":\"supertree_grove\",\"start\":\"10:00\",\"end\":\"10:45\"},{\"location_id\":\"lau_pa_sat\",\"start\":\"10:59\",\"end\":\"11:59\"},{\"location_id\":\"garden_rhapsody\",\"start\":\"19:33\",\"end\":\"19:48\"},{\"location_id\":\"spectra\",\"start\":\"20:00\",\"end\":\"20:15\"}],\"reason\":\"All required places fit within time window, budget S$15, and travel times align with the 20:00 Spectra show.\"}"
+}
