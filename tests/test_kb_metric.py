@@ -64,3 +64,13 @@ def test_bad_rows_rejected(tmp_path, field, value, message):
     csv_path.write_text("\n".join(lines))
     with pytest.raises(ValueError, match=message):
         load_kb(tmp_path / "kb")
+
+
+@pytest.mark.parametrize("eol", [b"\n", b"\r\n"])
+def test_kb_version_ignores_line_endings(tmp_path, eol):
+    # a Windows checkout (core.autocrlf) must give the same version as the committed LF files
+    shutil.copytree(KB_DIR, tmp_path / "kb")
+    for name in ("locations.csv", "travel_params.json"):
+        p = tmp_path / "kb" / name
+        p.write_bytes(p.read_bytes().replace(b"\r\n", b"\n").replace(b"\n", eol))
+    assert load_kb(tmp_path / "kb").version == load_kb().version == "e5a5ae6"
