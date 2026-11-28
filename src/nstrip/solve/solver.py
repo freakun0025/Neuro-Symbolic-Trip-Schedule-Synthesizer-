@@ -2,7 +2,7 @@
 
 import z3
 
-from nstrip.config import SOLVER_TIMEOUT_MS
+from nstrip.config import SOLVER_TIMEOUT_MS, STAGE2_RLIMIT
 from nstrip.encode.compiler import Encoding
 from nstrip.models.plan import Plan, Visit
 
@@ -47,7 +47,10 @@ def optimise_plan(enc: Encoding, timeout_ms: int = SOLVER_TIMEOUT_MS) -> Plan:
        sum of starts), ties broken lexicographically by start time in place-id order, so the same request
        always gives the same plan. Stage 1 alone leaves the order to whichever tied model Z3 finds first,
        which differs from run to run. Up to FREE_ORDER_MAX chosen places the order is searched (a routing
-       problem); above that, or on timeout, stage 1's order is compacted instead.
+       problem); above that, or when the search runs out of budget, stage 1's order is compacted instead.
+       Stage 2's budget is Z3's work counter (STAGE2_RLIMIT), not the clock: on a wall-clock budget a busy
+       machine made the free-order search time out and silently return a different plan. The clock
+       (SOLVER_TIMEOUT_MS) stays only as a safety cap.
     """
     acts = enc.problem.activities
     o = _optimizer(enc, timeout_ms)
@@ -63,8 +66,9 @@ def optimise_plan(enc: Encoding, timeout_ms: int = SOLVER_TIMEOUT_MS) -> Plan:
     # Free order only for small plans: it is a routing search (fast up to ~8 places, seconds beyond). The switch
     # depends on the count, not on time, so the result stays deterministic; larger plans compact stage 1's order.
     tries = ([], order) if len(chosen) <= FREE_ORDER_MAX else (order,)
-    for extra in tries:  # free order first; stage 1's order if that times out
-        o2 = _optimizer(enc, timeout_ms)
+    for extra in tries:  # free order first; stage 1's order if that runs out of budget
+        o2 = _optimizer(enc, SOLVER_TIMEOUT_MS)
+        o2.set("rlimit", STAGE2_RLIMIT)
         o2.add(fixed + extra)
         o2.minimize(sum((enc.S[i] for i in chosen), z3.IntVal(0)))
         for i in chosen:
